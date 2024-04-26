@@ -1,11 +1,24 @@
 import type { Chain } from '@wormhole-foundation/sdk/dist/cjs';
 
 export interface IReqRedeemTx {
+  source: Chain;
+  txHash: string;
+  receiver: IUniversalAccount;
+}
+
+export interface IUniversalAccount {
   chain: Chain;
-  hash: string;
+  address: string;
 }
 
 export interface IReqTransferTx {
-  sender: string;
-  receiver: { chain: Chain; address: string };
+  sender: IUniversalAccount;
+  receiver: IUniversalAccount;
+  token: {
+    info?: {
+      type: string;
+      decimals: number;
+    };
+    amount: string;
+  };
 }
