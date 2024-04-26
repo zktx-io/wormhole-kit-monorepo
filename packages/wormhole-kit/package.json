@@ -10,7 +10,7 @@
     "rollup": "rollup -c --bundleConfigAsCjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/** --fix",
-    "format": "prettier --write --ignore-path .gitignore ."
+    "format": "prettier --write ."
   },
   "keywords": [
     "wormhole",
