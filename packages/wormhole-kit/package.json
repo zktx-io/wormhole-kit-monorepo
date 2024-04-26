@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
   "repository": "https://github.com/zktx-io/wormhole-kit-monorepo",
-  "main": "index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc && vite build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "rollup": "rollup -c --bundleConfigAsCjs",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/** --fix",
+    "format": "prettier --write --ignore-path .gitignore ."
   },
   "keywords": [
     "wormhole",
@@ -40,14 +44,16 @@
   ],
   "author": "daoauth",
   "license": "ISC",
-  "dependencies": {
-    "react": "^18.3.0"
-  },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.2.1",
-    "path": "^0.12.7",
-    "vite": "^5.2.10",
-    "vite-plugin-dts": "^3.9.0",
-    "vite-tsconfig-paths": "^4.3.2"
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.3.0",
+    "react": "^18.3.0",
+    "rollup": "^4.16.4",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2"
   }
 }

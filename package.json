@@ -5,10 +5,12 @@
   "repository": "https://github.com/zktx-io/wormhole-kit-monorepo",
   "main": "index.js",
   "scripts": {
-    "example:sui": "cd ./packages/example-sui && npm run start",
+    "start:sui": "cd ./packages/example-sui && npm run start",
+    "format:kit": "cd ./packages/wormhole-kit && npm run format",
     "format:sui": "cd ./packages/example-sui && npm run format",
+    "lint:kit": "cd ./packages/wormhole-kit && npm run lint",
     "lint:sui": "cd ./packages/example-sui && npm run lint",
-    "build": "cd ./packages/wormhole-kit && npm run build",
+    "rollup": "cd ./packages/wormhole-kit && npm run rollup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
