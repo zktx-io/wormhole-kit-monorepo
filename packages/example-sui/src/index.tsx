@@ -1,16 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { StrictMode } from 'react';
+
+import { SuiClientProvider, WalletProvider } from '@mysten/dapp-kit';
+import { getFullnodeUrl } from '@mysten/sui.js/client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createRoot } from 'react-dom/client';
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
-);
+import '@mysten/dapp-kit/dist/index.css';
+
+const queryClient = new QueryClient();
+
+const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <SuiClientProvider
+        defaultNetwork="testnet"
+        networks={{ testnet: { url: getFullnodeUrl('testnet') } }}
+      >
+        <WalletProvider>
+          <App />
+        </WalletProvider>
+      </SuiClientProvider>
+    </QueryClientProvider>
+  </StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
