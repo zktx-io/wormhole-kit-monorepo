@@ -1,0 +1,41 @@
+{
+  "name": "@zktx.io/wormhole-kit",
+  "version": "0.1.0",
+  "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wormhole",
+    "birdge",
+    "acala",
+    "algorand",
+    "aptos",
+    "arbitrum",
+    "aurora",
+    "avalanche",
+    "base goerli",
+    "binance smart chain",
+    "celo",
+    "ethereum (goerli)",
+    "ethereum (sepolia)",
+    "fantom",
+    "injective",
+    "karura",
+    "klaytn",
+    "moonbeam",
+    "near",
+    "neon",
+    "oasis",
+    "optimism (goerli)",
+    "polygon",
+    "sei",
+    "solana",
+    "sui",
+    "xpla",
+    "evm"
+  ],
+  "author": "daoauth",
+  "license": "ISC"
+}
