@@ -2,6 +2,7 @@
   "name": "example-sui",
   "version": "0.1.0",
   "description": "sui example",
+  "repository": "https://github.com/zktx-io/wormhole-kit-monorepo",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
