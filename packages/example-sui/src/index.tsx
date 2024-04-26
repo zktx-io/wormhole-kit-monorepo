@@ -3,6 +3,7 @@ import { StrictMode } from 'react';
 import { SuiClientProvider, WalletProvider } from '@mysten/dapp-kit';
 import { getFullnodeUrl } from '@mysten/sui.js/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { WormholeProvider } from '@zktx.io/wormhole-kit';
 import { createRoot } from 'react-dom/client';
 
 import './index.css';
@@ -16,16 +17,18 @@ const queryClient = new QueryClient();
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <SuiClientProvider
-        defaultNetwork="testnet"
-        networks={{ testnet: { url: getFullnodeUrl('testnet') } }}
-      >
-        <WalletProvider>
-          <App />
-        </WalletProvider>
-      </SuiClientProvider>
-    </QueryClientProvider>
+    <WormholeProvider>
+      <QueryClientProvider client={queryClient}>
+        <SuiClientProvider
+          defaultNetwork="testnet"
+          networks={{ testnet: { url: getFullnodeUrl('testnet') } }}
+        >
+          <WalletProvider>
+            <App />
+          </WalletProvider>
+        </SuiClientProvider>
+      </QueryClientProvider>
+    </WormholeProvider>
   </StrictMode>,
 );
 

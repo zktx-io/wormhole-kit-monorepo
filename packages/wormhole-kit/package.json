@@ -5,6 +5,7 @@
   "repository": "https://github.com/zktx-io/wormhole-kit-monorepo",
   "main": "index.js",
   "scripts": {
+    "build": "tsc && vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -38,5 +39,15 @@
     "evm"
   ],
   "author": "daoauth",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "path": "^0.12.7",
+    "vite": "^5.2.10",
+    "vite-plugin-dts": "^3.9.0",
+    "vite-tsconfig-paths": "^4.3.2"
+  }
 }

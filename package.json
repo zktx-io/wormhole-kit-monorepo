@@ -8,6 +8,7 @@
     "example:sui": "cd ./packages/example-sui && npm run start",
     "format:sui": "cd ./packages/example-sui && npm run format",
     "lint:sui": "cd ./packages/example-sui && npm run lint",
+    "build": "cd ./packages/wormhole-kit && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

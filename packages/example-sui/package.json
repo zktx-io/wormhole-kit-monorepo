@@ -40,6 +40,7 @@
     "@mysten/dapp-kit": "^0.12.10",
     "@mysten/sui.js": "^0.52.0",
     "@tanstack/react-query": "^5.32.0",
+    "@zktx.io/wormhole-kit": "^0.1.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "react-router-dom": "^6.23.0",
