@@ -55,5 +55,8 @@
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2"
+  },
+  "dependencies": {
+    "@wormhole-foundation/sdk": "^0.6.1"
   }
 }
