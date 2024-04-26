@@ -14,6 +14,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "eslint src/** --fix",
+    "format": "prettier --write --ignore-path .gitignore .",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -36,6 +38,8 @@
   },
   "dependencies": {
     "@mysten/dapp-kit": "^0.12.10",
+    "@mysten/sui.js": "^0.52.0",
+    "@tanstack/react-query": "^5.32.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "react-router-dom": "^6.23.0",
