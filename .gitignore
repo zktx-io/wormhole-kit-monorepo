@@ -3,3 +3,5 @@
 **/mnemonic.json
 **/*.tsbuildinfo
 **/.DS_Store
+**/build/**
+**/dist/**
