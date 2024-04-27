@@ -6,6 +6,7 @@
   "scripts": {
     "format": "npm run format:kit && npm run format:sui",
     "lint": "npm run lint:kit && npm run lint:sui",
+    "build:kit": "cd ./packages/wormhole-kit && npm run build",
     "format:kit": "cd ./packages/wormhole-kit && npm run format",
     "lint:kit": "cd ./packages/wormhole-kit && npm run lint",
     "start:sui": "cd ./packages/demo-sui && npm run start",

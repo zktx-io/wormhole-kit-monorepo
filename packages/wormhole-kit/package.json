@@ -2,8 +2,12 @@
   "name": "@zktx.io/wormhole-kit",
   "version": "0.1.0",
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/** --fix",
     "format": "prettier --write --ignore-path .gitignore ."
@@ -47,5 +51,14 @@
   "bugs": {
     "url": "https://github.com/zktx-io/wormhole-kit-monorepo/issues"
   },
-  "homepage": "https://github.com/zktx-io/wormhole-kit-monorepo#readme"
+  "homepage": "https://github.com/zktx-io/wormhole-kit-monorepo#readme",
+  "peerDependencies": {
+    "react": "^18.3.1"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  }
 }
