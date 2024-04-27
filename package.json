@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:sui": "cd ./packages/demo-sui && npm run start",
-    "format:sui": "cd ./packages/demo-sui && npm run format"
+    "format:sui": "cd ./packages/demo-sui && npm run format",
+    "lint:sui": "cd ./packages/demo-sui && npm run lint"
   },
   "keywords": [
     "wormhole",
@@ -26,6 +27,10 @@
     "packages/demo-sui"
   ],
   "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-no-null": "^1.0.2",
     "prettier": "^3.2.5"
   }
 }
