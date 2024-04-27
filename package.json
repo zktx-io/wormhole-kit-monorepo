@@ -10,7 +10,7 @@
     "format:sui": "cd ./packages/example-sui && npm run format",
     "lint:kit": "cd ./packages/wormhole-kit && npm run lint",
     "lint:sui": "cd ./packages/example-sui && npm run lint",
-    "rollup": "cd ./packages/wormhole-kit && npm run rollup",
+    "build:kit": "cd ./packages/wormhole-kit && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
