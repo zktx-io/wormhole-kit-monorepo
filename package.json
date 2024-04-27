@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/zktx-io/wormhole-kit-monorepo/issues"
   },
-  "homepage": "https://github.com/zktx-io/wormhole-kit-monorepo#readme",
+  "homepage": "https://zktx.io",
   "workspaces": [
     "packages/wormhole-kit",
     "packages/demo-sui"
