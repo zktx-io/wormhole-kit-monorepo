@@ -1,23 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { ConnectButton } from '@mysten/dapp-kit';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>@zktx.io/wormhole-kit</h1>
+        <h2>Sui Example</h2>
+        <ConnectButton />
       </header>
     </div>
   );
