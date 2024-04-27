@@ -4,6 +4,8 @@
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
   "main": "index.js",
   "scripts": {
+    "format:kit": "cd ./packages/wormhole-kit && npm run format",
+    "lint:kit": "cd ./packages/wormhole-kit && npm run lint",
     "start:sui": "cd ./packages/demo-sui && npm run start",
     "format:sui": "cd ./packages/demo-sui && npm run format",
     "lint:sui": "cd ./packages/demo-sui && npm run lint"
