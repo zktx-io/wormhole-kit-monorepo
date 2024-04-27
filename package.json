@@ -4,7 +4,8 @@
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
   "main": "index.js",
   "scripts": {
-    "start:sui": "cd ./packages/demo-sui && npm run start"
+    "start:sui": "cd ./packages/demo-sui && npm run start",
+    "format:sui": "cd ./packages/demo-sui && npm run format"
   },
   "keywords": [
     "wormhole",
@@ -23,5 +24,8 @@
   "workspaces": [
     "packages/wormhole-kit",
     "packages/demo-sui"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
 }

@@ -16,16 +16,16 @@ const queryClient = new QueryClient();
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <SuiClientProvider
-          defaultNetwork="testnet"
-          networks={{ testnet: { url: getFullnodeUrl('testnet') } }}
-        >
-          <WalletProvider>
-            <App />
-          </WalletProvider>
-        </SuiClientProvider>
-      </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <SuiClientProvider
+        defaultNetwork="testnet"
+        networks={{ testnet: { url: getFullnodeUrl('testnet') } }}
+      >
+        <WalletProvider>
+          <App />
+        </WalletProvider>
+      </SuiClientProvider>
+    </QueryClientProvider>
   </StrictMode>,
 );
 
