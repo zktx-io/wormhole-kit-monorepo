@@ -2,21 +2,8 @@
   "name": "@zktx.io/wormhole-kit",
   "version": "0.1.0",
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
-  "repository": "https://github.com/zktx-io/wormhole-kit-monorepo",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "type": "commonjs",
-  "main": "dist/cjs/index.js",
-  "types": "dist/cjs/index.d.ts",
-  "module": "dist/esm/index.js",
+  "main": "index.js",
   "scripts": {
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs --strict true",
-    "build:esm": "tsc --module es6 --outDir dist/esm --strict true",
-    "build": "npm run build:cjs && npm run build:esm",
-    "lint": "eslint src/** --fix",
-    "format": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -49,14 +36,14 @@
     "xpla",
     "evm"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zktx-io/wormhole-kit-monorepo.git"
+  },
   "author": "daoauth",
   "license": "ISC",
-  "devDependencies": {
-    "@types/react": "^18.3.0",
-    "typescript": "^5.4.5"
+  "bugs": {
+    "url": "https://github.com/zktx-io/wormhole-kit-monorepo/issues"
   },
-  "peerDependencies": {
-    "@wormhole-foundation/sdk": "^0.6.1",
-    "react": "^18.3.1"
-  }
+  "homepage": "https://github.com/zktx-io/wormhole-kit-monorepo#readme"
 }
