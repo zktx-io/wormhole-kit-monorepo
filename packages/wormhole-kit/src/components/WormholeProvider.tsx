@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/default
 import React, { createContext } from 'react';
 
-import type { IReqRedeemTx, IReqTransferTx } from '../types';
+import type { Chain, IReqRedeemTx, IReqTransferTx, Network } from '../types';
 
 export const WormholeContext = createContext({
   buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
@@ -17,8 +17,8 @@ export const WormholeProvider = ({
   network,
   children,
 }: {
-  chains: ('Aptos' | 'Sui')[];
-  network: 'Mainnet' | 'Testnet';
+  chains: Chain[];
+  network: Network;
   children: React.ReactNode;
 }) => {
   return (
