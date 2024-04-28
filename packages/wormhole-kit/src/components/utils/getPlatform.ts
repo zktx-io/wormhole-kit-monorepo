@@ -4,9 +4,10 @@ import { EvmPlatform } from '@wormhole-foundation/sdk-evm';
 import { SolanaPlatform } from '@wormhole-foundation/sdk-solana';
 import { SuiPlatform } from '@wormhole-foundation/sdk-sui';
 
-import type { IWhChain, IWhNetwork, IWhPlatform } from '../../types';
+import type { IWhPlatform } from '../../types';
+import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
 
-export const getPlatform = (network: IWhNetwork, chains: IWhChain[]) => {
+export const getPlatform = (network: Network, chains: Chain[]) => {
   const platforms: {
     [key: string]: IWhPlatform;
   } = {};

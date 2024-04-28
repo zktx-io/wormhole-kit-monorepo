@@ -1,9 +1,13 @@
-import type { IWhChain, IWhPlatform } from '../../types';
-import type { TokenBridge } from '@wormhole-foundation/sdk-connect';
+import type { IWhPlatform } from '../../types';
+import type {
+  Chain,
+  Network,
+  TokenBridge,
+} from '@wormhole-foundation/sdk-connect';
 
 export const getTokenBridge = async (
-  chain: IWhChain,
+  chain: Chain,
   platform: IWhPlatform,
-): Promise<TokenBridge<'Mainnet' | 'Testnet' | 'Devnet'>> => {
+): Promise<TokenBridge<Network>> => {
   return platform.getProtocol('TokenBridge', platform.getRpc);
 };

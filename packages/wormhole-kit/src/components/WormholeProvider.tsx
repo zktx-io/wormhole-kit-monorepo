@@ -1,6 +1,8 @@
-import React, { createContext } from 'react';
+import type { ReactNode } from 'react';
+import { createContext } from 'react';
 
-import type { IReqRedeemTx, IReqTransferTx, IWhNetwork } from '../types';
+import type { IReqRedeemTx, IReqTransferTx } from '../types';
+import type { Network } from '@wormhole-foundation/sdk-connect';
 
 export const WormholeContext = createContext({
   buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
@@ -15,8 +17,8 @@ export const WormholeProvider = ({
   network,
   children,
 }: {
-  network: IWhNetwork;
-  children: React.ReactNode;
+  network: Network;
+  children: ReactNode;
 }) => {
   return (
     <WormholeContext.Provider

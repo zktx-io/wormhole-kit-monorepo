@@ -4,10 +4,10 @@ import { EvmAddress } from '@wormhole-foundation/sdk-evm';
 import { SolanaAddress } from '@wormhole-foundation/sdk-solana';
 import { SuiAddress } from '@wormhole-foundation/sdk-sui';
 
-import type { IWhChain } from '../../types';
+import type { Chain } from '@wormhole-foundation/sdk-connect';
 
 export const getAddress = (
-  chain: IWhChain,
+  chain: Chain,
   address: string,
 ): AlgorandAddress | AptosAddress | EvmAddress | SolanaAddress | SuiAddress => {
   switch (chain) {
