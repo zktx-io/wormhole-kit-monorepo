@@ -13,8 +13,12 @@ export const WormholeContext = createContext({
 });
 
 export const WormholeProvider = ({
+  chains,
+  network,
   children,
 }: {
+  chains: ('Aptos' | 'Sui')[];
+  network: 'Mainnet' | 'Testnet';
   children: React.ReactNode;
 }) => {
   return (
