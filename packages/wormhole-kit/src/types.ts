@@ -1,5 +1,8 @@
 // import type { Chain } from '@wormhole-foundation/sdk/dist/cjs';
 
+export type Network = 'Mainnet' | 'Testnet';
+export type Chain = "Aptos" | 'Sui';
+
 export interface IReqRedeemTx {
   source: string; //Chain;
   txHash: string;
