@@ -4,6 +4,17 @@ import { EvmPlatform } from '@wormhole-foundation/sdk-evm';
 import { SolanaPlatform } from '@wormhole-foundation/sdk-solana';
 import { SuiPlatform } from '@wormhole-foundation/sdk-sui';
 
+import '@wormhole-foundation/sdk-algorand-core';
+import '@wormhole-foundation/sdk-aptos-core';
+import '@wormhole-foundation/sdk-evm-core';
+import '@wormhole-foundation/sdk-solana-core';
+import '@wormhole-foundation/sdk-sui-core';
+import '@wormhole-foundation/sdk-algorand-tokenbridge';
+import '@wormhole-foundation/sdk-aptos-tokenbridge';
+import '@wormhole-foundation/sdk-evm-tokenbridge';
+import '@wormhole-foundation/sdk-solana-tokenbridge';
+import '@wormhole-foundation/sdk-sui-tokenbridge';
+
 import type { IWhPlatform } from '../types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
 
@@ -12,8 +23,8 @@ export const getPlatforms = (network: Network, chains: Chain[]) => {
     [key: string]: IWhPlatform;
   } = {};
   try {
-    chains.forEach((item) => {
-      switch (item) {
+    chains.forEach((chain) => {
+      switch (chain) {
         case 'Algorand':
           platforms['Algorand'] = new AlgorandPlatform(network);
           break;
@@ -30,10 +41,10 @@ export const getPlatforms = (network: Network, chains: Chain[]) => {
         case 'Ethereum':
         case 'Klaytn':
           // TODO
-          platforms[item] = new EvmPlatform(network);
+          platforms[chain] = new EvmPlatform(network);
           break;
         default:
-          throw new Error(`${item} is not support chain`);
+          throw new Error(`${chain} is not support`);
       }
     });
     return platforms;
