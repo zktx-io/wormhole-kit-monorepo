@@ -1,3 +1,6 @@
+import { serializeTx as aptos } from './aptos/serializeTx';
+import { serializeTx as sui } from './sui/serializeTx';
+
 import type {
   Chain,
   UnsignedTransaction,
@@ -11,13 +14,13 @@ export const serializeTx = async (
   try {
     switch (chain) {
       case 'Aptos':
-        break;
+        return aptos(sender, txs);
       case 'Sui':
-        break;
+        return sui(sender, txs);
       default:
         break;
     }
-    throw new Error(`${chain} is not support chain`);
+    throw new Error(`${chain} is not support`);
   } catch (error) {
     throw new Error(`serializeTx : ${error}`);
   }
