@@ -1,4 +1,4 @@
-import type { IWhPlatform } from '../../types';
+import type { IWhPlatform } from '../types';
 import type {
   Chain,
   Network,

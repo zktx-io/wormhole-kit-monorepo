@@ -1,6 +1,12 @@
 import type { AlgorandPlatform } from '@wormhole-foundation/sdk-algorand';
 import type { AptosPlatform } from '@wormhole-foundation/sdk-aptos';
-import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
+import type {
+  Chain,
+  NativeAddressCtr,
+  Network,
+  Platform,
+  PlatformUtils,
+} from '@wormhole-foundation/sdk-connect';
 import type { EvmPlatform } from '@wormhole-foundation/sdk-evm';
 import type { SolanaPlatform } from '@wormhole-foundation/sdk-solana';
 import type { SuiPlatform } from '@wormhole-foundation/sdk-sui';
@@ -32,5 +38,13 @@ export interface IReqTransferTx {
       decimals: number;
     };
     amount: string;
+  };
+}
+
+export interface PlatformDefinition<P extends Platform> {
+  Platform: PlatformUtils<P>;
+  Address: NativeAddressCtr;
+  protocolLoaders: {
+    [key: string]: () => Promise<any>;
   };
 }

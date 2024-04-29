@@ -1,8 +1,8 @@
 import { api, applyOverrides } from '@wormhole-foundation/sdk-connect';
 
+import { getTokenBridge } from './getTokenBridge';
 import { getUniversalAddress } from './getUniversalAddress';
-import { getTokenBridge } from './protocols/getTokenBridge';
-import { getWormholeCore } from './protocols/getWormholeCore';
+import { getWormholeCore } from './getWormholeCore';
 import { serializeTx } from './serializeTx';
 
 import type { IReqRedeemTx, IWhPlatform } from '../types';
