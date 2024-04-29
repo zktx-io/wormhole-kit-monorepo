@@ -18,7 +18,7 @@ export const getUniversalAddress = (
       default:
         break;
     }
-    throw new Error(`${account.chain} is not support chain`);
+    throw new Error(`${account.chain} is not support`);
   } catch (error) {
     throw new Error(`getUniversalAddress : ${error}`);
   }
