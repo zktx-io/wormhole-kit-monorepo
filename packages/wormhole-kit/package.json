@@ -66,10 +66,15 @@
   },
   "dependencies": {
     "@wormhole-foundation/sdk-algorand": "^0.6.2",
+    "@wormhole-foundation/sdk-algorand-tokenbridge": "^0.6.2",
     "@wormhole-foundation/sdk-aptos": "^0.6.2",
+    "@wormhole-foundation/sdk-aptos-tokenbridge": "^0.6.2",
     "@wormhole-foundation/sdk-connect": "^0.6.2",
     "@wormhole-foundation/sdk-evm": "^0.6.2",
+    "@wormhole-foundation/sdk-evm-tokenbridge": "^0.6.2",
     "@wormhole-foundation/sdk-solana": "^0.6.2",
-    "@wormhole-foundation/sdk-sui": "^0.6.2"
+    "@wormhole-foundation/sdk-solana-tokenbridge": "^0.6.2",
+    "@wormhole-foundation/sdk-sui": "^0.6.2",
+    "@wormhole-foundation/sdk-sui-tokenbridge": "^0.6.2"
   }
 }
