@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
-    <WormholeProvider network='Testnet'>
+    <WormholeProvider network="Testnet" chains={['Aptos', 'Sui']}>
       <QueryClientProvider client={queryClient}>
         <SuiClientProvider
           defaultNetwork="testnet"

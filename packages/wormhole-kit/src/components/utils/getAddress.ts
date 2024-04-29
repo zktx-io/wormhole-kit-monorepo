@@ -11,22 +11,26 @@ export const getAddress = (
   chain: Chain,
   address: string,
 ): AlgorandAddress | AptosAddress | EvmAddress | SolanaAddress | SuiAddress => {
-  switch (chain) {
-    case 'Algorand':
-      return new AlgorandAddress(address);
-    case 'Aptos':
-      return new AptosAddress(new UniversalAddress(address, 'hex'));
-    case 'Solana':
-      return new SolanaAddress(new UniversalAddress(address, 'base58'));
-    case 'Sui':
-      return new SuiAddress(new UniversalAddress(address, 'hex'));
-    case 'Celo':
-    case 'Ethereum':
-    case 'Klaytn':
-      // TODO
-      return new EvmAddress(new UniversalAddress(address, 'hex'));
-    default:
-      break;
+  try {
+    switch (chain) {
+      case 'Algorand':
+        return new AlgorandAddress(address);
+      case 'Aptos':
+        return new AptosAddress(new UniversalAddress(address, 'hex'));
+      case 'Solana':
+        return new SolanaAddress(new UniversalAddress(address, 'base58'));
+      case 'Sui':
+        return new SuiAddress(new UniversalAddress(address, 'hex'));
+      case 'Celo':
+      case 'Ethereum':
+      case 'Klaytn':
+        // TODO
+        return new EvmAddress(new UniversalAddress(address, 'hex'));
+      default:
+        break;
+    }
+    throw new Error(`${chain} is not support chain`);
+  } catch (error) {
+    throw new Error(`getAddress : ${error}`);
   }
-  throw new Error();
 };

@@ -1,8 +1,12 @@
 import type { ReactNode } from 'react';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
-import type { IReqRedeemTx, IReqTransferTx } from './types';
-import type { Network } from '@wormhole-foundation/sdk-connect';
+import { buildRedeemTx } from './utils/buildRedeemTx';
+import { buildTransferTx } from './utils/buildTransferTx';
+import { getPlatforms } from './utils/getPlatforms';
+
+import type { IReqRedeemTx, IReqTransferTx, IWhPlatform } from './types';
+import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
 
 export const WormholeContext = createContext({
   buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
@@ -15,19 +19,36 @@ export const WormholeContext = createContext({
 
 export const WormholeProvider = ({
   network,
+  chains,
   children,
 }: {
   network: Network;
+  chains: Chain[];
   children: ReactNode;
 }) => {
+  const initialized = useRef<boolean>(false);
+  const [platforms, setPlatforms] = useState<{ [key: string]: IWhPlatform }>(
+    {},
+  );
+
+  useEffect(() => {
+    const init = async () => {
+      initialized.current = true;
+      const temp = getPlatforms(network, chains);
+      setPlatforms(temp);
+    };
+    !initialized.current && init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <WormholeContext.Provider
       value={{
-        buildTransferTx: (req: IReqTransferTx) => {
-          throw new Error('wormhole error');
+        buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
+          return buildTransferTx(platforms, req);
         },
-        buildRedeemTx: (req: IReqRedeemTx) => {
-          throw new Error('wormhole error');
+        buildRedeemTx: async (req: IReqRedeemTx): Promise<string> => {
+          return buildRedeemTx(network, platforms, req);
         },
       }}
     >
@@ -36,6 +57,6 @@ export const WormholeProvider = ({
   );
 };
 
-export const useContextWh = () => {
+export const useWormhole = () => {
   return useContext(WormholeContext);
 };
