@@ -32,12 +32,10 @@ export const WormholeProvider = ({
   );
 
   useEffect(() => {
-    const init = async () => {
+    if (!initialized.current) {
       initialized.current = true;
-      const temp = getPlatforms(network, chains);
-      setPlatforms(temp);
-    };
-    !initialized.current && init();
+      setPlatforms(getPlatforms(network, chains));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
