@@ -1,7 +1,8 @@
 import { api, applyOverrides } from '@wormhole-foundation/sdk-connect';
 
-import { getTokenBridge } from './getTokenBridge';
 import { getUniversalAddress } from './getUniversalAddress';
+import { getTokenBridge } from './protocols/getTokenBridge';
+import { getWormholeCore } from './protocols/getWormholeCore';
 import { serializeTx } from './serializeTx';
 
 import type { IReqRedeemTx, IWhPlatform } from '../types';
@@ -31,8 +32,7 @@ export const buildRedeemTx = async (
   req: IReqRedeemTx,
 ): Promise<string> => {
   try {
-    const source = platforms[req.source];
-    const wc = await source.getProtocol('WormholeCore', source.getRpc);
+    const wc = await getWormholeCore(req.source, platforms);
     const [whm] = await wc.parseTransaction(req.txHash);
     const vaa = (await getVaa(
       network,
@@ -40,8 +40,7 @@ export const buildRedeemTx = async (
       'TokenBridge:Transfer',
       60_000,
     )) as VAA<'TokenBridge:Transfer'>;
-    const rcv = platforms[req.receiver.chain];
-    const rcvTb = await getTokenBridge(req.receiver.chain, rcv);
+    const rcvTb = await getTokenBridge(req.receiver.chain, platforms);
     const redeem = rcvTb.redeem(getUniversalAddress(req.receiver), vaa!);
     return serializeTx(req.receiver.chain, req.receiver.address, redeem);
   } catch (error) {
