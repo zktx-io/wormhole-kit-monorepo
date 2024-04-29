@@ -1,2 +1,2 @@
-export * from './components/WormholeProvider';
-export * from './components/types';
+export * from './provider/WormholeProvider';
+export * from './provider/types';
