@@ -1,4 +1,4 @@
-import type { IWhPlatform } from '../types';
+import type { IWhPlatform } from '../../types';
 import type {
   Chain,
   Network,
@@ -7,7 +7,8 @@ import type {
 
 export const getTokenBridge = async (
   chain: Chain,
-  platform: IWhPlatform,
+  platforms: { [key: string]: IWhPlatform },
 ): Promise<TokenBridge<Network>> => {
+  const platform = platforms[chain];
   return platform.getProtocol('TokenBridge', (platform as any).getRpc(chain));
 };
