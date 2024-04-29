@@ -1,6 +1,6 @@
 import type { AlgorandPlatform } from '@wormhole-foundation/sdk-algorand';
 import type { AptosPlatform } from '@wormhole-foundation/sdk-aptos';
-import type { Network } from '@wormhole-foundation/sdk-connect';
+import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
 import type { EvmPlatform } from '@wormhole-foundation/sdk-evm';
 import type { SolanaPlatform } from '@wormhole-foundation/sdk-solana';
 import type { SuiPlatform } from '@wormhole-foundation/sdk-sui';
@@ -13,13 +13,13 @@ export type IWhPlatform =
   | SuiPlatform<Network>;
 
 export interface IReqRedeemTx {
-  source: string; //Chain;
+  source: Chain;
   txHash: string;
   receiver: IUniversalAccount;
 }
 
 export interface IUniversalAccount {
-  chain: string; // Chain;
+  chain: Chain;
   address: string;
 }
 
