@@ -76,6 +76,7 @@
     "@wormhole-foundation/sdk-evm-core": "^0.6.2",
     "@wormhole-foundation/sdk-evm-tokenbridge": "^0.6.2",
     "@wormhole-foundation/sdk-solana": "^0.6.2",
+    "@wormhole-foundation/sdk-solana-cctp": "^0.6.3",
     "@wormhole-foundation/sdk-solana-core": "^0.6.2",
     "@wormhole-foundation/sdk-solana-tokenbridge": "^0.6.2",
     "@wormhole-foundation/sdk-sui": "^0.6.2",
