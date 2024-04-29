@@ -29,7 +29,7 @@ export const getAddress = (
       default:
         break;
     }
-    throw new Error(`${chain} is not support chain`);
+    throw new Error(`${chain} is not support`);
   } catch (error) {
     throw new Error(`getAddress : ${error}`);
   }
