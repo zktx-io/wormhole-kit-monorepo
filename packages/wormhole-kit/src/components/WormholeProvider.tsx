@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 
-import type { IReqRedeemTx, IReqTransferTx } from '../types';
+import type { IReqRedeemTx, IReqTransferTx } from './types';
 import type { Network } from '@wormhole-foundation/sdk-connect';
 
 export const WormholeContext = createContext({
@@ -34,4 +34,8 @@ export const WormholeProvider = ({
       {children}
     </WormholeContext.Provider>
   );
+};
+
+export const useContextWh = () => {
+  return useContext(WormholeContext);
 };
