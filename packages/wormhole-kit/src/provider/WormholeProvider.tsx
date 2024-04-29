@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
-import { buildRedeemTx } from './contexts/buildRedeemTx';
-import { buildTransferTx } from './contexts/buildTransferTx';
-import { getPlatforms } from './contexts/getPlatforms';
+import { buildRedeemTx } from './context/buildRedeemTx';
+import { buildTransferTx } from './context/buildTransferTx';
+import { getPlatforms } from './context/getPlatforms';
 
 import type { IReqRedeemTx, IReqTransferTx, IWhPlatform } from './types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
