@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@mysten/dapp-kit": "^0.12.10",
+    "@mysten/sui.js": "^0.52.0",
     "@tanstack/react-query": "^5.32.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
