@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import { buildRedeemTx } from './context/buildRedeemTx';
 import { buildTransferTx } from './context/buildTransferTx';
-import { getPlatforms } from './context/getPlatforms';
+import { loadPlotforms } from './loader';
 
 import type { IReqRedeemTx, IReqTransferTx, IWhPlatform } from './types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
@@ -32,10 +32,12 @@ export const WormholeProvider = ({
   );
 
   useEffect(() => {
-    if (!initialized.current) {
+    const init = async () => {
       initialized.current = true;
-      setPlatforms(getPlatforms(network, chains));
-    }
+      const temp = await loadPlotforms(network, chains);
+      setPlatforms(temp);
+    };
+    !initialized.current && init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
