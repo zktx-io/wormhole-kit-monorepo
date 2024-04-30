@@ -2,12 +2,16 @@
   "name": "@zktx.io/wormhole-kit",
   "version": "0.1.0",
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
-  "main": "lib/index.js",
+  "main": "lib/cjs/index.js",
+  "types": "lib/cjs/index.d.ts",
   "files": [
-    "lib"
+    "src/**/*",
+    "lib/**/*"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf lib && npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs --strict true",
+    "build:esm": "tsc --module esnext --outDir lib/esm",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/** --fix",
     "format": "prettier --write --ignore-path .prettierignore ."
@@ -57,8 +61,14 @@
   },
   "exports": {
     ".": {
-      "types": "./lib/index.d.ts",
-      "default": "./lib/index.js"
+      "import": {
+        "types": "./lib/esm/index.d.ts",
+        "default": "./lib/esm/index.js"
+      },
+      "require": {
+        "types": "./lib/cjs/index.d.js",
+        "default": "./lib/cjs/index.js"
+      }
     }
   },
   "devDependencies": {
