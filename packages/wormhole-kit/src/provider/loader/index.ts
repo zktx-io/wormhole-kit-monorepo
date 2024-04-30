@@ -1,5 +1,6 @@
 import algorand from './algorand';
 import aptos from './aptos';
+import evm from './evm';
 import solana from './solana';
 import sui from './sui';
 
@@ -52,6 +53,8 @@ export const loadPlotforms = async (
         case 'Celo':
         case 'Ethereum':
         case 'Klaytn':
+          platforms[chain] = new (await load(evm)).Platform(network);
+          break;
         default:
           throw new Error(`${chain} is not support`);
       }
