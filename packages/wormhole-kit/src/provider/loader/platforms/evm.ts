@@ -1,9 +1,9 @@
 import * as _evm from '@wormhole-foundation/sdk-evm';
 
-import type { PlatformDefinition } from '../../types';
+import type { IPlatformDefinition } from '../../types';
 
 /** Platform and protocol definitions for Evm */
-const evm: PlatformDefinition<'Evm'> = {
+const evm: IPlatformDefinition<'Evm'> = {
   Address: _evm.EvmAddress,
   Platform: _evm.EvmPlatform,
   protocolLoaders: {

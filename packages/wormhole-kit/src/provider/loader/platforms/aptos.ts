@@ -1,9 +1,9 @@
 import * as _aptos from '@wormhole-foundation/sdk-aptos';
 
-import type { PlatformDefinition } from '../../types';
+import type { IPlatformDefinition } from '../../types';
 
 /** Platform and protocol definitions for Aptos */
-const aptos: PlatformDefinition<'Aptos'> = {
+const aptos: IPlatformDefinition<'Aptos'> = {
   Address: _aptos.AptosAddress,
   Platform: _aptos.AptosPlatform,
   protocolLoaders: {

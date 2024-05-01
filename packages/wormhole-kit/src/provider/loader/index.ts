@@ -4,18 +4,18 @@ import evm from './evm';
 import solana from './solana';
 import sui from './sui';
 
-import type { IWhPlatform, PlatformDefinition } from '../types';
+import type { IWhPlatform, IPlatformDefinition } from '../types';
 import type {
   Chain,
   Network,
   Platform,
 } from '@wormhole-foundation/sdk-connect';
 
-type PlatformLoader<P extends Platform> = () => Promise<PlatformDefinition<P>>;
+type PlatformLoader<P extends Platform> = () => Promise<IPlatformDefinition<P>>;
 
 const load = async (
   loader: PlatformLoader<any>,
-): Promise<PlatformDefinition<Platform>> => {
+): Promise<IPlatformDefinition<Platform>> => {
   try {
     const platform = await loader();
     Object.values(platform.protocolLoaders).map((loaderFn) => loaderFn());

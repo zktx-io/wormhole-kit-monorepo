@@ -1,9 +1,9 @@
 import * as _solana from '@wormhole-foundation/sdk-solana';
 
-import type { PlatformDefinition } from '../../types';
+import type { IPlatformDefinition } from '../../types';
 
 /** Platform and protocol definitons for Solana */
-const solana: PlatformDefinition<'Solana'> = {
+const solana: IPlatformDefinition<'Solana'> = {
   Address: _solana.SolanaAddress,
   Platform: _solana.SolanaPlatform,
   protocolLoaders: {

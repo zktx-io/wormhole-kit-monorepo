@@ -1,9 +1,9 @@
 import * as _sui from '@wormhole-foundation/sdk-sui';
 
-import type { PlatformDefinition } from '../../types';
+import type { IPlatformDefinition } from '../../types';
 
 /** Platform and protocol definitions for Sui */
-const sui: PlatformDefinition<'Sui'> = {
+const sui: IPlatformDefinition<'Sui'> = {
   Address: _sui.SuiAddress,
   Platform: _sui.SuiPlatform,
   protocolLoaders: {
