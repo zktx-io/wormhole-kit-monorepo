@@ -18,6 +18,7 @@ export const WhTransferModal = ({
   chain,
   address,
   token,
+  maxAmount,
   open,
   setOpen,
   trigger,
@@ -26,6 +27,7 @@ export const WhTransferModal = ({
   chain: Chain;
   address?: string;
   token?: string;
+  maxAmount?: number;
   open: boolean;
   setOpen: (open: boolean) => void;
   trigger: ReactElement;
@@ -135,15 +137,30 @@ export const WhTransferModal = ({
 
         <Flex gap="3" mt="4" justify="end">
           <Dialog.Close>
-            <Button variant="soft" color="gray">
+            <Button
+              variant="soft"
+              color="gray"
+              style={{
+                cursor: 'pointer',
+              }}
+            >
               Cancel
             </Button>
           </Dialog.Close>
           <Dialog.Close>
             <Button
               loading={loading}
-              disabled={!target || !targetAddress || !amount || !address}
+              disabled={
+                !target ||
+                !targetAddress ||
+                !amount ||
+                !address ||
+                (!!maxAmount && maxAmount < Number(amount))
+              }
               onClick={handleConfirm}
+              style={{
+                cursor: 'pointer',
+              }}
             >
               Transfer
             </Button>

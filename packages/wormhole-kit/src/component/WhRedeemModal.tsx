@@ -120,7 +120,13 @@ export const WhRedeemModal = ({
 
         <Flex gap="3" mt="4" justify="end">
           <Dialog.Close>
-            <Button variant="soft" color="gray">
+            <Button
+              variant="soft"
+              color="gray"
+              style={{
+                cursor: 'pointer',
+              }}
+            >
               Cancel
             </Button>
           </Dialog.Close>
@@ -129,6 +135,9 @@ export const WhRedeemModal = ({
               loading={loading}
               disabled={!source || !txHash}
               onClick={handleConfirm}
+              style={{
+                cursor: 'pointer',
+              }}
             >
               Redeem
             </Button>
