@@ -1,11 +1,11 @@
 import { AlgorandAddress } from '@wormhole-foundation/sdk-algorand';
 import { AptosAddress } from '@wormhole-foundation/sdk-aptos';
-import { UniversalAddress } from '@wormhole-foundation/sdk-connect';
+import { UniversalAddress } from '@wormhole-foundation/sdk-definitions';
 import { EvmAddress } from '@wormhole-foundation/sdk-evm';
 import { SolanaAddress } from '@wormhole-foundation/sdk-solana';
 import { SuiAddress } from '@wormhole-foundation/sdk-sui';
 
-import type { Chain } from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@wormhole-foundation/sdk-base';
 
 export const getAddress = (
   chain: Chain,

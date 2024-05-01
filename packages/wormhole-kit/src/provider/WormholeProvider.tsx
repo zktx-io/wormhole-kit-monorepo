@@ -7,8 +7,13 @@ import { buildRedeemTx } from './context/buildRedeemTx';
 import { buildTransferTx } from './context/buildTransferTx';
 import { loadPlotforms } from './loader';
 
-import type { IReqRedeemTx, IReqTransferTx, IWhPlatform, TokenInfo } from './types';
-import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
+import type {
+  IReqRedeemTx,
+  IReqTransferTx,
+  IWhPlatform,
+  TokenInfo,
+} from './types';
+import type { Chain, Network } from '@wormhole-foundation/sdk-base';
 
 import '@radix-ui/themes/styles.css';
 

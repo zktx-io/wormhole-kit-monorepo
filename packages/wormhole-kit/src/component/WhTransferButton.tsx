@@ -5,7 +5,7 @@ import { Button, IconButton, Tooltip } from '@radix-ui/themes';
 import { Wormhole } from './icons/wormhole';
 import { WhTransferModal } from './WhTransferModal';
 
-import type { Chain } from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@wormhole-foundation/sdk-base';
 
 export const WhTransferButton = ({
   icon,

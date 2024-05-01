@@ -13,7 +13,7 @@ import {
 import { ChainIcon } from './ChainIcon';
 import { useWormhole } from '../provider/WormholeProvider';
 
-import type { Chain } from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@wormhole-foundation/sdk-base';
 
 export const WhRedeemModal = ({
   chain,

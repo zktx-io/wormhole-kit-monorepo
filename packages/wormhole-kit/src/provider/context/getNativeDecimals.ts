@@ -1,6 +1,6 @@
-import { decimals } from '@wormhole-foundation/sdk-connect';
+import { decimals } from '@wormhole-foundation/sdk-base';
 
-import type { Chain } from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@wormhole-foundation/sdk-base';
 
 export const getNativeDecimals = (chain: Chain): number => {
   try {

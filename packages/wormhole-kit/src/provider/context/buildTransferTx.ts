@@ -1,4 +1,4 @@
-import { amount } from '@wormhole-foundation/sdk-connect';
+import { amount } from '@wormhole-foundation/sdk-base';
 
 import { getNativeDecimals } from './getNativeDecimals';
 import { getTokenBridge } from './getTokenBridge';

@@ -1,10 +1,8 @@
 import { serializeTx as aptos } from './aptos/serializeTx';
 import { serializeTx as sui } from './sui/serializeTx';
 
-import type {
-  Chain,
-  UnsignedTransaction,
-} from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@wormhole-foundation/sdk-base';
+import type { UnsignedTransaction } from '@wormhole-foundation/sdk-definitions';
 
 export const serializeTx = async (
   chain: Chain,

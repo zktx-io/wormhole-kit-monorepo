@@ -1,5 +1,6 @@
 import type { IWhPlatform } from '../types';
-import type { Chain, WormholeCore } from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@wormhole-foundation/sdk-base';
+import type { WormholeCore } from '@wormhole-foundation/sdk-definitions';
 
 export const getWormholeCore = async (
   chain: Chain,

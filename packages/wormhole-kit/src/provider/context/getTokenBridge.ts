@@ -1,9 +1,6 @@
 import type { IWhPlatform } from '../types';
-import type {
-  Chain,
-  Network,
-  TokenBridge,
-} from '@wormhole-foundation/sdk-connect';
+import type { Chain, Network } from '@wormhole-foundation/sdk-base';
+import type { TokenBridge } from '@wormhole-foundation/sdk-definitions';
 
 export const getTokenBridge = async (
   chain: Chain,

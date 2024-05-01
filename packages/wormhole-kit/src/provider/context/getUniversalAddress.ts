@@ -1,4 +1,4 @@
-import { UniversalAddress } from '@wormhole-foundation/sdk-connect';
+import { UniversalAddress } from '@wormhole-foundation/sdk-definitions';
 
 import type { IUniversalAccount } from '../types';
 

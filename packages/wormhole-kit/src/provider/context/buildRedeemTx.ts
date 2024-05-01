@@ -1,4 +1,4 @@
-import { api, applyOverrides } from '@wormhole-foundation/sdk-connect';
+import { api, applyOverrides } from '@wormhole-foundation/sdk-connect'; // TODO: Remove
 
 import { getTokenBridge } from './getTokenBridge';
 import { getUniversalAddress } from './getUniversalAddress';
@@ -6,12 +6,12 @@ import { getWormholeCore } from './getWormholeCore';
 import { serializeTx } from './serializeTx';
 
 import type { IReqRedeemTx, IWhPlatform } from '../types';
+import type { Network } from '@wormhole-foundation/sdk-base';
 import type {
-  Network,
   PayloadDiscriminator,
   PayloadLiteral,
   VAA,
-} from '@wormhole-foundation/sdk-connect';
+} from '@wormhole-foundation/sdk-definitions';
 
 const getVaa = async (
   network: Network,

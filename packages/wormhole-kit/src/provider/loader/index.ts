@@ -4,12 +4,8 @@ import evm from './evm';
 import solana from './solana';
 import sui from './sui';
 
-import type { IWhPlatform, IPlatformDefinition } from '../types';
-import type {
-  Chain,
-  Network,
-  Platform,
-} from '@wormhole-foundation/sdk-connect';
+import type { IPlatformDefinition, IWhPlatform } from '../types';
+import type { Chain, Network, Platform } from '@wormhole-foundation/sdk-base';
 
 type PlatformLoader<P extends Platform> = () => Promise<IPlatformDefinition<P>>;
 

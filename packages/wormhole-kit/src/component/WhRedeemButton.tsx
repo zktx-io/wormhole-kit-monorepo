@@ -5,7 +5,7 @@ import { Button, IconButton, Tooltip } from '@radix-ui/themes';
 import { Wormhole } from './icons/wormhole';
 import { WhRedeemModal } from './WhRedeemModal';
 
-import type { Chain } from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@wormhole-foundation/sdk-base';
 
 export const WhRedeemButton = ({
   icon,

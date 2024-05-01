@@ -10,7 +10,7 @@ import { Optimism } from './icons/optimism';
 import { Solana } from './icons/solana';
 import { Sui } from './icons/sui';
 
-import type { Chain } from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@wormhole-foundation/sdk-base';
 
 export const ChainIcon = ({ chain }: { chain: Chain }) => {
   return (

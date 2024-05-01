@@ -1,11 +1,9 @@
+import type { Chain, Network, Platform } from '@wormhole-foundation/sdk-base';
 import type {
-  Chain,
   NativeAddressCtr,
-  Network,
-  Platform,
   PlatformContext,
   PlatformUtils,
-} from '@wormhole-foundation/sdk-connect';
+} from '@wormhole-foundation/sdk-definitions';
 
 export type IVm =
   | 'Solana'

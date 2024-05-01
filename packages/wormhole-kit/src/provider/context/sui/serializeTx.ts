@@ -1,4 +1,4 @@
-import type { UnsignedTransaction } from '@wormhole-foundation/sdk-connect';
+import type { UnsignedTransaction } from '@wormhole-foundation/sdk-definitions';
 
 export const serializeTx = async (
   sender: string,
