@@ -2,17 +2,13 @@ import type { ReactNode } from 'react';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import { Theme } from '@radix-ui/themes';
+import { Wormhole } from '@wormhole-foundation/sdk-connect';
 
 import { buildRedeemTx } from './context/buildRedeemTx';
 import { buildTransferTx } from './context/buildTransferTx';
 import { loadPlotforms } from './loader';
 
-import type {
-  IReqRedeemTx,
-  IReqTransferTx,
-  IWhPlatform,
-  TokenInfo,
-} from './types';
+import type { IReqRedeemTx, IReqTransferTx, TokenInfo } from './types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-base';
 
 import '@radix-ui/themes/styles.css';
@@ -75,15 +71,13 @@ export const WormholeProvider = ({
   children: ReactNode;
 }) => {
   const initialized = useRef<boolean>(false);
-  const [platforms, setPlatforms] = useState<{ [key: string]: IWhPlatform }>(
-    {},
-  );
+  const [wh, setWh] = useState<Wormhole<Network> | undefined>(undefined);
 
   useEffect(() => {
     const init = async () => {
       initialized.current = true;
-      const temp = await loadPlotforms(network, chains);
-      setPlatforms(temp);
+      const loaded = (await loadPlotforms(chains)).map((p) => p.Platform);
+      setWh(new Wormhole(network, loaded));
     };
     !initialized.current && init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,10 +96,10 @@ export const WormholeProvider = ({
           throw new Error();
         },
         buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
-          return buildTransferTx(platforms, req);
+          return buildTransferTx(wh, req);
         },
         buildRedeemTx: async (req: IReqRedeemTx): Promise<string> => {
-          return buildRedeemTx(network, platforms, req);
+          return buildRedeemTx(wh, req);
         },
       }}
     >

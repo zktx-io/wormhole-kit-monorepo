@@ -7,7 +7,6 @@ import type {
 import type {
   ChainContext,
   NativeAddressCtr,
-  PlatformContext,
   PlatformUtils,
 } from '@wormhole-foundation/sdk-definitions';
 
@@ -20,8 +19,6 @@ export type IVm =
   | 'Btc'
   | 'Evm'
   | 'Cosmwasm';
-
-export type IWhPlatform = PlatformContext<Network, IVm>;
 
 export interface IReqRedeemTx {
   source: Chain;

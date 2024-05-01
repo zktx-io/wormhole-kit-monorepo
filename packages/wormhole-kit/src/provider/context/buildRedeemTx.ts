@@ -1,47 +1,26 @@
-import { api, applyOverrides } from '@wormhole-foundation/sdk-connect'; // TODO: Remove
-
-import { getTokenBridge } from './getTokenBridge';
 import { getUniversalAddress } from './getUniversalAddress';
-import { getWormholeCore } from './getWormholeCore';
 import { serializeTx } from './serializeTx';
 
-import type { IReqRedeemTx, IWhPlatform } from '../types';
+import type { IReqRedeemTx } from '../types';
 import type { Network } from '@wormhole-foundation/sdk-base';
-import type {
-  PayloadDiscriminator,
-  PayloadLiteral,
-  VAA,
-} from '@wormhole-foundation/sdk-definitions';
-
-const getVaa = async (
-  network: Network,
-  id: any,
-  decodeAs: PayloadLiteral | PayloadDiscriminator,
-  timeout: number,
-) => {
-  const config = applyOverrides(network);
-  if (typeof id === 'string') {
-    return await api.getVaaByTxHashWithRetry(config.api, id, decodeAs, timeout);
-  }
-  return await api.getVaaWithRetry(config.api, id, decodeAs, timeout);
-};
+import type { Wormhole } from '@wormhole-foundation/sdk-connect';
+import type { VAA } from '@wormhole-foundation/sdk-definitions';
 
 export const buildRedeemTx = async (
-  network: Network,
-  platforms: { [key: string]: IWhPlatform },
+  wh: Wormhole<Network> | undefined,
   req: IReqRedeemTx,
 ): Promise<string> => {
   try {
-    if (req.source !== req.receiver.chain) {
-      const wc = await getWormholeCore(req.source, platforms);
-      const [whm] = await wc.parseTransaction(req.txHash);
-      const vaa = (await getVaa(
-        network,
+    if (wh && req.source !== req.receiver.chain) {
+      const snd = wh.getChain(req.source);
+      const [whm] = await snd.parseTransaction(req.txHash);
+      const vaa = (await wh.getVaa(
         whm!,
         'TokenBridge:Transfer',
         60_000,
       )) as VAA<'TokenBridge:Transfer'>;
-      const rcvTb = await getTokenBridge(req.receiver.chain, platforms);
+      const rcv = wh.getChain(req.receiver.chain);
+      const rcvTb = await rcv.getTokenBridge();
       const redeem = rcvTb.redeem(getUniversalAddress(req.receiver), vaa!);
       return serializeTx(req.receiver.chain, req.receiver.address, redeem);
     }

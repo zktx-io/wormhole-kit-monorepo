@@ -4,8 +4,8 @@ import evm from './evm';
 import solana from './solana';
 import sui from './sui';
 
-import type { IPlatformDefinition, IWhPlatform } from '../types';
-import type { Chain, Network, Platform } from '@wormhole-foundation/sdk-base';
+import type { IPlatformDefinition } from '../types';
+import type { Chain, Platform } from '@wormhole-foundation/sdk-base';
 
 type PlatformLoader<P extends Platform> = () => Promise<IPlatformDefinition<P>>;
 
@@ -23,34 +23,29 @@ const load = async (
 };
 
 export const loadPlotforms = async (
-  network: Network,
   chains: Chain[],
-): Promise<{
-  [key: string]: IWhPlatform;
-}> => {
-  const platforms: {
-    [key: string]: IWhPlatform;
-  } = {};
+): Promise<IPlatformDefinition<Platform>[]> => {
+  const platforms: IPlatformDefinition<Platform>[] = [];
   try {
     for (const chain of chains) {
       switch (chain) {
         case 'Algorand':
-          platforms[chain] = new (await load(algorand)).Platform(network);
+          platforms.push(await load(algorand));
           break;
         case 'Aptos':
-          platforms[chain] = new (await load(aptos)).Platform(network);
+          platforms.push(await load(aptos));
           break;
         case 'Solana':
-          platforms[chain] = new (await load(solana)).Platform(network);
+          platforms.push(await load(solana));
           break;
         case 'Sui':
-          platforms[chain] = new (await load(sui)).Platform(network);
+          platforms.push(await load(sui));
           break;
         case 'Celo':
         case 'Ethereum':
         case 'Klaytn':
           // TODO
-          platforms[chain] = new (await load(evm)).Platform(network);
+          platforms.push(await load(evm));
           break;
         default:
           throw new Error(`${chain} is not support`);

@@ -1,19 +1,21 @@
 import { amount } from '@wormhole-foundation/sdk-base';
 
 import { getNativeDecimals } from './getNativeDecimals';
-import { getTokenBridge } from './getTokenBridge';
 import { getUniversalAddress } from './getUniversalAddress';
 import { serializeTx } from './serializeTx';
 
-import type { IReqTransferTx, IWhPlatform } from '../types';
+import type { IReqTransferTx } from '../types';
+import type { Network } from '@wormhole-foundation/sdk-base';
+import type { Wormhole } from '@wormhole-foundation/sdk-connect';
 
 export const buildTransferTx = async (
-  platforms: { [key: string]: IWhPlatform },
+  wh: Wormhole<Network> | undefined,
   req: IReqTransferTx,
 ): Promise<string> => {
   try {
-    if (req.sender.chain !== req.receiver.chain) {
-      const sndTb = await getTokenBridge(req.sender.chain, platforms);
+    if (wh && req.sender.chain !== req.receiver.chain) {
+      const snd = wh.getChain(req.sender.chain);
+      const sndTb = await snd.getTokenBridge();
       const txs = sndTb.transfer(
         getUniversalAddress(req.sender),
         {
