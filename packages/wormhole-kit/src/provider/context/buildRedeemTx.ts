@@ -32,17 +32,22 @@ export const buildRedeemTx = async (
   req: IReqRedeemTx,
 ): Promise<string> => {
   try {
-    const wc = await getWormholeCore(req.source, platforms);
-    const [whm] = await wc.parseTransaction(req.txHash);
-    const vaa = (await getVaa(
-      network,
-      whm!,
-      'TokenBridge:Transfer',
-      60_000,
-    )) as VAA<'TokenBridge:Transfer'>;
-    const rcvTb = await getTokenBridge(req.receiver.chain, platforms);
-    const redeem = rcvTb.redeem(getUniversalAddress(req.receiver), vaa!);
-    return serializeTx(req.receiver.chain, req.receiver.address, redeem);
+    if (req.source !== req.receiver.chain) {
+      const wc = await getWormholeCore(req.source, platforms);
+      const [whm] = await wc.parseTransaction(req.txHash);
+      const vaa = (await getVaa(
+        network,
+        whm!,
+        'TokenBridge:Transfer',
+        60_000,
+      )) as VAA<'TokenBridge:Transfer'>;
+      const rcvTb = await getTokenBridge(req.receiver.chain, platforms);
+      const redeem = rcvTb.redeem(getUniversalAddress(req.receiver), vaa!);
+      return serializeTx(req.receiver.chain, req.receiver.address, redeem);
+    }
+    throw new Error(
+      `buildRedeemTx : Source and Target chains must be different.`,
+    );
   } catch (error) {
     throw new Error(`buildRedeemTx : ${error}`);
   }
