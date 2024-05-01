@@ -1,5 +1,11 @@
-import type { Chain, Network, Platform } from '@wormhole-foundation/sdk-base';
 import type {
+  Chain,
+  Network,
+  Platform,
+  PlatformToChains,
+} from '@wormhole-foundation/sdk-base';
+import type {
+  ChainContext,
   NativeAddressCtr,
   PlatformContext,
   PlatformUtils,
@@ -46,6 +52,10 @@ export interface IPlatformDefinition<P extends Platform> {
   protocolLoaders: {
     [key: string]: () => Promise<any>;
   };
+  getChain: <N extends Network, C extends PlatformToChains<P>>(
+    network: N,
+    chain: C,
+  ) => ChainContext<N, C, P>;
 }
 
 export interface TokenInfo {

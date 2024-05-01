@@ -11,5 +11,6 @@ const solana: IPlatformDefinition<'Solana'> = {
     tokenbridge: () => import('@wormhole-foundation/sdk-solana-tokenbridge'),
     cctp: () => import('@wormhole-foundation/sdk-solana-cctp'),
   },
+  getChain: (n, c) => new _solana.SolanaChain(c, new _solana.SolanaPlatform(n)),
 };
 export default solana;

@@ -12,6 +12,7 @@ const evm: IPlatformDefinition<'Evm'> = {
     portico: () => import('@wormhole-foundation/sdk-evm-portico'),
     cctp: () => import('@wormhole-foundation/sdk-evm-cctp'),
   },
+  getChain: (n, c) => new _evm.EvmChain(c, new _evm.EvmPlatform(n)),
 };
 
 export default evm;

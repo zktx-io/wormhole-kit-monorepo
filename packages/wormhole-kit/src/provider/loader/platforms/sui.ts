@@ -10,5 +10,6 @@ const sui: IPlatformDefinition<'Sui'> = {
     core: () => import('@wormhole-foundation/sdk-sui-core'),
     tokenbridge: () => import('@wormhole-foundation/sdk-sui-tokenbridge'),
   },
+  getChain: (n, c) => new _sui.SuiChain(c, new _sui.SuiPlatform(n)),
 };
 export default sui;

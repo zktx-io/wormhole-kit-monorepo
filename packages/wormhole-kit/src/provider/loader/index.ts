@@ -49,6 +49,7 @@ export const loadPlotforms = async (
         case 'Celo':
         case 'Ethereum':
         case 'Klaytn':
+          // TODO
           platforms[chain] = new (await load(evm)).Platform(network);
           break;
         default:
