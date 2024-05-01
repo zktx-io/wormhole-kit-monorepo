@@ -10,6 +10,7 @@ import {
   TextField,
 } from '@radix-ui/themes';
 
+import { ChainIcon } from './ChainIcon';
 import { useWormhole } from '../provider/WormholeProvider';
 
 import type { Chain } from '@wormhole-foundation/sdk-connect';
@@ -98,7 +99,9 @@ export const WhRedeemModal = ({
                       .map((item, key) => {
                         return (
                           <Select.Item key={key} value={item}>
-                            {item}
+                            <Flex as="span" align="center" gap="2">
+                            <ChainIcon chain={item}/>{item}
+                            </Flex>
                           </Select.Item>
                         );
                       })}
