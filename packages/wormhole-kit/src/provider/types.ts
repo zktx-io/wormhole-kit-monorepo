@@ -20,10 +20,15 @@ export type IVm =
   | 'Evm'
   | 'Cosmwasm';
 
-export interface IReqRedeemTx {
-  source: Chain;
-  txHash: string;
-  receiver: IUniversalAccount;
+export interface IReqBalance {
+  chain: Chain;
+  address: string;
+  token: string;
+}
+
+export interface IResBalance {
+  fValue?: number;
+  value: string;
 }
 
 export interface IUniversalAccount {
@@ -41,6 +46,12 @@ export interface IReqTransferTx {
     };
     amount: string;
   };
+}
+
+export interface IReqRedeemTx {
+  source: Chain;
+  txHash: string;
+  receiver: IUniversalAccount;
 }
 
 export interface IPlatformDefinition<P extends Platform> {
