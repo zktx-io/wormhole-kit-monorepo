@@ -42,10 +42,15 @@ export interface IReqTransferTx {
   };
 }
 
-export interface PlatformDefinition<P extends Platform> {
+export interface IPlatformDefinition<P extends Platform> {
   Platform: PlatformUtils<P>;
   Address: NativeAddressCtr;
   protocolLoaders: {
     [key: string]: () => Promise<any>;
   };
+}
+
+export interface TokenInfo {
+  symbol: string;
+  decimals: number;
 }
