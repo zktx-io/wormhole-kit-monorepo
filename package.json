@@ -45,6 +45,11 @@
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format"
+    }
+  },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --cache --fix",
