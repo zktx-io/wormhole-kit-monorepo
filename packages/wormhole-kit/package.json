@@ -75,6 +75,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@radix-ui/themes": "^3.0.2",
     "@wormhole-foundation/sdk-algorand": "^0.6.3",
     "@wormhole-foundation/sdk-algorand-core": "^0.6.3",
     "@wormhole-foundation/sdk-algorand-tokenbridge": "^0.6.3",
