@@ -7,13 +7,19 @@ import { buildRedeemTx } from './context/buildRedeemTx';
 import { buildTransferTx } from './context/buildTransferTx';
 import { loadPlotforms } from './loader';
 
-import type { IReqRedeemTx, IReqTransferTx, IWhPlatform } from './types';
+import type { IReqRedeemTx, IReqTransferTx, IWhPlatform, TokenInfo } from './types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
 
 import '@radix-ui/themes/styles.css';
 
 export const WormholeContext = createContext({
   supportChains: (): Chain[] => {
+    throw new Error();
+  },
+  getTokenInfo: (chain: Chain, network: Network): TokenInfo => {
+    throw new Error();
+  },
+  getBalance: (chain: Chain, network: Network, token: string): number => {
     throw new Error();
   },
   buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
@@ -83,6 +89,12 @@ export const WormholeProvider = ({
       value={{
         supportChains: () => {
           return chains;
+        },
+        getTokenInfo: (chain: Chain, network: Network): TokenInfo => {
+          throw new Error();
+        },
+        getBalance: (chain: Chain, network: Network, token: string): number => {
+          throw new Error();
         },
         buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
           return buildTransferTx(platforms, req);
