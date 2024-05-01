@@ -100,7 +100,8 @@ export const WhRedeemModal = ({
                         return (
                           <Select.Item key={key} value={item}>
                             <Flex as="span" align="center" gap="2">
-                            <ChainIcon chain={item}/>{item}
+                              <ChainIcon chain={item} />
+                              {item}
                             </Flex>
                           </Select.Item>
                         );
