@@ -10,6 +10,7 @@ import {
   TextField,
 } from '@radix-ui/themes';
 
+import { ChainIcon } from './ChainIcon';
 import { useWormhole } from '../provider/WormholeProvider';
 
 import type { Chain } from '@wormhole-foundation/sdk-connect';
@@ -70,7 +71,7 @@ export const WhTransferModal = ({
         setLoading(false);
         setOpen(false);
       }
-    }
+  }
   };
 
   return (
@@ -81,60 +82,60 @@ export const WhTransferModal = ({
         <Dialog.Description size="1" mb="4">
           You can select target chain, paste in the taarget address.
         </Dialog.Description>
-
-        <Flex direction="column" gap="3">
-          <label>
-            <Flex direction="column" width="100%">
+          <Flex direction="column" gap="3">
+            <label>
+              <Flex direction="column" width="100%">
+                <Text as="div" size="1" mb="1" weight="bold">
+                  Target Chain
+                </Text>
+                <Select.Root
+                  onValueChange={(select) => setTarget(select as Chain)}
+                >
+                  <Select.Trigger />
+                  <Select.Content>
+                    <Select.Group>
+                      <Select.Label>Source - {chain}</Select.Label>
+                    </Select.Group>
+                    <Select.Separator />
+                    <Select.Group>
+                      <Select.Label>Target</Select.Label>
+                      {api
+                        .supportChains()
+                        .filter((item) => item !== chain)
+                        .map((item, key) => {
+                          return (
+                            <Select.Item key={key} value={item}>
+                              <Flex as="span" align="center" gap="2">
+                                <ChainIcon chain={item}/>{item}
+                              </Flex>
+                            </Select.Item>
+                          );
+                        })}
+                    </Select.Group>
+                  </Select.Content>
+                </Select.Root>
+              </Flex>
+            </label>
+            <label>
               <Text as="div" size="1" mb="1" weight="bold">
-                Target Chain
+                Target Address
               </Text>
-              <Select.Root
-                onValueChange={(select) => setTarget(select as Chain)}
-              >
-                <Select.Trigger />
-                <Select.Content>
-                  <Select.Group>
-                    <Select.Label>Source - {chain}</Select.Label>
-                  </Select.Group>
-                  <Select.Separator />
-                  <Select.Group>
-                    <Select.Label>Target</Select.Label>
-                    {api
-                      .supportChains()
-                      .filter((item) => item !== chain)
-                      .map((item, key) => {
-                        return (
-                          <Select.Item key={key} value={item}>
-                            {item}
-                          </Select.Item>
-                        );
-                      })}
-                  </Select.Group>
-                </Select.Content>
-              </Select.Root>
-            </Flex>
-          </label>
-          <label>
-            <Text as="div" size="1" mb="1" weight="bold">
-              Target Address
-            </Text>
-            <TextField.Root
-              placeholder="Paste in the target addreess"
-              onChange={(e) => setTargetAddress(e.target.value)}
-            />
-          </label>
-          <label>
-            <Text as="div" size="1" mb="1" weight="bold">
-              {`Token Amount (${token ? `${token}` : 'native token'})`}
-            </Text>
-            <TextField.Root
-              type="number"
-              placeholder="amount"
-              onChange={(e) => setAmount(e.target.value)}
-            />
-          </label>
-        </Flex>
-
+              <TextField.Root
+                placeholder="Paste in the target addreess"
+                onChange={(e) => setTargetAddress(e.target.value)}
+              />
+            </label>
+            <label>
+              <Text as="div" size="1" mb="1" weight="bold">
+                {`Token Amount (${token ? `${token}` : 'native token'})`}
+              </Text>
+              <TextField.Root
+                type="number"
+                placeholder="amount"
+                onChange={(e) => setAmount(e.target.value)}
+              />
+            </label>
+          </Flex>
         <Flex gap="3" mt="4" justify="end">
           <Dialog.Close>
             <Button
