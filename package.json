@@ -11,7 +11,8 @@
     "lint:kit": "cd ./packages/wormhole-kit && npm run lint",
     "start:sui": "cd ./packages/demo-sui && npm run start",
     "format:sui": "cd ./packages/demo-sui && npm run format",
-    "lint:sui": "cd ./packages/demo-sui && npm run lint"
+    "lint:sui": "cd ./packages/demo-sui && npm run lint",
+    "prepare": "husky install"
   },
   "keywords": [
     "wormhole",
@@ -40,6 +41,14 @@
     "eslint-config-react-app": "^7.0.1",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-no-null": "^1.0.2",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.2.5"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --cache --write"
+    ]
   }
 }
