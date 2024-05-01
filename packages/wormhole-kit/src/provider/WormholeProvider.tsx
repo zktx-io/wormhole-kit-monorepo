@@ -25,10 +25,40 @@ export const WormholeContext = createContext({
 });
 
 export const WormholeProvider = ({
+  theme,
+  accentColor,
   network,
   chains,
   children,
 }: {
+  theme?: 'inherit' | 'light' | 'dark';
+  accentColor?:
+    | 'gray'
+    | 'gold'
+    | 'bronze'
+    | 'brown'
+    | 'yellow'
+    | 'amber'
+    | 'orange'
+    | 'tomato'
+    | 'red'
+    | 'ruby'
+    | 'crimson'
+    | 'pink'
+    | 'plum'
+    | 'purple'
+    | 'violet'
+    | 'iris'
+    | 'indigo'
+    | 'blue'
+    | 'cyan'
+    | 'teal'
+    | 'jade'
+    | 'green'
+    | 'grass'
+    | 'lime'
+    | 'mint'
+    | 'sky';
   network: Network;
   chains: Chain[];
   children: ReactNode;
@@ -62,7 +92,9 @@ export const WormholeProvider = ({
         },
       }}
     >
-      <Theme>{children}</Theme>
+      <Theme appearance={theme} accentColor={accentColor || 'indigo'}>
+        {children}
+      </Theme>
     </WormholeContext.Provider>
   );
 };
