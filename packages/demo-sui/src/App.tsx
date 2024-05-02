@@ -6,10 +6,9 @@ import {
 } from '@mysten/dapp-kit';
 import { TransactionBlock } from '@mysten/sui.js/transactions';
 import { WhRedeemButton, WhTransferButton } from '@zktx.io/wormhole-kit';
-import { useSnackbar } from 'notistack';
+import { enqueueSnackbar } from 'notistack';
 
 function App() {
-  const { enqueueSnackbar } = useSnackbar();
   const { mutate: signAndExecuteTransactionBlock } =
     useSignAndExecuteTransactionBlock();
   const account = useCurrentAccount();
