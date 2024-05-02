@@ -34,13 +34,8 @@ export interface IUniversalAccount {
 export interface IReqTransferTx {
   sender: IUniversalAccount;
   receiver: IUniversalAccount;
-  token: {
-    info?: {
-      type: string;
-      decimals: number;
-    };
-    amount: string;
-  };
+  token?: string;
+  amount: string;
 }
 
 export interface IReqRedeemTx {

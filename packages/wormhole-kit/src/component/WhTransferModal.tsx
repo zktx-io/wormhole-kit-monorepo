@@ -61,9 +61,8 @@ export const WhTransferModal = ({
             chain: target,
             address: targetAddress,
           },
-          token: {
-            amount,
-          },
+          amount,
+          token,
         });
         handleUnsignedTx(tx);
       } catch (error) {
