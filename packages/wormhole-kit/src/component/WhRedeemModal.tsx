@@ -116,7 +116,7 @@ export const WhRedeemModal = ({
               Transaction ID
             </Text>
             <TextField.Root
-              placeholder="Paste in the Transaction ID"
+              placeholder="paste in the Transaction ID"
               onChange={(e) => setTxHash(e.target.value)}
             />
           </label>
