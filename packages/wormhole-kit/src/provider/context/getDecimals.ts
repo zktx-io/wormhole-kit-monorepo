@@ -3,19 +3,15 @@ import { decimals } from '@wormhole-foundation/sdk-base';
 import { getTokenInfo } from '../tokens';
 
 import type { Chain, Network } from '@wormhole-foundation/sdk-base';
-import type { Wormhole } from '@wormhole-foundation/sdk-connect';
 
 export const getDecimals = (
-  wh: Wormhole<Network> | undefined,
   chain: Chain,
+  network: Network,
   token?: string,
 ): number => {
   try {
     if (token) {
-      if (wh) {
-        return getTokenInfo(chain, wh.network, token).decimals;
-      }
-      throw new Error(`getDecimals : ${chain}:${token} is not support`);
+      return getTokenInfo(chain, network, token).decimals; // TEMP
     } else {
       switch (chain) {
         case 'Algorand':

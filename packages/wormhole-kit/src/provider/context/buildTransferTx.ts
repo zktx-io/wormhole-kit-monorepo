@@ -26,7 +26,7 @@ export const buildTransferTx = async (
         amount.units(
           amount.parse(
             req.amount,
-            getDecimals(wh, req.sender.chain, req.token),
+            getDecimals(req.sender.chain, wh.network, req.token),
           ),
         ),
       );
