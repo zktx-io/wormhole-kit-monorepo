@@ -1,10 +1,20 @@
 import { decimals } from '@wormhole-foundation/sdk-base';
 
-import type { Chain } from '@wormhole-foundation/sdk-base';
+import { getTokenInfo } from '../tokens';
 
-export const getDecimals = (chain: Chain, token?: string): number => {
+import type { Chain, Network } from '@wormhole-foundation/sdk-base';
+import type { Wormhole } from '@wormhole-foundation/sdk-connect';
+
+export const getDecimals = (
+  wh: Wormhole<Network> | undefined,
+  chain: Chain,
+  token?: string,
+): number => {
   try {
     if (token) {
+      if (wh) {
+        return getTokenInfo(chain, wh.network, token).decimals;
+      }
       throw new Error(`getDecimals : ${chain}:${token} is not support`);
     } else {
       switch (chain) {
