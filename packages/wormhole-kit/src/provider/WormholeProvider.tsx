@@ -16,6 +16,7 @@ import type {
   IReqTokenInfo,
   IReqTransferTx,
   IResBalance,
+  IResTransferTx,
 } from './types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-base';
 
@@ -34,7 +35,7 @@ export const WormholeContext = createContext({
   buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
     throw new Error();
   },
-  buildRedeemTx: async (req: IReqRedeemTx): Promise<string> => {
+  buildRedeemTx: async (req: IReqRedeemTx): Promise<IResTransferTx> => {
     throw new Error();
   },
 });
@@ -106,7 +107,7 @@ export const WormholeProvider = ({
         buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
           return buildTransferTx(wh, req);
         },
-        buildRedeemTx: async (req: IReqRedeemTx): Promise<string> => {
+        buildRedeemTx: async (req: IReqRedeemTx): Promise<IResTransferTx> => {
           return buildRedeemTx(wh, req);
         },
       }}

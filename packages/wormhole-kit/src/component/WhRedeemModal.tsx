@@ -34,6 +34,7 @@ export const WhRedeemModal = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [source, setSource] = useState<Chain | undefined>(undefined);
   const [txHash, setTxHash] = useState<string>('');
+  const [usedTx, setUsedTx] = useState<string>('');
 
   const handleOpenChange = (state: boolean) => {
     setOpen(state);
@@ -48,7 +49,7 @@ export const WhRedeemModal = ({
     if (address && source) {
       try {
         setLoading(true);
-        const tx = await api.buildRedeemTx({
+        const { unsignedTx, error } = await api.buildRedeemTx({
           source,
           txHash,
           receiver: {
@@ -56,7 +57,11 @@ export const WhRedeemModal = ({
             address,
           },
         });
-        handleUnsignedTx(tx);
+        if (error) {
+          setUsedTx(error);
+        } else {
+          handleUnsignedTx(unsignedTx);
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -83,6 +88,7 @@ export const WhRedeemModal = ({
             </Text>
             <Flex direction="column" width="100%">
               <Select.Root
+                disabled={loading}
                 onValueChange={(select) => setSource(select as Chain)}
               >
                 <Select.Trigger />
@@ -116,9 +122,15 @@ export const WhRedeemModal = ({
               Transaction ID
             </Text>
             <TextField.Root
+              disabled={loading}
               placeholder="paste in the Transaction ID"
               onChange={(e) => setTxHash(e.target.value)}
             />
+            {!!usedTx && (
+              <Text as="div" size="1" mb="1" align="right" color="orange">
+                {usedTx}
+              </Text>
+            )}
           </label>
         </Flex>
 
@@ -134,18 +146,16 @@ export const WhRedeemModal = ({
               Cancel
             </Button>
           </Dialog.Close>
-          <Dialog.Close>
-            <Button
-              loading={loading}
-              disabled={!source || !txHash}
-              onClick={handleConfirm}
-              style={{
-                cursor: 'pointer',
-              }}
-            >
-              Redeem
-            </Button>
-          </Dialog.Close>
+          <Button
+            loading={loading}
+            disabled={!source || !txHash || !!usedTx}
+            onClick={handleConfirm}
+            style={{
+              cursor: 'pointer',
+            }}
+          >
+            Redeem
+          </Button>
         </Flex>
       </Dialog.Content>
     </Dialog.Root>
