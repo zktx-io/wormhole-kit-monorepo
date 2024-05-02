@@ -38,6 +38,11 @@ export interface IReqTransferTx {
   amount: string;
 }
 
+export interface IResTransferTx {
+  error?: string;
+  unsignedTx: string;
+}
+
 export interface IReqRedeemTx {
   source: Chain;
   txHash: string;
