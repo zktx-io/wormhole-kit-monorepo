@@ -111,7 +111,13 @@ export const WhTransferModal = ({
                 <Select.Trigger />
                 <Select.Content>
                   <Select.Group>
-                    <Select.Label>Source - {chain}</Select.Label>
+                    <Select.Label>Source</Select.Label>
+                    <Select.Item disabled value={chain}>
+                      <Flex as="span" align="center" gap="2">
+                        <ChainIcon chain={chain} />
+                        {chain}
+                      </Flex>
+                    </Select.Item>
                   </Select.Group>
                   <Select.Separator />
                   <Select.Group>
