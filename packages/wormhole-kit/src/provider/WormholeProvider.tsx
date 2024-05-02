@@ -7,14 +7,16 @@ import { Wormhole } from '@wormhole-foundation/sdk-connect';
 import { buildRedeemTx } from './context/buildRedeemTx';
 import { buildTransferTx } from './context/buildTransferTx';
 import { getBalance } from './context/getBalance';
+import { getTokenInfo } from './context/getTokenInfo';
 import { loadPlotforms } from './loader';
 
 import type {
   IReqBalance,
   IReqRedeemTx,
+  IReqTokenInfo,
   IReqTransferTx,
   IResBalance,
-  TokenInfo,
+  IResTokenInfo,
 } from './types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-base';
 
@@ -24,7 +26,7 @@ export const WormholeContext = createContext({
   supportChains: (): Chain[] => {
     throw new Error();
   },
-  getTokenInfo: (chain: Chain, network: Network): TokenInfo => {
+  getTokenInfo: (req: IReqTokenInfo): IResTokenInfo => {
     throw new Error();
   },
   getBalance: async (req: IReqBalance): Promise<IResBalance> => {
@@ -96,8 +98,8 @@ export const WormholeProvider = ({
         supportChains: () => {
           return chains;
         },
-        getTokenInfo: (chain: Chain, network: Network): TokenInfo => {
-          throw new Error();
+        getTokenInfo: (req: IReqTokenInfo): IResTokenInfo => {
+          return getTokenInfo(wh, req);
         },
         getBalance: async (req: IReqBalance): Promise<IResBalance> => {
           return getBalance(wh, req);
