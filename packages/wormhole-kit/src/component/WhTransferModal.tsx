@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ReactElement } from 'react';
 
 import {
@@ -19,7 +19,6 @@ export const WhTransferModal = ({
   chain,
   address,
   token,
-  maxAmount,
   open,
   setOpen,
   trigger,
@@ -28,7 +27,6 @@ export const WhTransferModal = ({
   chain: Chain;
   address?: string;
   token?: string;
-  maxAmount?: number;
   open: boolean;
   setOpen: (open: boolean) => void;
   trigger: ReactElement;
@@ -39,6 +37,9 @@ export const WhTransferModal = ({
   const [target, setTarget] = useState<Chain | undefined>(undefined);
   const [targetAddress, setTargetAddress] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
+
+  const [symbol, setSymbol] = useState<string>('');
+  const [balance, setBalance] = useState<number>(0);
 
   const handleOpenChange = (state: boolean) => {
     setOpen(state);
@@ -73,6 +74,23 @@ export const WhTransferModal = ({
       }
     }
   };
+
+  useEffect(() => {
+    const init = async () => {
+      if (address) {
+        const info = api.getTokenInfo({ chain, token });
+        setSymbol(info.symbol);
+        const { fValue, value } = await api.getBalance({
+          chain,
+          address,
+          token,
+        });
+        fValue ? setBalance(fValue) : setBalance(parseInt(value));
+      }
+    };
+    init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
@@ -122,19 +140,28 @@ export const WhTransferModal = ({
               Target Address
             </Text>
             <TextField.Root
-              placeholder="Paste in the target addreess"
+              placeholder="paste in the target addreess"
               onChange={(e) => setTargetAddress(e.target.value)}
             />
           </label>
           <label>
             <Text as="div" size="1" mb="1" weight="bold">
-              {`Token Amount (${token ? `${token}` : 'native token'})`}
+              Token Amount
             </Text>
             <TextField.Root
               type="number"
               placeholder="amount"
               onChange={(e) => setAmount(e.target.value)}
             />
+            <Text
+              as="div"
+              size="1"
+              mb="1"
+              align="right"
+              color={Number(amount) > balance ? 'orange' : 'gray'}
+            >
+              {`${balance} ${symbol}`}
+            </Text>
           </label>
         </Flex>
         <Flex gap="3" mt="4" justify="end">
@@ -157,7 +184,7 @@ export const WhTransferModal = ({
                 !targetAddress ||
                 !amount ||
                 !address ||
-                (!!maxAmount && maxAmount < Number(amount))
+                (!!balance && balance < Number(amount))
               }
               onClick={handleConfirm}
               style={{
