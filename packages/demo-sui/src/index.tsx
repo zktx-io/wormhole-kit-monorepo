@@ -4,6 +4,7 @@ import { SuiClientProvider, WalletProvider } from '@mysten/dapp-kit';
 import { getFullnodeUrl } from '@mysten/sui.js/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WormholeProvider } from '@zktx.io/wormhole-kit';
+import { SnackbarProvider } from 'notistack';
 import { createRoot } from 'react-dom/client';
 
 import './index.css';
@@ -24,6 +25,9 @@ root.render(
           networks={{ testnet: { url: getFullnodeUrl('testnet') } }}
         >
           <WalletProvider>
+            <SnackbarProvider
+              anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+            />
             <App />
           </WalletProvider>
         </SuiClientProvider>
