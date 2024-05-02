@@ -10,25 +10,25 @@ import type {
   PlatformUtils,
 } from '@wormhole-foundation/sdk-definitions';
 
-export type IVm =
-  | 'Solana'
-  | 'Algorand'
-  | 'Near'
-  | 'Sui'
-  | 'Aptos'
-  | 'Btc'
-  | 'Evm'
-  | 'Cosmwasm';
-
 export interface IReqBalance {
   chain: Chain;
   address: string;
-  token: string;
+  token?: string;
 }
 
 export interface IResBalance {
   fValue?: number;
   value: string;
+}
+
+export interface IReqTokenInfo {
+  chain: Chain;
+  token?: string;
+}
+
+export interface IResTokenInfo {
+  symbol: string;
+  decimals: number;
 }
 
 export interface IUniversalAccount {
@@ -64,9 +64,4 @@ export interface IPlatformDefinition<P extends Platform> {
     network: N,
     chain: C,
   ) => ChainContext<N, C, P>;
-}
-
-export interface TokenInfo {
-  symbol: string;
-  decimals: number;
 }
