@@ -20,7 +20,7 @@ export const getBalance = async (
     );
     return {
       fValue: balance
-        ? Number(amount.fmt(balance, getDecimals(req.chain, req.token)))
+        ? Number(amount.fmt(balance, getDecimals(wh, req.chain, req.token)))
         : 0,
       value: balance ? balance.toString() : '0',
     };
