@@ -24,7 +24,10 @@ export const buildTransferTx = async (
         },
         req.token ? (req.token as any) : 'native', // TODO
         amount.units(
-          amount.parse(req.amount, getDecimals(req.sender.chain, req.token)),
+          amount.parse(
+            req.amount,
+            getDecimals(wh, req.sender.chain, req.token),
+          ),
         ),
       );
       return serializeTx(req.sender.chain, req.sender.address, txs);
