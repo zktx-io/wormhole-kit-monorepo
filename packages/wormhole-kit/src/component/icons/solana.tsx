@@ -10,6 +10,8 @@ export const Solana = React.forwardRef<SVGSVGElement, IconProps>(
         height="15"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 97 84"
+        xmlSpace="preserve"
       >
         <g clipPath="url(#a)">
           <path
