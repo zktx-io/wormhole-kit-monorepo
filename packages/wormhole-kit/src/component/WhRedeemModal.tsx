@@ -94,8 +94,14 @@ export const WhRedeemModal = ({
                 <Select.Trigger />
                 <Select.Content>
                   <Select.Group>
-                    <Select.Label>Target - {chain}</Select.Label>
+                    <Select.Label>Target</Select.Label>
                   </Select.Group>
+                  <Select.Item disabled value={chain}>
+                    <Flex as="span" align="center" gap="2">
+                      <ChainIcon chain={chain} />
+                      {chain}
+                    </Flex>
+                  </Select.Item>
                   <Select.Separator />
                   <Select.Group>
                     <Select.Label>Source</Select.Label>
@@ -123,7 +129,7 @@ export const WhRedeemModal = ({
             </Text>
             <TextField.Root
               disabled={loading}
-              placeholder="paste in the Transaction ID"
+              placeholder="aste in the transaction ID"
               onChange={(e) => setTxHash(e.target.value)}
             />
             {!!usedTx && (
