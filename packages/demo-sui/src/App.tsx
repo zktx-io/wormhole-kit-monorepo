@@ -6,8 +6,10 @@ import {
 } from '@mysten/dapp-kit';
 import { TransactionBlock } from '@mysten/sui.js/transactions';
 import { WhRedeemButton, WhTransferButton } from '@zktx.io/wormhole-kit';
+import { useSnackbar } from 'notistack';
 
 function App() {
+  const { enqueueSnackbar } = useSnackbar();
   const { mutate: signAndExecuteTransactionBlock } =
     useSignAndExecuteTransactionBlock();
   const account = useCurrentAccount();
@@ -20,10 +22,14 @@ function App() {
         },
         {
           onError: (err) => {
-            //
+            enqueueSnackbar(err.message, {
+              variant: 'error',
+            });
           },
           onSuccess: (data) => {
-            //
+            enqueueSnackbar(data.digest, {
+              variant: 'success',
+            });
           },
         },
       );
@@ -40,18 +46,20 @@ function App() {
         {!account ? (
           <ConnectButton />
         ) : (
-          <>
+          <span>
             <WhTransferButton
               chain="Sui"
+              token={'0x2::sui::SUI'}
               address={account.address}
               handleUnsignedTx={handleUnsignedTx}
             />
+            &nbsp;
             <WhRedeemButton
               chain="Sui"
               address={account.address}
               handleUnsignedTx={handleUnsignedTx}
             />
-          </>
+          </span>
         )}
       </header>
     </div>
