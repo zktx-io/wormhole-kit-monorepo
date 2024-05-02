@@ -105,6 +105,7 @@ export const WhTransferModal = ({
                 Target Chain
               </Text>
               <Select.Root
+                disabled={loading}
                 onValueChange={(select) => setTarget(select as Chain)}
               >
                 <Select.Trigger />
@@ -138,6 +139,7 @@ export const WhTransferModal = ({
               Target Address
             </Text>
             <TextField.Root
+              disabled={loading}
               placeholder="paste in the target addreess"
               onChange={(e) => setTargetAddress(e.target.value)}
             />
@@ -147,6 +149,7 @@ export const WhTransferModal = ({
               Token Amount
             </Text>
             <TextField.Root
+              disabled={loading}
               type="number"
               placeholder="amount"
               onChange={(e) => setAmount(e.target.value)}
@@ -174,24 +177,22 @@ export const WhTransferModal = ({
               Cancel
             </Button>
           </Dialog.Close>
-          <Dialog.Close>
-            <Button
-              loading={loading}
-              disabled={
-                !target ||
-                !targetAddress ||
-                !amount ||
-                !address ||
-                (!!balance && balance < Number(amount))
-              }
-              onClick={handleConfirm}
-              style={{
-                cursor: 'pointer',
-              }}
-            >
-              Transfer
-            </Button>
-          </Dialog.Close>
+          <Button
+            loading={loading}
+            disabled={
+              !target ||
+              !targetAddress ||
+              !amount ||
+              !address ||
+              (!!balance && balance < Number(amount))
+            }
+            onClick={handleConfirm}
+            style={{
+              cursor: 'pointer',
+            }}
+          >
+            Transfer
+          </Button>
         </Flex>
       </Dialog.Content>
     </Dialog.Root>
