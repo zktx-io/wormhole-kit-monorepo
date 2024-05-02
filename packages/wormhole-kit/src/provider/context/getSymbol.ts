@@ -1,3 +1,5 @@
+import { getTokenInfo } from '../tokens';
+
 import type { IReqTokenInfo } from '../types';
 import type { Network, Wormhole } from '@wormhole-foundation/sdk-connect';
 
@@ -6,8 +8,10 @@ export const getSymbol = (
   req: IReqTokenInfo,
 ): string => {
   if (req.token) {
-    // TODO
-    throw new Error();
+    if (wh) {
+      return getTokenInfo(req.chain, wh.network, req.token).symbol;
+    }
+    throw new Error(`getSymbol : ${req.token}`);
   } else {
     return 'native';
   }
