@@ -1,5 +1,12 @@
+import {
+  amount,
+  type Network,
+  type Wormhole,
+} from '@wormhole-foundation/sdk-connect';
+
+import { getNativeDecimals } from './getNativeDecimals';
+
 import type { IReqBalance, IResBalance } from '../types';
-import type { Network, Wormhole } from '@wormhole-foundation/sdk-connect';
 
 export const getBalance = async (
   wh: Wormhole<Network> | undefined,
@@ -8,10 +15,21 @@ export const getBalance = async (
   if (wh) {
     const balance = await wh.getBalance(
       req.chain,
-      req.token as any, // TODO
+      req.token ? (req.token as any) : 'native', // TODO
       req.address,
     );
+
+    if (req.token) {
+      // TODO
+      return {
+        value: balance ? balance.toString() : '0',
+      };
+    }
+
     return {
+      fValue: balance
+        ? Number(amount.fmt(balance, getNativeDecimals(req.chain)))
+        : 0,
       value: balance ? balance.toString() : '0',
     };
   }
