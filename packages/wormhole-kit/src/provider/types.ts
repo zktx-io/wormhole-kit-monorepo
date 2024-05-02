@@ -26,11 +26,6 @@ export interface IReqTokenInfo {
   token?: string;
 }
 
-export interface IResTokenInfo {
-  symbol: string;
-  decimals: number;
-}
-
 export interface IUniversalAccount {
   chain: Chain;
   address: string;
