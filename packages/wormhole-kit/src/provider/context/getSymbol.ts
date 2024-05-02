@@ -9,7 +9,7 @@ export const getSymbol = (
 ): string => {
   if (req.token) {
     if (wh) {
-      return getTokenInfo(req.chain, wh.network, req.token).symbol;
+      return getTokenInfo(req.chain, wh.network, req.token).symbol; // TEMP
     }
     throw new Error(`getSymbol : ${req.token}`);
   } else {
