@@ -77,7 +77,7 @@ export const WhTransferModal = ({
   useEffect(() => {
     const init = async () => {
       if (address) {
-        setSymbol(api.getTokenSymbol({ chain, token }));
+        setSymbol(api.getSymbol({ chain, token }));
         const { fValue, value } = await api.getBalance({
           chain,
           address,

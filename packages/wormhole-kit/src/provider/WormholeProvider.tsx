@@ -7,7 +7,7 @@ import { Wormhole } from '@wormhole-foundation/sdk-connect';
 import { buildRedeemTx } from './context/buildRedeemTx';
 import { buildTransferTx } from './context/buildTransferTx';
 import { getBalance } from './context/getBalance';
-import { getTokenSymbol } from './context/getTokenSymbol';
+import { getSymbol } from './context/getSymbol';
 import { loadPlotforms } from './loader';
 
 import type {
@@ -25,7 +25,7 @@ export const WormholeContext = createContext({
   supportChains: (): Chain[] => {
     throw new Error();
   },
-  getTokenSymbol: (req: IReqTokenInfo): string => {
+  getSymbol: (req: IReqTokenInfo): string => {
     throw new Error();
   },
   getBalance: async (req: IReqBalance): Promise<IResBalance> => {
@@ -97,8 +97,8 @@ export const WormholeProvider = ({
         supportChains: () => {
           return chains;
         },
-        getTokenSymbol: (req: IReqTokenInfo): string => {
-          return getTokenSymbol(wh, req);
+        getSymbol: (req: IReqTokenInfo): string => {
+          return getSymbol(wh, req);
         },
         getBalance: async (req: IReqBalance): Promise<IResBalance> => {
           return getBalance(wh, req);

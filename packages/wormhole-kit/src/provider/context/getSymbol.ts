@@ -1,7 +1,7 @@
 import type { IReqTokenInfo } from '../types';
 import type { Network, Wormhole } from '@wormhole-foundation/sdk-connect';
 
-export const getTokenSymbol = (
+export const getSymbol = (
   wh: Wormhole<Network> | undefined,
   req: IReqTokenInfo,
 ): string => {
