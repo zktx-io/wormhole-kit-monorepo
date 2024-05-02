@@ -21,10 +21,11 @@ root.render(
     <WormholeProvider network="Testnet" chains={['Aptos', 'Sui']} theme="dark">
       <QueryClientProvider client={queryClient}>
         <SuiClientProvider
+        
           defaultNetwork="testnet"
           networks={{ testnet: { url: getFullnodeUrl('testnet') } }}
         >
-          <WalletProvider>
+          <WalletProvider autoConnect>
             <SnackbarProvider
               anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
             />
