@@ -14,7 +14,6 @@ export const WhTransferButton = ({
   chain,
   address,
   token,
-  maxAmount,
   handleUnsignedTx,
 }: {
   icon?: boolean;
@@ -23,7 +22,6 @@ export const WhTransferButton = ({
   chain: Chain;
   address?: string;
   token?: string;
-  maxAmount?: number;
   handleUnsignedTx: (unsignedTx: string) => Promise<void>;
 }) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -34,7 +32,6 @@ export const WhTransferButton = ({
       chain={chain}
       address={address}
       token={token}
-      maxAmount={maxAmount}
       open={open}
       setOpen={setOpen}
       trigger={
