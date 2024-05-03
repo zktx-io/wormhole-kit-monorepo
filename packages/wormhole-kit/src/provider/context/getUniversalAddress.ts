@@ -13,11 +13,11 @@ export const getUniversalAddress = (
       case 'Sui':
         return new UniversalAddress(account.address, 'hex');
       default:
-        if (SOLANAs.includes(account.chain)) {
-          return new UniversalAddress(account.address, 'base58');
-        }
         if (EVMs.includes(account.chain)) {
           return new UniversalAddress(account.address, 'hex');
+        }
+        if (SOLANAs.includes(account.chain)) {
+          return new UniversalAddress(account.address, 'base58');
         }
         break;
     }
