@@ -3,6 +3,7 @@ import aptos from './aptos';
 import evm from './evm';
 import solana from './solana';
 import sui from './sui';
+import { EVMs, SOLANAs } from './utils';
 
 import type { IPlatformDefinition } from '../types';
 import type { Chain, Platform } from '@wormhole-foundation/sdk-base';
@@ -35,20 +36,12 @@ export const loadPlotforms = async (
         case 'Aptos':
           platforms.push(await load(aptos));
           break;
-        case 'Solana':
-          platforms.push(await load(solana));
-          break;
         case 'Sui':
           platforms.push(await load(sui));
           break;
-        case 'Celo':
-        case 'Ethereum':
-        case 'Klaytn':
-          // TODO
-          platforms.push(await load(evm));
-          break;
         default:
-          throw new Error(`${chain} is not support`);
+          SOLANAs.includes(chain) && platforms.push(await load(solana));
+          EVMs.includes(chain) && platforms.push(await load(evm));
       }
     }
     return platforms;
