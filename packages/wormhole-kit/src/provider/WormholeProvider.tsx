@@ -19,7 +19,7 @@ import type {
   IResTransferTx,
 } from './types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-base';
-import type { ConfigOverrides} from '@wormhole-foundation/sdk-connect';
+import type { ConfigOverrides } from '@wormhole-foundation/sdk-connect';
 
 import '@radix-ui/themes/styles.css';
 
@@ -79,7 +79,7 @@ export const WormholeProvider = ({
     | 'sky';
   network: Network;
   chains: Chain[];
-  config?: ConfigOverrides<Network>,
+  config?: ConfigOverrides<Network>;
   children: ReactNode;
 }) => {
   const initialized = useRef<boolean>(false);
