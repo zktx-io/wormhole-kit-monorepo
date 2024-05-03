@@ -1,5 +1,6 @@
 import { decimals } from '@wormhole-foundation/sdk-base';
 
+import { EVMs, SOLANAs } from '../loader/utils';
 import { getTokenInfo } from '../tokens';
 
 import type { Chain, Network } from '@wormhole-foundation/sdk-base';
@@ -21,12 +22,13 @@ export const getDecimals = (
         case 'Solana':
         case 'Sui':
           return decimals.nativeDecimals(chain);
-        case 'Ethereum':
-        case 'Celo':
-        case 'Klaytn':
-          // TODO
-          return decimals.nativeDecimals('Evm');
         default:
+          if (EVMs.includes(chain)) {
+            return decimals.nativeDecimals('Evm');
+          }
+          if (SOLANAs.includes(chain)) {
+            return decimals.nativeDecimals('Solana');
+          }
           break;
       }
       throw new Error(`getDecimals : ${chain} is not support`);
