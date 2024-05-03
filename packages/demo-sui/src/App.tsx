@@ -21,13 +21,11 @@ function App() {
         },
         {
           onError: (err) => {
-            console.log('error', err)
             enqueueSnackbar(err.message, {
               variant: 'error',
             });
           },
           onSuccess: (data) => {
-            console.log('success', data)
             enqueueSnackbar(data.digest, {
               variant: 'success',
             });
