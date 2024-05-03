@@ -10,6 +10,7 @@ export const Bsc = React.forwardRef<SVGSVGElement, IconProps>(
         height="15"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 40 40"
       >
         <path
           d="M20.302 0 9.68 6.127l3.906 2.263 6.717-3.863L27.02 8.39l3.906-2.263L20.303 0ZM27.02 11.59l3.906 2.264v4.527l-6.718 3.863v7.727l-3.905 2.263-3.906-2.263v-7.727L9.679 18.38v-4.527l3.906-2.264 6.717 3.864 6.718-3.864Z"
