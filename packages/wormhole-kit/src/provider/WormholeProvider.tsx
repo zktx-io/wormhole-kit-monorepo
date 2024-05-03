@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import { Theme } from '@radix-ui/themes';
-import { Wormhole } from '@wormhole-foundation/sdk-connect';
+import { ConfigOverrides, Wormhole } from '@wormhole-foundation/sdk-connect';
 
 import { buildRedeemTx } from './context/buildRedeemTx';
 import { buildTransferTx } from './context/buildTransferTx';
@@ -45,6 +45,7 @@ export const WormholeProvider = ({
   accentColor,
   network,
   chains,
+  config,
   children,
 }: {
   theme?: 'inherit' | 'light' | 'dark';
@@ -77,6 +78,7 @@ export const WormholeProvider = ({
     | 'sky';
   network: Network;
   chains: Chain[];
+  config?: ConfigOverrides<Network>,
   children: ReactNode;
 }) => {
   const initialized = useRef<boolean>(false);
@@ -86,7 +88,7 @@ export const WormholeProvider = ({
     const init = async () => {
       initialized.current = true;
       const loaded = (await loadPlotforms(chains)).map((p) => p.Platform);
-      setWh(new Wormhole(network, loaded));
+      setWh(new Wormhole(network, loaded, config));
     };
     !initialized.current && init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
