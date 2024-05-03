@@ -21,7 +21,6 @@ root.render(
     <WormholeProvider network="Testnet" chains={['Aptos', 'Sui']} theme="dark">
       <QueryClientProvider client={queryClient}>
         <SuiClientProvider
-        
           defaultNetwork="testnet"
           networks={{ testnet: { url: getFullnodeUrl('testnet') } }}
         >
