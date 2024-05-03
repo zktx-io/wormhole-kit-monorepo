@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import { Theme } from '@radix-ui/themes';
-import { ConfigOverrides, Wormhole } from '@wormhole-foundation/sdk-connect';
+import { Wormhole } from '@wormhole-foundation/sdk-connect';
 
 import { buildRedeemTx } from './context/buildRedeemTx';
 import { buildTransferTx } from './context/buildTransferTx';
@@ -19,6 +19,7 @@ import type {
   IResTransferTx,
 } from './types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-base';
+import type { ConfigOverrides} from '@wormhole-foundation/sdk-connect';
 
 import '@radix-ui/themes/styles.css';
 
