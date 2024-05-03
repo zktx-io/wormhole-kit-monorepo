@@ -1,5 +1,7 @@
 import { UniversalAddress } from '@wormhole-foundation/sdk-definitions';
 
+import { EVMs, SOLANAs } from '../loader/utils';
+
 import type { IUniversalAccount } from '../types';
 
 export const getUniversalAddress = (
@@ -9,13 +11,14 @@ export const getUniversalAddress = (
     switch (account.chain) {
       case 'Aptos':
       case 'Sui':
-      case 'Ethereum':
-      case 'Celo':
-        // TODO
         return new UniversalAddress(account.address, 'hex');
-      case 'Solana':
-        return new UniversalAddress(account.address, 'base58');
       default:
+        if (SOLANAs.includes(account.chain)) {
+          return new UniversalAddress(account.address, 'base58');
+        }
+        if (EVMs.includes(account.chain)) {
+          return new UniversalAddress(account.address, 'hex');
+        }
         break;
     }
     throw new Error(`${account.chain} is not support`);
