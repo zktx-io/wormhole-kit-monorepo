@@ -2,7 +2,12 @@
   "name": "@zktx.io/wormhole-kit-core",
   "version": "0.1.0",
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
-  "main": "index.js",
+  "main": "lib/cjs/index.js",
+  "types": "lib/cjs/index.d.ts",
+  "files": [
+    "src/**/*",
+    "lib/**/*"
+  ],
   "scripts": {
     "build": "rm -rf lib && npm run build:cjs && npm run build:esm",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs --strict true",
