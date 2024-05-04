@@ -65,3 +65,23 @@ const App = () => {
   )
 }
 ```
+
+### WormholeProvider Props
+
+- network: Mainnet, Testnet, and Devnet.
+- chains: Algorand, Aptos, EVMs, Solana,andSui.
+- config: If needed, you can customize the default configuration to, for example, support a different RPC endpoint. [link](https://docs.wormhole.com/wormhole/reference/sdk-docs#usage)
+- theme: Switch appearance between inherit, light, and dark modes. [link](https://www.radix-ui.com/themes/docs/theme/dark-mode)
+- accentColor: Accent color is the most dominant color in your theme [link](https://www.radix-ui.com/themes/docs/theme/color#accents)
+
+### WhTransferButton Props
+
+- chain: The name of the connected chain.
+- address: The address of the connected wallet.
+- handleUnsignedTx: The unsigned transaction is formatted for wallet use and forwarded.
+
+### WhRedeemButton Props
+
+- chain: The name of the connected chain.
+- address: The address of the connected wallet.
+- handleUnsignedTx: The unsigned transaction is formatted for wallet use and forwarded.
