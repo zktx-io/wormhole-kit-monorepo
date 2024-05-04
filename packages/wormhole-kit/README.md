@@ -1,7 +1,7 @@
 # @zktx.io/wormhole-kit
 
 @zktx.io/wormhole-kit is a React library that enables instant integration of Wormhole into your dapp.
-![@zktx io:wormhole-kit](https://github.com/zktx-io/wormhole-kit-monorepo/assets/57783762/71b9694d-5225-4489-acc4-56b195db108a)
+![@zktx io:wormhole-kit](https://github.com/zktx-io/wormhole-kit-monorepo/assets/57783762/721a375a-b85b-4099-9e95-d4a9d89e12a9)
 
 ## Getting started
 
