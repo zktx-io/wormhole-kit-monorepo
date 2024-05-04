@@ -20,7 +20,7 @@ root.render(
   <StrictMode>
     <WormholeProvider
       network="Testnet"
-      chains={['Aptos', 'Solana', 'Celo', 'Polygon', 'Solana', 'Sui']}
+      chains={['Aptos', 'Solana', 'Celo', 'Polygon', 'Sui']}
       config={{
         chains: {
           Ethereum: {
