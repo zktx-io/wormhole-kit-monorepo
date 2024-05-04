@@ -1,20 +1,30 @@
 # @zktx.io/wormhole-kit
+
 @zktx.io/wormhole-kit is a React library that enables instant integration of Wormhole into your dapp.
 ![@zktx io:wormhole-kit](https://github.com/zktx-io/wormhole-kit-monorepo/assets/57783762/71b9694d-5225-4489-acc4-56b195db108a)
+
 ## Getting started
+
 Get started with @zktx.io/wormhole-kit and learn by [developer docs](https://docs.zktx.io/)
+
 ### Installation
+
 ```
 npm install @zktx.io/wormhole-kit
 yarn add @zktx.io/wormhole-kit
 ```
+
 If you want to customize the UI, you can simply use the core package.
+
 ```
 npm install @zktx.io/wormhole-kit-core
 yarn add @zktx.io/wormhole-kit-core
 ```
+
 ### Usage
+
 Instantiate a WormholeProvider component and start showing Whormhole Transfer Button
+
 ```typescript
 import { useState } from 'react';
 import {
