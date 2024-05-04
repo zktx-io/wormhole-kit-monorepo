@@ -8,6 +8,8 @@ import { TransactionBlock } from '@mysten/sui.js/transactions';
 import { WhRedeemButton, WhTransferButton } from '@zktx.io/wormhole-kit';
 import { enqueueSnackbar } from 'notistack';
 
+import logo from './logo.png';
+
 function App() {
   const { mutate: signAndExecuteTransactionBlock } =
     useSignAndExecuteTransactionBlock();
@@ -40,6 +42,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
         <h1>@zktx.io/wormhole-kit</h1>
         <h2>Sui Example</h2>
         {!account ? (
