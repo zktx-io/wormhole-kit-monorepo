@@ -18,7 +18,21 @@ const queryClient = new QueryClient();
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
-    <WormholeProvider network="Testnet" chains={['Aptos', 'Sui']} theme="dark">
+    <WormholeProvider
+      network="Testnet"
+      chains={['Aptos', 'Solana', 'Celo', 'Polygon', 'Solana', 'Sui']}
+      config={{
+        chains: {
+          Ethereum: {
+            rpc: 'https://eth-goerli.public.blastapi.io',
+          },
+          Polygon: {
+            rpc: 'https://polygon-mumbai.api.onfinality.io/public',
+          },
+        },
+      }}
+      theme="dark"
+    >
       <QueryClientProvider client={queryClient}>
         <SuiClientProvider
           defaultNetwork="testnet"
