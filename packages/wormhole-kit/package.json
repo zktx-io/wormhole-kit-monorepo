@@ -76,26 +76,6 @@
   },
   "dependencies": {
     "@radix-ui/themes": "^3.0.2",
-    "@wormhole-foundation/sdk-algorand": "^0.6.5",
-    "@wormhole-foundation/sdk-algorand-core": "^0.6.5",
-    "@wormhole-foundation/sdk-algorand-tokenbridge": "^0.6.5",
-    "@wormhole-foundation/sdk-aptos": "^0.6.5",
-    "@wormhole-foundation/sdk-aptos-core": "^0.6.5",
-    "@wormhole-foundation/sdk-aptos-tokenbridge": "^0.6.5",
-    "@wormhole-foundation/sdk-base": "^0.6.5",
-    "@wormhole-foundation/sdk-connect": "^0.6.5",
-    "@wormhole-foundation/sdk-definitions": "^0.6.5",
-    "@wormhole-foundation/sdk-evm": "^0.6.5",
-    "@wormhole-foundation/sdk-evm-cctp": "^0.6.5",
-    "@wormhole-foundation/sdk-evm-core": "^0.6.5",
-    "@wormhole-foundation/sdk-evm-portico": "^0.6.5",
-    "@wormhole-foundation/sdk-evm-tokenbridge": "^0.6.5",
-    "@wormhole-foundation/sdk-solana": "^0.6.5",
-    "@wormhole-foundation/sdk-solana-cctp": "^0.6.5",
-    "@wormhole-foundation/sdk-solana-core": "^0.6.5",
-    "@wormhole-foundation/sdk-solana-tokenbridge": "^0.6.5",
-    "@wormhole-foundation/sdk-sui": "^0.6.5",
-    "@wormhole-foundation/sdk-sui-core": "^0.6.5",
-    "@wormhole-foundation/sdk-sui-tokenbridge": "^0.6.5"
+    "@zktx.io/wormhole-kit-core": "^0.1.0"
   }
 }
