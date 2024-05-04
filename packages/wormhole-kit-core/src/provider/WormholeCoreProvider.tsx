@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
-import { Theme } from '@radix-ui/themes';
 import { Wormhole } from '@wormhole-foundation/sdk-connect';
 
 import { buildRedeemTx } from './context/buildRedeemTx';
@@ -21,8 +20,6 @@ import type {
 import type { Chain, Network } from '@wormhole-foundation/sdk-base';
 import type { ConfigOverrides } from '@wormhole-foundation/sdk-connect';
 
-import '@radix-ui/themes/styles.css';
-
 export const WormholeContext = createContext({
   supportChains: (): Chain[] => {
     throw new Error();
@@ -41,42 +38,12 @@ export const WormholeContext = createContext({
   },
 });
 
-export const WormholeProvider = ({
-  theme,
-  accentColor,
+export const WormholeCoreProvider = ({
   network,
   chains,
   config,
   children,
 }: {
-  theme?: 'inherit' | 'light' | 'dark';
-  accentColor?:
-    | 'gray'
-    | 'gold'
-    | 'bronze'
-    | 'brown'
-    | 'yellow'
-    | 'amber'
-    | 'orange'
-    | 'tomato'
-    | 'red'
-    | 'ruby'
-    | 'crimson'
-    | 'pink'
-    | 'plum'
-    | 'purple'
-    | 'violet'
-    | 'iris'
-    | 'indigo'
-    | 'blue'
-    | 'cyan'
-    | 'teal'
-    | 'jade'
-    | 'green'
-    | 'grass'
-    | 'lime'
-    | 'mint'
-    | 'sky';
   network: Network;
   chains: Chain[];
   config?: ConfigOverrides<Network>;
@@ -115,9 +82,7 @@ export const WormholeProvider = ({
         },
       }}
     >
-      <Theme appearance={theme} accentColor={accentColor || 'indigo'}>
-        {children}
-      </Theme>
+      {children}
     </WormholeContext.Provider>
   );
 };
