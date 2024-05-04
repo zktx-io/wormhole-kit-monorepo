@@ -9,9 +9,9 @@ import {
   Text,
   TextField,
 } from '@radix-ui/themes';
+import { useWormhole } from '@zktx.io/wormhole-kit-core';
 
 import { ChainIcon } from './ChainIcon';
-import { useWormhole } from '../provider/WormholeProvider';
 
 import type { Chain } from '@wormhole-foundation/sdk-base';
 
