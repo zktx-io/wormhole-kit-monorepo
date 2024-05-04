@@ -34,6 +34,7 @@ export const buildRedeemTx = async (
       const unsignedTx = await serializeTx(
         req.receiver.chain,
         req.receiver.address,
+        wh,
         redeem,
       );
       return {

@@ -1,8 +1,8 @@
 import type { UnsignedTransaction } from '@wormhole-foundation/sdk-definitions';
 
 export const serializeTx = async (
-  sender: string,
   txs: AsyncGenerator<UnsignedTransaction>,
+  sender: string,
 ): Promise<string> => {
   try {
     const unsignedTx: string[] = [];

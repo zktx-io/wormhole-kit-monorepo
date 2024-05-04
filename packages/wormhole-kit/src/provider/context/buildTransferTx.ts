@@ -30,7 +30,7 @@ export const buildTransferTx = async (
           ),
         ),
       );
-      return serializeTx(req.sender.chain, req.sender.address, txs);
+      return serializeTx(req.sender.chain, req.sender.address, wh, txs);
     }
     throw new Error(
       `buildTransferTx : Source and Target chains must be different.`,
