@@ -43,8 +43,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>@zktx.io/wormhole-kit</h1>
-        <h2>Sui Example</h2>
+        <h1>Sui Example</h1>
         {!account ? (
           <ConnectButton />
         ) : (
@@ -63,6 +62,7 @@ function App() {
             />
           </span>
         )}
+        <h2>@zktx.io/wormhole-kit</h2>
       </header>
     </div>
   );
