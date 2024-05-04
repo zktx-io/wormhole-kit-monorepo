@@ -4,8 +4,11 @@
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
   "main": "index.js",
   "scripts": {
-    "format": "npm run format:kit && npm run format:sui",
-    "lint": "npm run lint:kit && npm run lint:sui",
+    "format": "npm run format:core && npm run format:kit && npm run format:sui",
+    "lint": "npm run lint:core && npm run lint:kit && npm run lint:sui",
+    "build:core": "cd ./packages/wormhole-kit-core && npm run build",
+    "format:core": "cd ./packages/wormhole-kit-core && npm run format",
+    "lint:core": "cd ./packages/wormhole-kit-core && npm run lint",
     "build:kit": "cd ./packages/wormhole-kit && npm run build",
     "format:kit": "cd ./packages/wormhole-kit && npm run format",
     "lint:kit": "cd ./packages/wormhole-kit && npm run lint",
@@ -30,7 +33,8 @@
   "homepage": "https://zktx.io",
   "workspaces": [
     "packages/wormhole-kit",
-    "packages/demo-sui"
+    "packages/demo-sui",
+    "packages/wormhole-kit-core"
   ],
   "devDependencies": {
     "@types/jest": "^29.5.12",
