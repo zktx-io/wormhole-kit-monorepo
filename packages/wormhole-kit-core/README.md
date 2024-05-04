@@ -75,3 +75,9 @@ export const WhTransferModal = () => {
   </>
 }
 ```
+
+### WormholeProvider Props
+
+- network: Mainnet, Testnet, and Devnet.
+- chains: Algorand, Aptos, EVMs, Solana,andSui.
+- config: If needed, you can customize the default configuration to, for example, support a different RPC endpoint. [link](https://docs.wormhole.com/wormhole/reference/sdk-docs#usage)
