@@ -3,14 +3,14 @@ import type { UnsignedTransaction } from '@wormhole-foundation/sdk-definitions';
 
 export const serializeTx = async (
   txs: AsyncGenerator<UnsignedTransaction<Network, Chain>>,
-): Promise<UnsignedTransaction<Network, Chain>> => {
+): Promise<any> => {
   try {
     const unsignedTx: UnsignedTransaction<Network, Chain>[] = [];
     for await (const tx of txs) {
       unsignedTx.push(tx);
     }
     if (unsignedTx.length === 1) {
-      return unsignedTx[0];
+      return unsignedTx[0].transaction;
     }
     throw new Error('multi transactions are not support');
   } catch (error) {

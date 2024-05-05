@@ -5,17 +5,12 @@ import { getUniversalAddress } from './getUniversalAddress';
 import { serializeTx } from './serializeTx';
 
 import type { IReqTransferTx } from '../types';
-import type {
-  Chain,
-  Network,
-  UnsignedTransaction,
-  Wormhole,
-} from '@wormhole-foundation/sdk-connect';
+import type { Network, Wormhole } from '@wormhole-foundation/sdk-connect';
 
 export const buildTransferTx = async (
   wh: Wormhole<Network> | undefined,
   req: IReqTransferTx,
-): Promise<UnsignedTransaction<Network, Chain>> => {
+): Promise<any> => {
   try {
     if (wh && req.sender.chain !== req.receiver.chain) {
       const snd = wh.getChain(req.sender.chain);

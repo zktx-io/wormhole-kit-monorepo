@@ -21,7 +21,6 @@ import type {
   Chain,
   ConfigOverrides,
   Network,
-  UnsignedTransaction,
 } from '@wormhole-foundation/sdk-connect';
 
 export const WormholeContext = createContext({
@@ -36,7 +35,7 @@ export const WormholeContext = createContext({
   },
   buildTransferTx: async (
     req: IReqTransferTx,
-  ): Promise<UnsignedTransaction<Network, Chain>> => {
+  ): Promise<any> => {
     throw new Error();
   },
   buildRedeemTx: async (req: IReqRedeemTx): Promise<IResTransferTx> => {
@@ -82,7 +81,7 @@ export const WhCoreProvider = ({
         },
         buildTransferTx: async (
           req: IReqTransferTx,
-        ): Promise<UnsignedTransaction<Network, Chain>> => {
+        ): Promise<any> => {
           return buildTransferTx(wh, req);
         },
         buildRedeemTx: async (req: IReqRedeemTx): Promise<IResTransferTx> => {
