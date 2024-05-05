@@ -33,15 +33,15 @@ root.render(
       }}
       theme="dark"
     >
+      <SnackbarProvider
+        anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+      />
       <QueryClientProvider client={queryClient}>
         <SuiClientProvider
           defaultNetwork="testnet"
           networks={{ testnet: { url: getFullnodeUrl('testnet') } }}
         >
           <WalletProvider autoConnect>
-            <SnackbarProvider
-              anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
-            />
             <App />
           </WalletProvider>
         </SuiClientProvider>
