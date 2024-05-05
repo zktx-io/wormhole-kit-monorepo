@@ -3,7 +3,7 @@ import { StrictMode } from 'react';
 import { SuiClientProvider, WalletProvider } from '@mysten/dapp-kit';
 import { getFullnodeUrl } from '@mysten/sui.js/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { WormholeProvider } from '@zktx.io/wormhole-kit';
+import { WhProvider } from '@zktx.io/wormhole-kit';
 import { SnackbarProvider } from 'notistack';
 import { createRoot } from 'react-dom/client';
 
@@ -18,7 +18,7 @@ const queryClient = new QueryClient();
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
-    <WormholeProvider
+    <WhProvider
       network="Testnet"
       chains={['Aptos', 'Solana', 'Celo', 'Polygon', 'Sui']}
       config={{
@@ -46,7 +46,7 @@ root.render(
           </WalletProvider>
         </SuiClientProvider>
       </QueryClientProvider>
-    </WormholeProvider>
+    </WhProvider>
   </StrictMode>,
 );
 
