@@ -4,8 +4,11 @@ import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import { WhCoreProvider } from '@zktx.io/wormhole-kit-core';
 
-import type { Chain, Network } from '@wormhole-foundation/sdk-base';
-import type { ConfigOverrides } from '@wormhole-foundation/sdk-connect';
+import type {
+  Chain,
+  ConfigOverrides,
+  Network,
+} from '@wormhole-foundation/sdk-connect';
 
 export const WhProvider = ({
   network,

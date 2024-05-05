@@ -16,7 +16,7 @@ import { Sei } from './icons/sei';
 import { Solana } from './icons/solana';
 import { Sui } from './icons/sui';
 
-import type { Chain } from '@wormhole-foundation/sdk-base';
+import type { Chain } from '@wormhole-foundation/sdk-connect';
 
 export const ChainIcon = ({ chain }: { chain: Chain }) => {
   return (

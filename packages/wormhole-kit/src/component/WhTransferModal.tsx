@@ -13,7 +13,7 @@ import { useWormhole } from '@zktx.io/wormhole-kit-core';
 
 import { ChainIcon } from './ChainIcon';
 
-import type { Chain, UnsignedTransaction } from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@wormhole-foundation/sdk-connect';
 
 export const WhTransferModal = ({
   chain,
@@ -30,7 +30,7 @@ export const WhTransferModal = ({
   open: boolean;
   setOpen: (open: boolean) => void;
   trigger: ReactElement;
-  handleUnsignedTx: (unsignedTx: UnsignedTransaction) => Promise<void>;
+  handleUnsignedTx: (unsignedTx: any) => Promise<void>;
 }) => {
   const api = useWormhole();
   const [loading, setLoading] = useState<boolean>(false);

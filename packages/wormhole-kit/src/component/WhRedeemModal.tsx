@@ -13,7 +13,7 @@ import { useWormhole } from '@zktx.io/wormhole-kit-core';
 
 import { ChainIcon } from './ChainIcon';
 
-import type { Chain } from '@wormhole-foundation/sdk-base';
+import type { Chain } from '@wormhole-foundation/sdk-connect';
 
 export const WhRedeemModal = ({
   chain,
@@ -28,7 +28,7 @@ export const WhRedeemModal = ({
   open: boolean;
   setOpen: (open: boolean) => void;
   trigger: ReactElement;
-  handleUnsignedTx: (unsignedTx: string) => Promise<void>;
+  handleUnsignedTx: (unsignedTx: any) => Promise<void>;
 }) => {
   const api = useWormhole();
   const [loading, setLoading] = useState<boolean>(false);
@@ -57,8 +57,8 @@ export const WhRedeemModal = ({
             address,
           },
         });
-        if (error) {
-          setUsedTx(error);
+        if (error || !unsignedTx) {
+          setUsedTx(error || 'build redeem transaction error');
         } else {
           handleUnsignedTx(unsignedTx);
         }

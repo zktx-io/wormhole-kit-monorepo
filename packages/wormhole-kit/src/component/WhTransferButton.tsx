@@ -5,7 +5,7 @@ import { Button, IconButton, Tooltip } from '@radix-ui/themes';
 import { Wormhole } from './icons/wormhole';
 import { WhTransferModal } from './WhTransferModal';
 
-import type { Chain } from '@wormhole-foundation/sdk-base';
+import type { Chain } from '@wormhole-foundation/sdk-connect';
 
 export const WhTransferButton = ({
   icon,
@@ -22,7 +22,7 @@ export const WhTransferButton = ({
   chain: Chain;
   address?: string;
   token?: string;
-  handleUnsignedTx: (unsignedTx: string) => Promise<void>;
+  handleUnsignedTx: (unsignedTx: any) => Promise<void>;
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const TITLE = 'Transfer';

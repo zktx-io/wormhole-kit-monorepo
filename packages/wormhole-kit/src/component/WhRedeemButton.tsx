@@ -5,7 +5,7 @@ import { Button, IconButton, Tooltip } from '@radix-ui/themes';
 import { Wormhole } from './icons/wormhole';
 import { WhRedeemModal } from './WhRedeemModal';
 
-import type { Chain } from '@wormhole-foundation/sdk-base';
+import type { Chain } from '@wormhole-foundation/sdk-connect';
 
 export const WhRedeemButton = ({
   icon,
@@ -20,7 +20,7 @@ export const WhRedeemButton = ({
   redeemText?: string;
   chain: Chain;
   address?: string;
-  handleUnsignedTx: (unsignedTx: string) => Promise<void>;
+  handleUnsignedTx: (unsignedTx: any) => Promise<void>;
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const TITLE = 'Redeem';
