@@ -3,7 +3,7 @@ import type {
   Network,
   Platform,
   PlatformToChains,
-} from '@wormhole-foundation/sdk-base';
+} from '@wormhole-foundation/sdk-connect';
 import type {
   ChainContext,
   NativeAddressCtr,

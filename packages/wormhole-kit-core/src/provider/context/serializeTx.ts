@@ -1,4 +1,4 @@
-import type { Chain, Network } from '@wormhole-foundation/sdk-base';
+import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
 import type { UnsignedTransaction } from '@wormhole-foundation/sdk-definitions';
 
 export const serializeTx = async (

@@ -6,7 +6,7 @@ import sui from './sui';
 import { EVMs, SOLANAs } from './utils';
 
 import type { IPlatformDefinition } from '../types';
-import type { Chain, Platform } from '@wormhole-foundation/sdk-base';
+import type { Chain, Platform } from '@wormhole-foundation/sdk-connect';
 
 type PlatformLoader<P extends Platform> = () => Promise<IPlatformDefinition<P>>;
 

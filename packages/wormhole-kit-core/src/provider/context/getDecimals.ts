@@ -1,9 +1,9 @@
-import { decimals } from '@wormhole-foundation/sdk-base';
+import { decimals } from '@wormhole-foundation/sdk-connect';
 
 import { EVMs, SOLANAs } from '../loader/utils';
 import { getTokenInfo } from '../tokens';
 
-import type { Chain, Network } from '@wormhole-foundation/sdk-base';
+import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
 
 export const getDecimals = (
   chain: Chain,

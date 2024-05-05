@@ -2,8 +2,7 @@ import { getUniversalAddress } from './getUniversalAddress';
 import { serializeTx } from './serializeTx';
 
 import type { IReqRedeemTx, IResTransferTx } from '../types';
-import type { Network } from '@wormhole-foundation/sdk-base';
-import type { Wormhole } from '@wormhole-foundation/sdk-connect';
+import type { Network, Wormhole } from '@wormhole-foundation/sdk-connect';
 import type { VAA } from '@wormhole-foundation/sdk-definitions';
 
 export const buildRedeemTx = async (

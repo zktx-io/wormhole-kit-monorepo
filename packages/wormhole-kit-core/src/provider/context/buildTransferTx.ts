@@ -1,12 +1,13 @@
-import { amount } from '@wormhole-foundation/sdk-base';
+import { amount } from '@wormhole-foundation/sdk-connect';
 
 import { getDecimals } from './getDecimals';
 import { getUniversalAddress } from './getUniversalAddress';
 import { serializeTx } from './serializeTx';
 
 import type { IReqTransferTx } from '../types';
-import type { Chain, Network } from '@wormhole-foundation/sdk-base';
 import type {
+  Chain,
+  Network,
   UnsignedTransaction,
   Wormhole,
 } from '@wormhole-foundation/sdk-connect';

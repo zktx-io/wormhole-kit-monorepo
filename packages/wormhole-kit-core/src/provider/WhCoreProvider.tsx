@@ -17,9 +17,10 @@ import type {
   IResBalance,
   IResTransferTx,
 } from './types';
-import type { Chain, Network } from '@wormhole-foundation/sdk-base';
 import type {
+  Chain,
   ConfigOverrides,
+  Network,
   UnsignedTransaction,
 } from '@wormhole-foundation/sdk-connect';
 
