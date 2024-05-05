@@ -23,12 +23,12 @@ yarn add @zktx.io/wormhole-kit-core
 
 ### Usage
 
-Instantiate a WormholeProvider component and start showing Whormhole Transfer Button
+Instantiate a WhProvider component and start showing Whormhole Transfer Button
 
 ```typescript
 import { useState } from 'react';
 import {
-  WormholeProvider,
+  WhProvider,
   WhRedeemButton,
   WhTransferButton,
 } from '@zktx.io/wormhole-kit';
@@ -41,7 +41,7 @@ const App = () => {
   };
 
   return (
-    <WormholeProvider
+    <WhProvider
       network="Testnet"
       chains={['Aptos', 'Solana', 'Celo', 'Polygon', 'Solana', 'Sui']}
       config={{
@@ -61,12 +61,12 @@ const App = () => {
         address={address}
         handleUnsignedTx={handleUnsignedTx}
       />
-    </ WormholeProvider>
+    </ WhProvider>
   )
 }
 ```
 
-### WormholeProvider Props
+### WhProvider Props
 
 - network: Mainnet, Testnet, and Devnet.
 - chains: Algorand, Aptos, EVMs, Solana,andSui.

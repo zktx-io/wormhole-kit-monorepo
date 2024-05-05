@@ -190,6 +190,7 @@ export const WhTransferModal = ({
               !targetAddress ||
               !amount ||
               !address ||
+              Number(amount) === 0 ||
               (!!balance && balance < Number(amount))
             }
             onClick={handleConfirm}
