@@ -26,17 +26,12 @@ export const buildRedeemTx = async (
       if (isTransferCompleted) {
         return {
           error: 'These tokens have already been redeemed.',
-          unsignedTx: '',
+          unsignedTx: undefined,
         };
       }
 
       const redeem = rcvTb.redeem(getUniversalAddress(req.receiver), vaa!);
-      const unsignedTx = await serializeTx(
-        req.receiver.chain,
-        req.receiver.address,
-        wh,
-        redeem,
-      );
+      const unsignedTx = await serializeTx(redeem);
       return {
         unsignedTx,
       };

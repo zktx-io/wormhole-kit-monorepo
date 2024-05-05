@@ -8,6 +8,7 @@ import type {
   ChainContext,
   NativeAddressCtr,
   PlatformUtils,
+  UnsignedTransaction,
 } from '@wormhole-foundation/sdk-definitions';
 
 export interface IReqBalance {
@@ -40,7 +41,7 @@ export interface IReqTransferTx {
 
 export interface IResTransferTx {
   error?: string;
-  unsignedTx: string;
+  unsignedTx: UnsignedTransaction<Network, Chain> | undefined;
 }
 
 export interface IReqRedeemTx {

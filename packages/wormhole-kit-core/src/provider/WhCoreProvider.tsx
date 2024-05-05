@@ -18,7 +18,10 @@ import type {
   IResTransferTx,
 } from './types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-base';
-import type { ConfigOverrides } from '@wormhole-foundation/sdk-connect';
+import type {
+  ConfigOverrides,
+  UnsignedTransaction,
+} from '@wormhole-foundation/sdk-connect';
 
 export const WormholeContext = createContext({
   supportChains: (): Chain[] => {
@@ -30,7 +33,9 @@ export const WormholeContext = createContext({
   getBalance: async (req: IReqBalance): Promise<IResBalance> => {
     throw new Error();
   },
-  buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
+  buildTransferTx: async (
+    req: IReqTransferTx,
+  ): Promise<UnsignedTransaction<Network, Chain>> => {
     throw new Error();
   },
   buildRedeemTx: async (req: IReqRedeemTx): Promise<IResTransferTx> => {
@@ -74,7 +79,9 @@ export const WhCoreProvider = ({
         getBalance: async (req: IReqBalance): Promise<IResBalance> => {
           return getBalance(wh, req);
         },
-        buildTransferTx: async (req: IReqTransferTx): Promise<string> => {
+        buildTransferTx: async (
+          req: IReqTransferTx,
+        ): Promise<UnsignedTransaction<Network, Chain>> => {
           return buildTransferTx(wh, req);
         },
         buildRedeemTx: async (req: IReqRedeemTx): Promise<IResTransferTx> => {
