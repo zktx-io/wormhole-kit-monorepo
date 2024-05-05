@@ -78,7 +78,6 @@
     "@wormhole-foundation/sdk-aptos": "^0.6.5",
     "@wormhole-foundation/sdk-aptos-core": "^0.6.5",
     "@wormhole-foundation/sdk-aptos-tokenbridge": "^0.6.5",
-    "@wormhole-foundation/sdk-base": "^0.6.5",
     "@wormhole-foundation/sdk-connect": "^0.6.5",
     "@wormhole-foundation/sdk-definitions": "^0.6.5",
     "@wormhole-foundation/sdk-evm": "^0.6.5",

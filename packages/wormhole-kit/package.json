@@ -76,7 +76,6 @@
   },
   "dependencies": {
     "@radix-ui/themes": "^3.0.2",
-    "@wormhole-foundation/sdk-base": "^0.6.5",
     "@wormhole-foundation/sdk-connect": "^0.6.5",
     "@zktx.io/wormhole-kit-core": "^0.1.0"
   }
