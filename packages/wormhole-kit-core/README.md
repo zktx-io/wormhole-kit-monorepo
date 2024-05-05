@@ -15,18 +15,18 @@ yarn add @zktx.io/wormhole-kit-core
 
 ### Usage
 
-First, instantiate the WormholeProvider component.
+First, instantiate the WhCoreProvider component.
 
 ```typescript
 import { useState } from 'react';
 import {
-  WormholeProvider,
+  WhCoreProvider,
 } from '@zktx.io/wormhole-kit-core';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
-    <WormholeCoreProvider
+    <WhCoreProvider
       network="Testnet"
       chains={['Aptos', 'Solana', 'Celo', 'Polygon', 'Solana', 'Sui']}
       config={{
@@ -41,12 +41,12 @@ root.render(
       }}
     >
       <App />
-    </WormholeCoreProvider>
+    </WhCoreProvider>
   </StrictMode>,
 );
 ```
 
-Next, use the WormholeProvider in the Modal to create unsigned transactions.
+Next, use the WhCoreProvider context in the Modal to create unsigned transactions.
 
 ```typescript
 import { useWormhole } from '@zktx.io/wormhole-kit-core';
@@ -76,7 +76,7 @@ export const WhTransferModal = () => {
 }
 ```
 
-### WormholeProvider Props
+### WhCoreProvider Props
 
 - network: Mainnet, Testnet, and Devnet.
 - chains: Algorand, Aptos, EVMs, Solana,andSui.

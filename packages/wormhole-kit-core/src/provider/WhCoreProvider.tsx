@@ -38,7 +38,7 @@ export const WormholeContext = createContext({
   },
 });
 
-export const WormholeCoreProvider = ({
+export const WhCoreProvider = ({
   network,
   chains,
   config,
