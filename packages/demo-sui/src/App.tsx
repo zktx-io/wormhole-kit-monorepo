@@ -35,7 +35,9 @@ function App() {
         },
       );
     } catch (error) {
-      console.log(error);
+      enqueueSnackbar(`${error}`, {
+        variant: 'error',
+      });
     }
   };
 
