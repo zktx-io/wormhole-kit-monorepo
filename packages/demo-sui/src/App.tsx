@@ -4,7 +4,6 @@ import {
   useCurrentAccount,
   useSignAndExecuteTransactionBlock,
 } from '@mysten/dapp-kit';
-import { TransactionBlock } from '@mysten/sui.js/transactions';
 import { WhRedeemButton, WhTransferButton } from '@zktx.io/wormhole-kit';
 import { enqueueSnackbar } from 'notistack';
 
@@ -15,11 +14,12 @@ function App() {
     useSignAndExecuteTransactionBlock();
   const account = useCurrentAccount();
 
-  const handleUnsignedTx = async (unsignedTx: string): Promise<void> => {
+  const handleUnsignedTx = async (unsignedTx: any): Promise<void> => {
     try {
+      console.log(1, unsignedTx);
       signAndExecuteTransactionBlock(
         {
-          transactionBlock: TransactionBlock.from(unsignedTx),
+          transactionBlock: unsignedTx,
         },
         {
           onError: (err) => {
