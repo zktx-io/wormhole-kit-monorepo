@@ -14,7 +14,6 @@ function App() {
 
   const handleUnsignedTx = async (unsignedTx: any): Promise<void> => {
     try {
-      console.log(1, unsignedTx);
       signAndExecuteTransactionBlock(
         {
           transactionBlock: unsignedTx,
