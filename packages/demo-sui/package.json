@@ -26,7 +26,6 @@
   "bugs": {
     "url": "https://github.com/zktx-io/wormhole-kit-monorepo\",/issues"
   },
-  "homepage": "https://zktx.io",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
