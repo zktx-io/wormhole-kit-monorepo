@@ -33,9 +33,7 @@ export const WormholeContext = createContext({
   getBalance: async (req: IReqBalance): Promise<IResBalance> => {
     throw new Error();
   },
-  buildTransferTx: async (
-    req: IReqTransferTx,
-  ): Promise<any> => {
+  buildTransferTx: async (req: IReqTransferTx): Promise<any> => {
     throw new Error();
   },
   buildRedeemTx: async (req: IReqRedeemTx): Promise<IResTransferTx> => {
@@ -79,9 +77,7 @@ export const WhCoreProvider = ({
         getBalance: async (req: IReqBalance): Promise<IResBalance> => {
           return getBalance(wh, req);
         },
-        buildTransferTx: async (
-          req: IReqTransferTx,
-        ): Promise<any> => {
+        buildTransferTx: async (req: IReqTransferTx): Promise<any> => {
           return buildTransferTx(wh, req);
         },
         buildRedeemTx: async (req: IReqRedeemTx): Promise<IResTransferTx> => {
