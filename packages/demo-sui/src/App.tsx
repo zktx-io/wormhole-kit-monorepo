@@ -7,8 +7,6 @@ import {
 import { WhRedeemButton, WhTransferButton } from '@zktx.io/wormhole-kit';
 import { enqueueSnackbar } from 'notistack';
 
-import logo from './logo.png';
-
 function App() {
   const { mutate: signAndExecuteTransactionBlock } =
     useSignAndExecuteTransactionBlock();
@@ -44,7 +42,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={'/logo.png'} className="App-logo" alt="logo" />
         <h1>Sui Example</h1>
         {!account ? (
           <ConnectButton />
