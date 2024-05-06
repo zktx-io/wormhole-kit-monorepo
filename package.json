@@ -6,6 +6,7 @@
   "scripts": {
     "format": "npm run format:core && npm run format:kit && npm run format:sui && npm run format:aptos",
     "lint": "npm run lint:core && npm run lint:kit && npm run lint:sui && npm run lint:aptos",
+    "build": "npm run build:core && npm run build:kit",
     "build:core": "cd ./packages/wormhole-kit-core && npm run build",
     "format:core": "cd ./packages/wormhole-kit-core && npm run format",
     "lint:core": "cd ./packages/wormhole-kit-core && npm run lint",
