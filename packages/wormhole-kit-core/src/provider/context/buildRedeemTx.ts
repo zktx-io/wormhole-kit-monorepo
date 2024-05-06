@@ -30,7 +30,7 @@ export const buildRedeemTx = async (
       }
 
       const redeem = rcvTb.redeem(getUniversalAddress(req.receiver), vaa!);
-      const unsignedTx = await serializeTx(redeem);
+      const unsignedTx = await serializeTx(req.source, redeem);
       return {
         unsignedTx,
       };
