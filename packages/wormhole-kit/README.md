@@ -23,7 +23,7 @@ yarn add @zktx.io/wormhole-kit-core
 
 ### Usage
 
-Instantiate a WhProvider component and start showing Whormhole Transfer Button
+Instantiate a WhProvider component and start showing Whormhole Transfer Button
 
 ```typescript
 import { useState } from 'react';
