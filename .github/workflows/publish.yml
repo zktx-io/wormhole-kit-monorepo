@@ -19,16 +19,18 @@ jobs:
       - run: npm run build --if-present
 
       - name: publish wormhole-kit-core package
-        uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v3
         id: wormhole-kit-core
         with:
             token: ${{ secrets.NPM_TOKEN }}
             package: "./packages/wormhole-kit-core/package.json"
+            strategy: upgrade
 
       - name: publish wormhole-kit package
-        uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v3
         id: wormhole-kit
         with:
             token: ${{ secrets.NPM_TOKEN }}
             package: "./packages/wormhole-kit/package.json"
+            strategy: upgrade
     
