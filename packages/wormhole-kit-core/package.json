@@ -1,6 +1,6 @@
 {
   "name": "@zktx.io/wormhole-kit-core",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
   "main": "lib/cjs/index.js",
   "types": "lib/cjs/index.d.ts",
