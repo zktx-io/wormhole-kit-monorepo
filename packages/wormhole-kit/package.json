@@ -69,12 +69,15 @@
     }
   },
   "devDependencies": {
+    "react": "^18.3.1",
     "typescript": "^5.4.5"
   },
   "dependencies": {
     "@radix-ui/themes": "^3.0.2",
     "@wormhole-foundation/sdk-connect": "^0.6.5",
-    "@zktx.io/wormhole-kit-core": "^0.1.2",
-    "react": "^18.3.1"
+    "@zktx.io/wormhole-kit-core": "^0.1.2"
+  },
+  "peerDependencies": {
+    "react": "*"
   }
 }
