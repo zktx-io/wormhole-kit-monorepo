@@ -34,7 +34,7 @@ const App = () => {
   return (
     <WhProvider
       network="Testnet"
-      chains={['Aptos', 'Solana', 'Celo', 'Polygon', 'Solana', 'Sui']}
+      chains={['Aptos', 'Celo', 'Polygon', 'Sui']}
       config={{
         chains: {
           Ethereum: {

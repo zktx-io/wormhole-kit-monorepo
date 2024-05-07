@@ -1,9 +1,8 @@
 import algorand from './algorand';
 import aptos from './aptos';
 import evm from './evm';
-import solana from './solana';
 import sui from './sui';
-import { EVMs, SOLANAs } from './utils';
+import { EVMs } from './utils';
 
 import type { IPlatformDefinition } from '../types';
 import type { Chain, Platform } from '@wormhole-foundation/sdk-connect';
@@ -40,7 +39,6 @@ export const loadPlotforms = async (
           platforms.push(await load(sui));
           break;
         default:
-          SOLANAs.includes(chain) && platforms.push(await load(solana));
           EVMs.includes(chain) && platforms.push(await load(evm));
       }
     }

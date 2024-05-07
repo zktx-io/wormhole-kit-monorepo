@@ -1,13 +1,16 @@
+// eslint-disable-next-line import/default
+import React from 'react';
 import type { ReactNode } from 'react';
 
 import '@radix-ui/themes/styles.css';
+
 import { Theme } from '@radix-ui/themes';
 import { WhCoreProvider } from '@zktx.io/wormhole-kit-core';
 
 import type {
   Chain,
-  ConfigOverrides,
   Network,
+  WormholeConfigOverrides,
 } from '@wormhole-foundation/sdk-connect';
 
 export const WhProvider = ({
@@ -20,7 +23,7 @@ export const WhProvider = ({
 }: {
   network: Network;
   chains: Chain[];
-  config?: ConfigOverrides<Network>;
+  config?: WormholeConfigOverrides<Network>;
   children: ReactNode;
   theme?: 'inherit' | 'light' | 'dark';
   accentColor?:
@@ -52,10 +55,12 @@ export const WhProvider = ({
     | 'sky';
 }) => {
   return (
-    <WhCoreProvider network={network} chains={chains} config={config}>
-      <Theme appearance={theme} accentColor={accentColor || 'indigo'}>
-        {children}
-      </Theme>
-    </WhCoreProvider>
+    <React.Fragment>
+      <WhCoreProvider network={network} chains={chains} config={config}>
+        <Theme appearance={theme} accentColor={accentColor || 'indigo'}>
+          {children}
+        </Theme>
+      </WhCoreProvider>
+    </React.Fragment>
   );
 };
