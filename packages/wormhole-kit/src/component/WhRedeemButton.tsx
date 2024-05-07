@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button, IconButton, Tooltip } from '@radix-ui/themes';
+import { Button } from '@radix-ui/themes';
 
 import { Wormhole } from './icons/wormhole';
 import { WhRedeemModal } from './WhRedeemModal';
@@ -8,16 +8,14 @@ import { WhRedeemModal } from './WhRedeemModal';
 import type { Chain } from '@wormhole-foundation/sdk-connect';
 
 export const WhRedeemButton = ({
-  icon,
   size,
-  redeemText,
+  buttonText,
   chain,
   address,
   handleUnsignedTx,
 }: {
-  icon?: boolean;
   size?: '1' | '2' | '3' | '4';
-  redeemText?: string;
+  buttonText?: string;
   chain: Chain;
   address?: string;
   handleUnsignedTx: (unsignedTx: any) => Promise<void>;
@@ -32,32 +30,16 @@ export const WhRedeemButton = ({
       chain={chain}
       address={address}
       trigger={
-        icon ? (
-          <Tooltip content={TITLE}>
-            <IconButton
-              size={size}
-              onClick={() => setOpen(true)}
-              radius="full"
-              style={{
-                cursor: 'pointer',
-                padding: '4px',
-              }}
-            >
-              <Wormhole />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Button
-            size={size}
-            onClick={() => setOpen(true)}
-            style={{
-              cursor: 'pointer',
-            }}
-          >
-            <Wormhole />
-            {redeemText || TITLE}
-          </Button>
-        )
+        <Button
+          size={size}
+          onClick={() => setOpen(true)}
+          style={{
+            cursor: 'pointer',
+          }}
+        >
+          <Wormhole />
+          {buttonText || TITLE}
+        </Button>
       }
       handleUnsignedTx={handleUnsignedTx}
     />

@@ -20,12 +20,21 @@ jobs:
       - run: npm run build
 
       - name: publish wormhole-kit-core package
-        run: npm publish --provenance --access public --workspace @zktx.io/wormhole-kit-core
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        uses: JS-DevTools/npm-publish@v3
+        id: wormhole-kit-core
+        with:
+            access: public
+            provenance: true
+            token: ${{ secrets.NPM_TOKEN }}
+            package: "packages/wormhole-kit-core/package.json"
+            strategy: upgrade
 
       - name: publish wormhole-kit package
-        run: npm publish --provenance --access public --workspace @zktx.io/wormhole-kit
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    
+        uses: JS-DevTools/npm-publish@v3
+        id: wormhole-kit
+        with:
+            access: public
+            provenance: true
+            token: ${{ secrets.NPM_TOKEN }}
+            package: "packages/wormhole-kit/package.json"
+            strategy: upgrade
