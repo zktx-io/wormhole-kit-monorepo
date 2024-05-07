@@ -37,7 +37,7 @@ const App = () => {
   const [account, setAccount] = useState<string | undefined>(undefined);
 
   const handleUnsignedTx = async (unsignedTx: string): Promise<void> => {
-    // Sign and Send Transaction
+    // Signs the transaction through the wallet and executes it.
   };
 
   return (
