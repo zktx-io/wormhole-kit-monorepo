@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -24,7 +24,7 @@ jobs:
         with:
             access: public
             token: ${{ secrets.NPM_TOKEN }}
-            package: "./packages/wormhole-kit-core/package.json"
+            package: "packages/wormhole-kit-core/package.json"
             strategy: upgrade
 
       - name: publish wormhole-kit package
@@ -33,6 +33,6 @@ jobs:
         with:
             access: public
             token: ${{ secrets.NPM_TOKEN }}
-            package: "./packages/wormhole-kit/package.json"
+            package: "packages/wormhole-kit/package.json"
             strategy: upgrade
     
