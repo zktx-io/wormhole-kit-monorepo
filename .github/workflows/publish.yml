@@ -22,6 +22,7 @@ jobs:
         uses: JS-DevTools/npm-publish@v1
         id: wormhole-kit-core
         with:
+            access: public
             token: ${{ secrets.NPM_TOKEN }}
             package: "./packages/wormhole-kit-core/package.json"
 
@@ -29,6 +30,7 @@ jobs:
         uses: JS-DevTools/npm-publish@v1
         id: wormhole-kit
         with:
+            access: public
             token: ${{ secrets.NPM_TOKEN }}
             package: "./packages/wormhole-kit/package.json"
     
