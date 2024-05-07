@@ -28,7 +28,7 @@ root.render(
   <StrictMode>
     <WhCoreProvider
       network="Testnet"
-      chains={['Aptos', 'Solana', 'Celo', 'Polygon', 'Solana', 'Sui']}
+      chains={['Aptos', 'Celo', 'Polygon', 'Sui']}
       config={{
         chains: {
           Ethereum: {
@@ -79,5 +79,5 @@ export const WhTransferModal = () => {
 ### WhCoreProvider Props
 
 - network: Mainnet, Testnet, and Devnet.
-- chains: Algorand, Aptos, EVMs, Solana,andSui.
+- chains: Algorand, Aptos, EVMs, and Sui.
 - config: If needed, you can customize the default configuration to, for example, support a different RPC endpoint. [link](https://docs.wormhole.com/wormhole/reference/sdk-docs#usage)

@@ -1,16 +1,21 @@
 import './App.css';
+import { useState } from 'react';
+
 import {
   ConnectButton,
   useCurrentAccount,
   useSignAndExecuteTransactionBlock,
 } from '@mysten/dapp-kit';
-import { WhRedeemButton, WhTransferButton } from '@zktx.io/wormhole-kit';
+import { WhRedeemModal, WhTransferModal } from '@zktx.io/wormhole-kit';
 import { enqueueSnackbar } from 'notistack';
 
 function App() {
   const { mutate: signAndExecuteTransactionBlock } =
     useSignAndExecuteTransactionBlock();
   const account = useCurrentAccount();
+
+  const [openTransfer, setOpenTransfer] = useState<boolean>(false);
+  const [openRedeem, setOpenRedeem] = useState<boolean>(false);
 
   const handleUnsignedTx = async (unsignedTx: any): Promise<void> => {
     try {
@@ -47,17 +52,23 @@ function App() {
           <ConnectButton />
         ) : (
           <span>
-            <WhTransferButton
+            <WhTransferModal
               chain="Sui"
               token={'0x2::sui::SUI'}
               address={account.address}
               handleUnsignedTx={handleUnsignedTx}
+              open={openTransfer}
+              setOpen={setOpenTransfer}
+              trigger={<button>Transfer</button>}
             />
             &nbsp;
-            <WhRedeemButton
+            <WhRedeemModal
               chain="Sui"
               address={account.address}
               handleUnsignedTx={handleUnsignedTx}
+              open={openRedeem}
+              setOpen={setOpenRedeem}
+              trigger={<button>Redeem</button>}
             />
           </span>
         )}

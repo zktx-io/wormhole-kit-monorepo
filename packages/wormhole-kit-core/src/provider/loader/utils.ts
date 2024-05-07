@@ -1,6 +1,5 @@
 import type { Chain } from '@wormhole-foundation/sdk-connect';
 
-export const SOLANAs: Chain[] = ['Solana', 'Pythnet'];
 export const EVMs: Chain[] = [
   'Ethereum',
   'Sepolia',

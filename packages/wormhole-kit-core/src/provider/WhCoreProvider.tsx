@@ -1,5 +1,12 @@
+// eslint-disable-next-line import/default
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import type { ReactNode } from 'react';
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import { Wormhole } from '@wormhole-foundation/sdk-connect';
 
@@ -19,8 +26,8 @@ import type {
 } from './types';
 import type {
   Chain,
-  ConfigOverrides,
   Network,
+  WormholeConfigOverrides,
 } from '@wormhole-foundation/sdk-connect';
 
 export const WormholeContext = createContext({
@@ -49,7 +56,7 @@ export const WhCoreProvider = ({
 }: {
   network: Network;
   chains: Chain[];
-  config?: ConfigOverrides<Network>;
+  config?: WormholeConfigOverrides<Network>;
   children: ReactNode;
 }) => {
   const initialized = useRef<boolean>(false);
@@ -66,27 +73,29 @@ export const WhCoreProvider = ({
   }, []);
 
   return (
-    <WormholeContext.Provider
-      value={{
-        supportChains: () => {
-          return chains;
-        },
-        getSymbol: (req: IReqTokenInfo): string => {
-          return getSymbol(wh, req);
-        },
-        getBalance: async (req: IReqBalance): Promise<IResBalance> => {
-          return getBalance(wh, req);
-        },
-        buildTransferTx: async (req: IReqTransferTx): Promise<any> => {
-          return buildTransferTx(wh, req);
-        },
-        buildRedeemTx: async (req: IReqRedeemTx): Promise<IResTransferTx> => {
-          return buildRedeemTx(wh, req);
-        },
-      }}
-    >
-      {children}
-    </WormholeContext.Provider>
+    <React.Fragment>
+      <WormholeContext.Provider
+        value={{
+          supportChains: () => {
+            return chains;
+          },
+          getSymbol: (req: IReqTokenInfo): string => {
+            return getSymbol(wh, req);
+          },
+          getBalance: async (req: IReqBalance): Promise<IResBalance> => {
+            return getBalance(wh, req);
+          },
+          buildTransferTx: async (req: IReqTransferTx): Promise<any> => {
+            return buildTransferTx(wh, req);
+          },
+          buildRedeemTx: async (req: IReqRedeemTx): Promise<IResTransferTx> => {
+            return buildRedeemTx(wh, req);
+          },
+        }}
+      >
+        {children}
+      </WormholeContext.Provider>
+    </React.Fragment>
   );
 };
 
