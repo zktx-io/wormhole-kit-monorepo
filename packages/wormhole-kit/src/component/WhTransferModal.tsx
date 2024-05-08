@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import type { ReactElement } from 'react';
 
 import {
   Button,
@@ -21,7 +20,6 @@ export const WhTransferModal = ({
   token,
   open,
   setOpen,
-  trigger,
   handleUnsignedTx,
 }: {
   chain: Chain;
@@ -29,7 +27,6 @@ export const WhTransferModal = ({
   token?: string;
   open: boolean;
   setOpen: (open: boolean) => void;
-  trigger: ReactElement;
   handleUnsignedTx: (unsignedTx: any) => Promise<void>;
 }) => {
   const api = useWormhole();
@@ -92,7 +89,6 @@ export const WhTransferModal = ({
 
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
-      <Dialog.Trigger>{trigger}</Dialog.Trigger>
       <Dialog.Content maxWidth="450px">
         <Dialog.Title>Transfer</Dialog.Title>
         <Dialog.Description size="1" mb="4">

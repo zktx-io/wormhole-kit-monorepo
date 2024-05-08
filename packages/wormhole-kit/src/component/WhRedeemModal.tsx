@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import type { ReactElement } from 'react';
 
 import {
   Button,
@@ -20,14 +19,12 @@ export const WhRedeemModal = ({
   address,
   open,
   setOpen,
-  trigger,
   handleUnsignedTx,
 }: {
   chain: Chain;
   address?: string;
   open: boolean;
   setOpen: (open: boolean) => void;
-  trigger: ReactElement;
   handleUnsignedTx: (unsignedTx: any) => Promise<void>;
 }) => {
   const api = useWormhole();
@@ -73,7 +70,6 @@ export const WhRedeemModal = ({
 
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
-      <Dialog.Trigger>{trigger}</Dialog.Trigger>
       <Dialog.Content maxWidth="450px">
         <Dialog.Title>Redeem</Dialog.Title>
         <Dialog.Description size="1" mb="4">
