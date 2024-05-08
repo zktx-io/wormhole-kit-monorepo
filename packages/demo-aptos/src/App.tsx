@@ -41,6 +41,14 @@ function App() {
           <button onClick={() => connect('Petra' as any)}>Connect</button>
         ) : (
           <span>
+            <button onClick={() => setOpenTransfer(true)}>Transfer</button>
+            &nbsp;
+            <button onClick={() => setOpenRedeem(true)}>Redeem</button>
+          </span>
+        )}
+        <h2>@zktx.io/wormhole-kit</h2>
+        {account && (
+          <>
             <WhTransferModal
               chain="Aptos"
               token={'0x1::aptos_coin::AptosCoin'}
@@ -48,20 +56,16 @@ function App() {
               handleUnsignedTx={handleUnsignedTx}
               open={openTransfer}
               setOpen={setOpenTransfer}
-              trigger={<button>Transfer</button>}
             />
-            &nbsp;
             <WhRedeemModal
               chain="Aptos"
               address={account.address}
               handleUnsignedTx={handleUnsignedTx}
               open={openRedeem}
               setOpen={setOpenRedeem}
-              trigger={<button>Redeem</button>}
             />
-          </span>
+          </>
         )}
-        <h2>@zktx.io/wormhole-kit</h2>
       </header>
     </div>
   );
