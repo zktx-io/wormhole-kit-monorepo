@@ -1,10 +1,7 @@
 // eslint-disable-next-line import/default
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import type { ReactNode } from 'react';
 
-import '@radix-ui/themes/styles.css';
-
-import { Theme } from '@radix-ui/themes';
 import { WhCoreProvider } from '@zktx.io/wormhole-kit-core';
 
 import type {
@@ -13,54 +10,38 @@ import type {
   WormholeConfigOverrides,
 } from '@wormhole-foundation/sdk-connect';
 
+export const ModeContext = createContext({
+  mode: 'light' as 'light' | 'dark',
+});
+
 export const WhProvider = ({
   network,
   chains,
   config,
   children,
-  theme,
-  accentColor,
+  mode,
 }: {
   network: Network;
   chains: Chain[];
   config?: WormholeConfigOverrides<Network>;
   children: ReactNode;
-  theme?: 'inherit' | 'light' | 'dark';
-  accentColor?:
-    | 'gray'
-    | 'gold'
-    | 'bronze'
-    | 'brown'
-    | 'yellow'
-    | 'amber'
-    | 'orange'
-    | 'tomato'
-    | 'red'
-    | 'ruby'
-    | 'crimson'
-    | 'pink'
-    | 'plum'
-    | 'purple'
-    | 'violet'
-    | 'iris'
-    | 'indigo'
-    | 'blue'
-    | 'cyan'
-    | 'teal'
-    | 'jade'
-    | 'green'
-    | 'grass'
-    | 'lime'
-    | 'mint'
-    | 'sky';
+  mode: 'light' | 'dark';
 }) => {
   return (
     <React.Fragment>
       <WhCoreProvider network={network} chains={chains} config={config}>
-        <Theme appearance={theme} accentColor={accentColor || 'indigo'}>
+        <ModeContext.Provider
+          value={{
+            mode,
+          }}
+        >
           {children}
-        </Theme>
+        </ModeContext.Provider>
       </WhCoreProvider>
     </React.Fragment>
   );
+};
+
+export const useMode = () => {
+  return useContext(ModeContext);
 };
