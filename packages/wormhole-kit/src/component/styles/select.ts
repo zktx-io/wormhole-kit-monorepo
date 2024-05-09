@@ -51,8 +51,8 @@ export const SelectContent = styled(Select.Content, {
         color: '#ffffff',
         borderStyle: 'solid',
         borderWidth: '1px',
-        borderColor: '#ddf3ff40',
-        backgroundColor: '#18191b',
+        borderColor: '#ddf3ff15',
+        backgroundColor: '#191919',
         boxShadow:
           '0 10px 38px -10px rgba(0, 0, 0, 0.19), 0 10px 20px -15px rgba(0, 0, 0, 0.23)',
       },
@@ -74,17 +74,24 @@ export const SelectItem = styled(Select.Item, {
   padding: '0 35px 0 25px',
   position: 'relative',
   userSelect: 'none',
-  cursor: 'pointer',
   variants: {
     mode: {
       light: {
         '&:hover': {
+          cursor: 'pointer',
           backgroundColor: '#afafaf53',
+        },
+        '&:disabled': {
+          cursor: 'default',
         },
       },
       dark: {
         '&:hover': {
+          cursor: 'pointer',
           backgroundColor: '#afafaf53',
+        },
+        '&:disabled': {
+          cursor: 'default',
         },
       },
     },
@@ -109,5 +116,14 @@ export const SelectLabel = styled(Select.Label, {
 export const SelectSeparator = styled(Select.Separator, {
   height: '1px',
   margin: '5px',
-  backgroundColor: '#c5c5c5',
+  variants: {
+    mode: {
+      light: {
+        backgroundColor: '#01013725',
+      },
+      dark: {
+        backgroundColor: '#ddf3ff25',
+      },
+    },
+  },
 });

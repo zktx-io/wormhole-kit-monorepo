@@ -30,7 +30,7 @@ export const WhRedeemModal = ({
   address?: string;
   open: boolean;
   setOpen: (open: boolean) => void;
-  handleUnsignedTx: (unsignedTx: any) => Promise<void>;
+  handleUnsignedTx: (unsignedTx: any) => void;
 }) => {
   const api = useWormhole();
   const { mode } = useMode();
