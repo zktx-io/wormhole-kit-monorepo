@@ -17,7 +17,7 @@ function App() {
   const [openTransfer, setOpenTransfer] = useState<boolean>(false);
   const [openRedeem, setOpenRedeem] = useState<boolean>(false);
 
-  const handleUnsignedTx = async (unsignedTx: any): Promise<void> => {
+  const handleUnsignedTx = (unsignedTx: any) => {
     try {
       signAndExecuteTransactionBlock(
         {

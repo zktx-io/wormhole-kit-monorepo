@@ -62,10 +62,10 @@ export const DlgContent = styled(Dialog.DialogContent, {
       dark: {
         borderStyle: 'solid',
         borderWidth: '1px',
-        borderColor: '#ddf3ff40',
-        backgroundColor: '#18191b',
+        borderColor: '#ddf3ff15',
+        backgroundColor: '#191919',
         boxShadow:
-          '0 10px 20px rgba(54, 58, 63, 0.19), 0 6px 6px rgba(54, 58, 63, 0.23)',
+          '0 10px 20px rgba(54, 58, 63, 0.1), 0 6px 6px rgba(54, 58, 63, 0.14)',
       },
     },
   },

@@ -38,7 +38,7 @@ export const WhTransferModal = ({
   token?: string;
   open: boolean;
   setOpen: (open: boolean) => void;
-  handleUnsignedTx: (unsignedTx: any) => Promise<void>;
+  handleUnsignedTx: (unsignedTx: any) => void;
 }) => {
   const api = useWormhole();
   const { mode } = useMode();

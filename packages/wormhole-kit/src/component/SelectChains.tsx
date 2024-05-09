@@ -98,7 +98,7 @@ export const SelectChains = React.forwardRef(
                 </SelectLabel>
               </SelectGroup>
               <SelectItem disabled value={chain} chain={chain} />
-              <SelectSeparator />
+              <SelectSeparator mode={mode} />
               <SelectGroup>
                 <SelectLabel>
                   {type === 'transfer' ? 'Target' : 'Source'}
