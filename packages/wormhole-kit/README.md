@@ -29,12 +29,11 @@ Instantiate a WhProvider component and start showing Whormhole Transfer Button
 import { useState } from 'react';
 import {
   WhProvider,
-  WhRedeemButton,
-  WhTransferButton,
+  WhTransferModal,
 } from '@zktx.io/wormhole-kit';
 
 const App = () => {
-  const [account, setAccount] = useState<string | undefined>(undefined);
+  const [address, setAddress] = useState<string | undefined>(undefined);
 
   const handleUnsignedTx = async (unsignedTx: string): Promise<void> => {
     // Signs the transaction through the wallet and executes it.
@@ -56,10 +55,17 @@ const App = () => {
       }}
       theme="dark"
     >
-      <WhTransferButton
+      <button
+        onClick= {() => setOpen(true)}
+      >
+        Transfer
+      </button>
+      <WhTransferModal
         chain="Sui"
         address={address}
         handleUnsignedTx={handleUnsignedTx}
+        open={open}
+        setOpen={setOpen}
       />
     </ WhProvider>
   )

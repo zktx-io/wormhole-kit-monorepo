@@ -73,7 +73,10 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@radix-ui/themes": "^3.0.2",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-form": "^0.0.3",
+    "@radix-ui/react-select": "^2.0.0",
+    "@stitches/react": "^1.2.8",
     "@wormhole-foundation/sdk-connect": "^0.6.5",
     "@zktx.io/wormhole-kit-core": "^0.1.3"
   },

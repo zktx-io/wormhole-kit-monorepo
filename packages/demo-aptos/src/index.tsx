@@ -28,7 +28,7 @@ root.render(
           },
         },
       }}
-      theme="dark"
+      mode="dark"
     >
       <SnackbarProvider
         anchorOrigin={{ horizontal: 'left', vertical: 'top' }}

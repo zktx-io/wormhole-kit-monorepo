@@ -1,17 +1,21 @@
-import { useState } from 'react';
-import type { ReactElement } from 'react';
+import { useEffect, useState } from 'react';
 
-import {
-  Button,
-  Dialog,
-  Flex,
-  Select,
-  Text,
-  TextField,
-} from '@radix-ui/themes';
 import { useWormhole } from '@zktx.io/wormhole-kit-core';
 
-import { ChainIcon } from './ChainIcon';
+import { SelectChains } from './SelectChains';
+import { FormControl, FormField, FormInput, FormRoot } from './styles/form';
+import { Label } from './styles/label';
+import {
+  DlgButton,
+  DlgClose,
+  DlgContent,
+  DlgDescription,
+  DlgOverlay,
+  DlgPortal,
+  DlgRoot,
+  DlgTitle,
+} from './styles/modal';
+import { useMode } from '../provider/WhProvider';
 
 import type { Chain } from '@wormhole-foundation/sdk-connect';
 
@@ -20,30 +24,21 @@ export const WhRedeemModal = ({
   address,
   open,
   setOpen,
-  trigger,
   handleUnsignedTx,
 }: {
   chain: Chain;
   address?: string;
   open: boolean;
   setOpen: (open: boolean) => void;
-  trigger: ReactElement;
   handleUnsignedTx: (unsignedTx: any) => Promise<void>;
 }) => {
   const api = useWormhole();
+  const { mode } = useMode();
+
   const [loading, setLoading] = useState<boolean>(false);
   const [source, setSource] = useState<Chain | undefined>(undefined);
   const [txHash, setTxHash] = useState<string>('');
   const [usedTx, setUsedTx] = useState<string>('');
-
-  const handleOpenChange = (state: boolean) => {
-    setOpen(state);
-    if (state) {
-      setLoading(false);
-      setSource(undefined);
-      setTxHash('');
-    }
-  };
 
   const handleConfirm = async () => {
     if (address && source) {
@@ -71,99 +66,74 @@ export const WhRedeemModal = ({
     }
   };
 
+  useEffect(() => {
+    if (open) {
+      setLoading(false);
+      setSource(undefined);
+      setTxHash('');
+    }
+  }, [open]);
+
   return (
-    <Dialog.Root open={open} onOpenChange={handleOpenChange}>
-      <Dialog.Trigger>{trigger}</Dialog.Trigger>
-      <Dialog.Content maxWidth="450px">
-        <Dialog.Title>Redeem</Dialog.Title>
-        <Dialog.Description size="1" mb="4">
-          You can select source chain and paste in the Source chain Transaction
-          ID.
-        </Dialog.Description>
-
-        <Flex direction="column" gap="3">
-          <label>
-            <Text as="div" size="1" mb="1" weight="bold">
-              Source Chain
-            </Text>
-            <Flex direction="column" width="100%">
-              <Select.Root
-                disabled={loading}
-                onValueChange={(select) => setSource(select as Chain)}
-              >
-                <Select.Trigger />
-                <Select.Content>
-                  <Select.Group>
-                    <Select.Label>Target</Select.Label>
-                  </Select.Group>
-                  <Select.Item disabled value={chain}>
-                    <Flex as="span" align="center" gap="2">
-                      <ChainIcon chain={chain} />
-                      {chain}
-                    </Flex>
-                  </Select.Item>
-                  <Select.Separator />
-                  <Select.Group>
-                    <Select.Label>Source</Select.Label>
-                    {api
-                      .supportChains()
-                      .filter((item) => item !== chain)
-                      .map((item, key) => {
-                        return (
-                          <Select.Item key={key} value={item}>
-                            <Flex as="span" align="center" gap="2">
-                              <ChainIcon chain={item} />
-                              {item}
-                            </Flex>
-                          </Select.Item>
-                        );
-                      })}
-                  </Select.Group>
-                </Select.Content>
-              </Select.Root>
-            </Flex>
-          </label>
-          <label>
-            <Text as="div" size="1" mb="1" weight="bold">
-              Transaction ID
-            </Text>
-            <TextField.Root
-              disabled={loading}
-              placeholder="aste in the transaction ID"
-              onChange={(e) => setTxHash(e.target.value)}
-            />
-            {!!usedTx && (
-              <Text as="div" size="1" mb="1" align="right" color="orange">
-                {usedTx}
-              </Text>
-            )}
-          </label>
-        </Flex>
-
-        <Flex gap="3" mt="4" justify="end">
-          <Dialog.Close>
-            <Button
-              variant="soft"
-              color="gray"
-              style={{
-                cursor: 'pointer',
-              }}
-            >
-              Cancel
-            </Button>
-          </Dialog.Close>
-          <Button
-            loading={loading}
-            disabled={!source || !txHash || !!usedTx}
-            onClick={handleConfirm}
+    <DlgRoot open={open} onOpenChange={setOpen}>
+      <DlgPortal>
+        <DlgOverlay mode={mode} />
+        <DlgContent mode={mode}>
+          <DlgTitle mode={mode}>Redeem</DlgTitle>
+          <DlgDescription mode={mode}>
+            You can select source chain and paste in the Source chain
+            Transaction ID.
+          </DlgDescription>
+          <FormRoot>
+            <FormField name="source ">
+              <Label mode={mode} title={'Source Chain'} />
+              <FormControl asChild>
+                <SelectChains
+                  mode={mode}
+                  chain={chain}
+                  chains={api.supportChains().filter((item) => item !== chain)}
+                  type="redeem"
+                  disabled={loading}
+                  onSelect={setSource}
+                />
+              </FormControl>
+            </FormField>
+            <FormField name="txHash">
+              <Label mode={mode} title={'Transaction ID'} />
+              <FormControl asChild>
+                <FormInput
+                  required
+                  autoComplete="off"
+                  autoCorrect="off"
+                  mode={mode}
+                  disabled={loading}
+                  placeholder="paste in the transaction ID"
+                  onChange={(e) => setTxHash(e.target.value)}
+                />
+              </FormControl>
+            </FormField>
+          </FormRoot>
+          <div
             style={{
-              cursor: 'pointer',
+              display: 'flex',
+              marginTop: 16,
+              justifyContent: 'flex-end',
+              gap: '12px',
             }}
           >
-            Redeem
-          </Button>
-        </Flex>
-      </Dialog.Content>
-    </Dialog.Root>
+            <DlgClose asChild>
+              <DlgButton mode={mode}>Cancel</DlgButton>
+            </DlgClose>
+            <DlgButton
+              mode={mode}
+              disabled={!source || !txHash || !!usedTx || loading}
+              onClick={handleConfirm}
+            >
+              Redeem
+            </DlgButton>
+          </div>
+        </DlgContent>
+      </DlgPortal>
+    </DlgRoot>
   );
 };

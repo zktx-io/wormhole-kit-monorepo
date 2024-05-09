@@ -52,6 +52,14 @@ function App() {
           <ConnectButton />
         ) : (
           <span>
+            <button onClick={() => setOpenTransfer(true)}>Transfer</button>
+            &nbsp;
+            <button onClick={() => setOpenRedeem(true)}>Redeem</button>
+          </span>
+        )}
+        <h2>@zktx.io/wormhole-kit</h2>
+        {account && (
+          <>
             <WhTransferModal
               chain="Sui"
               token={'0x2::sui::SUI'}
@@ -59,20 +67,16 @@ function App() {
               handleUnsignedTx={handleUnsignedTx}
               open={openTransfer}
               setOpen={setOpenTransfer}
-              trigger={<button>Transfer</button>}
             />
-            &nbsp;
             <WhRedeemModal
               chain="Sui"
               address={account.address}
               handleUnsignedTx={handleUnsignedTx}
               open={openRedeem}
               setOpen={setOpenRedeem}
-              trigger={<button>Redeem</button>}
             />
-          </span>
+          </>
         )}
-        <h2>@zktx.io/wormhole-kit</h2>
       </header>
     </div>
   );
