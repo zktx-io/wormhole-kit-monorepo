@@ -1,4 +1,4 @@
-import { getTokenInfo } from '../tokens';
+import { getTokenByAddress } from '@wormhole-foundation/sdk-connect/tokens';
 
 import type { IReqTokenInfo } from '../types';
 import type { Network, Wormhole } from '@wormhole-foundation/sdk-connect';
@@ -9,7 +9,11 @@ export const getSymbol = (
 ): string => {
   if (req.token) {
     if (wh) {
-      return getTokenInfo(req.chain, wh.network, req.token).symbol; // TEMP
+      const temp = getTokenByAddress(wh.network, req.chain, req.token);
+      if (temp) {
+        return temp.symbol;
+      }
+      throw new Error(`getSymbol : ${req.token} is unknown token`);
     }
     throw new Error(`getSymbol : ${req.token}`);
   } else {
