@@ -1,6 +1,5 @@
 {
   "name": "@zktx.io/wormhole-kit-monorepo",
-  "version": "0.1.6",
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
   "main": "index.js",
   "scripts": {
