@@ -1,7 +1,7 @@
 import { decimals } from '@wormhole-foundation/sdk-connect';
+import { getTokenByAddress } from '@wormhole-foundation/sdk-connect/tokens';
 
 import { EVMs } from '../loader/utils';
-import { getTokenInfo } from '../tokens';
 
 import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
 
@@ -12,7 +12,12 @@ export const getDecimals = (
 ): number => {
   try {
     if (token) {
-      return getTokenInfo(chain, network, token).decimals; // TEMP
+      const temp = getTokenByAddress(network, chain, token);
+      if (temp) {
+        return temp.decimals;
+      } else {
+        throw new Error(`getDecimals : ${token} is unknown token`);
+      }
     } else {
       switch (chain) {
         case 'Algorand':
