@@ -20,7 +20,6 @@ yarn add @zktx.io/wormhole-kit-core
 First, instantiate the **`WhCoreProvider`** component.
 
 ```typescript
-import { useState } from 'react';
 import {
   WhCoreProvider,
 } from '@zktx.io/wormhole-kit-core';
