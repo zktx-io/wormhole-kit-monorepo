@@ -4,7 +4,7 @@ If you want to utilize only the core features of **Wormhole Kit** for your excel
 
 ## Getting started
 
-Get started with @zktx.io/wormhole-kit and learn by [developer docs](https://docs.zktx.io/wormhole-kit.html)
+Get started with @zktx.io/wormhole-kit and learn by [developer docs](https://docs.zktx.io/wormhole-kit-core.html)
 
 ### Installation
 
