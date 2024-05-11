@@ -53,7 +53,7 @@ const App = () => {
           },
         },
       }}
-      theme="dark"
+      mode="dark"
     >
       <button
         onClick= {() => setOpen(true)}
@@ -75,7 +75,7 @@ const App = () => {
 ### WhProvider Props
 
 - network: Mainnet, Testnet, and Devnet.
-- chains: Algorand, Aptos, EVMs, Solana,andSui.
+- chains: Algorand, Aptos, EVMs, Solana, and Sui.
 - config: If needed, you can customize the default configuration to, for example, support a different RPC endpoint. [link](https://docs.wormhole.com/wormhole/reference/sdk-docs#usage)
 - theme: Switch appearance between inherit, light, and dark modes. [link](https://www.radix-ui.com/themes/docs/theme/dark-mode)
 - accentColor: Accent color is the most dominant color in your theme [link](https://www.radix-ui.com/themes/docs/theme/color#accents)

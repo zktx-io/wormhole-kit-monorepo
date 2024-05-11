@@ -44,7 +44,7 @@ const App = () => {
           },
         },
       }}
-      theme="dark"
+      mode="dark"
     >
       <button
         onClick= {() => setOpen(true)}
