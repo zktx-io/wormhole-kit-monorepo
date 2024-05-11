@@ -28,3 +28,4 @@ export const EVMs: Chain[] = [
   'Scroll',
   'Xlayer',
 ];
+export const SOLANAs: Chain[] = ['Solana', 'Pythnet'];
