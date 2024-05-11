@@ -48,7 +48,7 @@ export const FormInput = styled('input', {
   justifyContent: 'center',
   borderRadius: '4px',
   fontSize: '14px',
-  height: '26px',
+  height: '28px',
   textIndent: '15px',
   outline: 'none',
   borderStyle: 'solid',
