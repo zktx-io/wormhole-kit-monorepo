@@ -88,5 +88,5 @@ export const WhTransferModal = () => {
 ### WhCoreProvider Props
 
 - **`network`**: *Mainnet*, *Testnet*, and *Devnet*.
-- **`chains`**: *Algorand*, *Aptos*, *EVMs*, , *Solana* and *Sui*.
+- **`chains`**: *Algorand*, *Aptos*, *EVMs*, *Solana*, and *Sui*.
 - **`config`**: If needed, you can customize the default configuration to, for example, support a different RPC endpoint. [link](https://docs.wormhole.com/wormhole/reference/sdk-docs#usage)
