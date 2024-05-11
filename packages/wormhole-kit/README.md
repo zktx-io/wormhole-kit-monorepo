@@ -12,6 +12,7 @@ Get started with @zktx.io/wormhole-kit and learn by [developer docs](https://doc
 ```
 npm install @zktx.io/wormhole-kit
 ```
+
 ```
 yarn add @zktx.io/wormhole-kit
 ```
@@ -80,10 +81,10 @@ const App = () => {
 
 ### WhProvider Props
 
-- **`network`**: *Mainnet*, *Testnet*, and *Devnet*.
-- **`chains`**: *Algorand*, *Aptos*, *EVMs*, *Solana*, and *Sui*.
+- **`network`**: _Mainnet_, _Testnet_, and _Devnet_.
+- **`chains`**: _Algorand_, _Aptos_, _EVMs_, _Solana_, and _Sui_.
 - **`config`**: If needed, you can customize the default configuration to, for example, support a different RPC endpoint. [link](https://docs.wormhole.com/wormhole/reference/sdk-docs#usage)
-- **`mode`**: Switch appearance between *light*, and *dark* modes.
+- **`mode`**: Switch appearance between _light_, and _dark_ modes.
 
 ### WhTransferModal Props
 
@@ -92,7 +93,6 @@ const App = () => {
 - **`handleUnsignedTx`**: The unsigned transaction is formatted for wallet use and forwarded.
 - **`open`**: State of modal.
 - **`setOpen`**: Set state of modal.
-
 
 ### WhRedeemModal Props
 
