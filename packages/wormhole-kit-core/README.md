@@ -11,6 +11,7 @@ Get started with @zktx.io/wormhole-kit and learn by [developer docs](https://doc
 ```
 npm install @zktx.io/wormhole-kit-core
 ```
+
 ```
 yarn add @zktx.io/wormhole-kit-core
 ```
@@ -86,6 +87,6 @@ export const WhTransferModal = () => {
 
 ### WhCoreProvider Props
 
-- **`network`**: *Mainnet*, *Testnet*, and *Devnet*.
-- **`chains`**: *Algorand*, *Aptos*, *EVMs*, *Solana*, and *Sui*.
+- **`network`**: _Mainnet_, _Testnet_, and _Devnet_.
+- **`chains`**: _Algorand_, _Aptos_, _EVMs_, _Solana_, and _Sui_.
 - **`config`**: If needed, you can customize the default configuration to, for example, support a different RPC endpoint. [link](https://docs.wormhole.com/wormhole/reference/sdk-docs#usage)
