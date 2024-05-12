@@ -1,6 +1,7 @@
 {
   "name": "@zktx.io/wormhole-kit-monorepo",
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
+  "private": true,
   "scripts": {
     "format": "npm run format:core && npm run format:kit && npm run format:sui && npm run format:aptos",
     "lint": "npm run lint:core && npm run lint:kit && npm run lint:sui && npm run lint:aptos",
