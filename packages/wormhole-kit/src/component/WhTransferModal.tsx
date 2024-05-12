@@ -147,7 +147,10 @@ export const WhTransferModal = ({
                   onChange={(e) => setAmount(e.target.value)}
                 />
               </FormControl>
-              <FormMessage mode={mode}>{`${balance} ${symbol}`}</FormMessage>
+              <FormMessage
+                error={balance < Number(amount)}
+                mode={mode}
+              >{`${balance} ${symbol}`}</FormMessage>
             </FormField>
           </FormRoot>
           <div
