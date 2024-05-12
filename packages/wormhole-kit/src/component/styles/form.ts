@@ -39,7 +39,42 @@ export const FormMessage = styled(Form.Message, {
         color: '#ffffff',
       },
     },
+    error: {
+      true: {
+        color: '#d32f2f',
+      },
+    },
   },
+  compoundVariants: [
+    {
+      mode: 'light',
+      error: false,
+      css: {
+        color: '#000000',
+      },
+    },
+    {
+      mode: 'light',
+      error: true,
+      css: {
+        color: '#d32f2f',
+      },
+    },
+    {
+      mode: 'dark',
+      error: false,
+      css: {
+        color: '#ffffff',
+      },
+    },
+    {
+      mode: 'dark',
+      error: true,
+      css: {
+        color: '#ffa726',
+      },
+    },
+  ],
 });
 
 export const FormInput = styled('input', {
