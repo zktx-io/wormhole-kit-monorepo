@@ -1,5 +1,5 @@
 {
-  "name": "@zktx.io/demo-sui",
+  "name": "demo-sui",
   "version": "0.1.7",
   "description": "sui demo",
   "private": true,
