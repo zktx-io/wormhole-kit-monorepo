@@ -3,7 +3,13 @@ import { useEffect, useState } from 'react';
 import { useWormhole } from '@zktx.io/wormhole-kit-core';
 
 import { SelectChains } from './SelectChains';
-import { FormControl, FormField, FormInput, FormRoot } from './styles/form';
+import {
+  FormControl,
+  FormField,
+  FormInput,
+  FormMessage,
+  FormRoot,
+} from './styles/form';
 import { Label } from './styles/label';
 import {
   DlgButton,
@@ -38,7 +44,7 @@ export const WhRedeemModal = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [source, setSource] = useState<Chain | undefined>(undefined);
   const [txHash, setTxHash] = useState<string>('');
-  const [usedTx, setUsedTx] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   const handleConfirm = async () => {
     if (address && source) {
@@ -53,7 +59,7 @@ export const WhRedeemModal = ({
           },
         });
         if (error || !unsignedTx) {
-          setUsedTx(error || 'build redeem transaction error');
+          setError(error || 'build redeem transaction error');
         } else {
           handleUnsignedTx(unsignedTx);
         }
@@ -71,6 +77,7 @@ export const WhRedeemModal = ({
       setLoading(false);
       setSource(undefined);
       setTxHash('');
+      setError('');
     }
   }, [open]);
 
@@ -111,6 +118,11 @@ export const WhRedeemModal = ({
                   onChange={(e) => setTxHash(e.target.value)}
                 />
               </FormControl>
+              {!!error && (
+                <FormMessage error mode={mode}>
+                  {error}
+                </FormMessage>
+              )}
             </FormField>
           </FormRoot>
           <div
@@ -126,7 +138,7 @@ export const WhRedeemModal = ({
             </DlgClose>
             <DlgButton
               mode={mode}
-              disabled={!source || !txHash || !!usedTx || loading}
+              disabled={!source || !txHash || !!error || loading}
               onClick={handleConfirm}
             >
               Redeem
