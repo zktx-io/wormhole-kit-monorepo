@@ -38,15 +38,15 @@ export interface IReqTransferTx {
   amount: string;
 }
 
-export interface IResTransferTx {
-  error?: string;
-  unsignedTx: any | undefined;
-}
-
 export interface IReqRedeemTx {
   source: Chain;
   txHash: string;
   receiver: IUniversalAccount;
+}
+
+export interface IResRedeemTx {
+  error?: string;
+  unsignedTx: any | undefined;
 }
 
 export interface IPlatformDefinition<P extends Platform> {
