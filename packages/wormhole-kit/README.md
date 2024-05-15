@@ -90,6 +90,7 @@ const App = () => {
 
 - **`chain`**: The name of the connected chain.
 - **`address`**: The address of the connected wallet.
+- **`token`**: The address (identifier) of the token.
 - **`handleUnsignedTx`**: The unsigned transaction is formatted for wallet use and forwarded.
 - **`open`**: State of modal.
 - **`setOpen`**: Set state of modal.
