@@ -79,9 +79,7 @@ export const WhTransferModal = () => {
     }
   };
 
-  return <>
-    // Your excellent modal
-  </>
+  return <>...</>
 }
 ```
 
