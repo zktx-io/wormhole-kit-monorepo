@@ -51,10 +51,12 @@ export const DlgContent = styled(Dialog.DialogContent, {
   maxWidth: '450px',
   maxHeight: '85vh',
   padding: '25px',
+  outline: 'none',
   animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
   variants: {
     mode: {
       light: {
+        borderStyle: 'none',
         backgroundColor: '#ffffff',
         boxShadow:
           '0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)',
