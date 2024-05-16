@@ -1,5 +1,4 @@
 import './App.css';
-import { useState } from 'react';
 
 import {
   ConnectButton,
@@ -13,9 +12,6 @@ function App() {
   const { mutate: signAndExecuteTransactionBlock } =
     useSignAndExecuteTransactionBlock();
   const account = useCurrentAccount();
-
-  const [openTransfer, setOpenTransfer] = useState<boolean>(false);
-  const [openRedeem, setOpenRedeem] = useState<boolean>(false);
 
   const handleUnsignedTx = (unsignedTx: any) => {
     try {
@@ -52,31 +48,23 @@ function App() {
           <ConnectButton />
         ) : (
           <span>
-            <button onClick={() => setOpenTransfer(true)}>Transfer</button>
-            &nbsp;
-            <button onClick={() => setOpenRedeem(true)}>Redeem</button>
-          </span>
-        )}
-        <h2>@zktx.io/wormhole-kit</h2>
-        {account && (
-          <>
             <WhTransferModal
               chain="Sui"
               token={'0x2::sui::SUI'}
               address={account.address}
               handleUnsignedTx={handleUnsignedTx}
-              open={openTransfer}
-              setOpen={setOpenTransfer}
+              trigger={<button>Transfer</button>}
             />
+            &nbsp;
             <WhRedeemModal
               chain="Sui"
               address={account.address}
               handleUnsignedTx={handleUnsignedTx}
-              open={openRedeem}
-              setOpen={setOpenRedeem}
+              trigger={<button>Redeem</button>}
             />
-          </>
+          </span>
         )}
+        <h2>@zktx.io/wormhole-kit</h2>
       </header>
     </div>
   );
