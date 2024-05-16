@@ -2,6 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { keyframes, styled } from '@stitches/react';
 
 export const DlgRoot = styled(Dialog.Root, {});
+export const DlgTrigger = styled(Dialog.Trigger, {});
 export const DlgPortal = styled(Dialog.Portal, {});
 export const DlgClose = styled(Dialog.Close, {});
 
