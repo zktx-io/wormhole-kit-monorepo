@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { ReactElement } from 'react';
 
 import { useWormhole } from '@zktx.io/wormhole-kit-core';
@@ -47,6 +47,16 @@ export const WhRedeemModal = ({
   const [txHash, setTxHash] = useState<string>('');
   const [error, setError] = useState<string>('');
 
+  const handleOpenChange = (state: boolean) => {
+    if (state) {
+      setLoading(false);
+      setSource(undefined);
+      setTxHash('');
+      setError('');
+    }
+    setOpen(state);
+  }
+
   const handleConfirm = async () => {
     if (address && source) {
       try {
@@ -73,17 +83,8 @@ export const WhRedeemModal = ({
     }
   };
 
-  useEffect(() => {
-    if (open) {
-      setLoading(false);
-      setSource(undefined);
-      setTxHash('');
-      setError('');
-    }
-  }, [open]);
-
   return (
-    <DlgRoot open={open} onOpenChange={setOpen}>
+    <DlgRoot open={open} onOpenChange={handleOpenChange}>
       <DlgTrigger asChild>{trigger}</DlgTrigger>
       <DlgPortal>
         <DlgOverlay mode={mode} />
