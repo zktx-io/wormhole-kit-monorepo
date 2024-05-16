@@ -52,15 +52,15 @@ function App() {
               chain="Sui"
               token={'0x2::sui::SUI'}
               address={account.address}
-              handleUnsignedTx={handleUnsignedTx}
               trigger={<button>Transfer</button>}
+              handleUnsignedTx={handleUnsignedTx}
             />
             &nbsp;
             <WhRedeemModal
               chain="Sui"
               address={account.address}
-              handleUnsignedTx={handleUnsignedTx}
               trigger={<button>Redeem</button>}
+              handleUnsignedTx={handleUnsignedTx}
             />
           </span>
         )}
