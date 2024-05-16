@@ -41,15 +41,15 @@ function App() {
               chain="Aptos"
               token={'0x1::aptos_coin::AptosCoin'}
               address={account.address}
-              handleUnsignedTx={handleUnsignedTx}
               trigger={<button>Transfer</button>}
+              handleUnsignedTx={handleUnsignedTx}
             />
             &nbsp;
             <WhRedeemModal
               chain="Aptos"
               address={account.address}
-              handleUnsignedTx={handleUnsignedTx}
               trigger={<button>Redeem</button>}
+              handleUnsignedTx={handleUnsignedTx}
             />
           </span>
         )}
