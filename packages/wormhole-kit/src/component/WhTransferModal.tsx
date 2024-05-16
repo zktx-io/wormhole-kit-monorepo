@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import type { ReactElement } from 'react';
 
 import { useWormhole } from '@zktx.io/wormhole-kit-core';
 
@@ -20,6 +21,7 @@ import {
   DlgPortal,
   DlgRoot,
   DlgTitle,
+  DlgTrigger,
 } from './styles/modal';
 import { useMode } from '../provider/WhProvider';
 
@@ -29,20 +31,19 @@ export const WhTransferModal = ({
   chain,
   address,
   token,
-  open,
-  setOpen,
+  trigger,
   handleUnsignedTx,
 }: {
   chain: Chain;
   address?: string;
   token?: string;
-  open: boolean;
-  setOpen: (open: boolean) => void;
+  trigger: ReactElement;
   handleUnsignedTx: (unsignedTx: any) => void;
 }) => {
   const api = useWormhole();
   const { mode } = useMode();
 
+  const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [target, setTarget] = useState<Chain | undefined>(undefined);
   const [targetAddress, setTargetAddress] = useState<string>('');
@@ -98,6 +99,7 @@ export const WhTransferModal = ({
 
   return (
     <DlgRoot open={open} onOpenChange={setOpen}>
+      <DlgTrigger asChild>{trigger}</DlgTrigger>
       <DlgPortal>
         <DlgOverlay mode={mode} />
         <DlgContent mode={mode}>
