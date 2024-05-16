@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { ReactElement } from 'react';
 
 import { useWormhole } from '@zktx.io/wormhole-kit-core';
@@ -52,6 +52,28 @@ export const WhTransferModal = ({
   const [symbol, setSymbol] = useState<string>('');
   const [balance, setBalance] = useState<number>(0);
 
+  const handleOpenChange = (state: boolean) => {
+    const init = async () => {
+      if (address) {
+        setSymbol(api.getSymbol({ chain, token }));
+        const { fValue, value } = await api.getBalance({
+          chain,
+          address,
+          token,
+        });
+        fValue ? setBalance(fValue) : setBalance(parseInt(value));
+      }
+    }
+    if (state) {
+      setLoading(false);
+      setTarget(undefined);
+      setTargetAddress('');
+      setAmount('');
+      init();
+    }
+    setOpen(state);
+  };
+
   const handleConfirm = async () => {
     if (address && target) {
       try {
@@ -75,30 +97,8 @@ export const WhTransferModal = ({
     }
   };
 
-  useEffect(() => {
-    const init = async () => {
-      if (open && address) {
-        setSymbol(api.getSymbol({ chain, token }));
-        const { fValue, value } = await api.getBalance({
-          chain,
-          address,
-          token,
-        });
-        fValue ? setBalance(fValue) : setBalance(parseInt(value));
-      }
-    };
-    if (open) {
-      setLoading(false);
-      setTarget(undefined);
-      setTargetAddress('');
-      setAmount('');
-    }
-    init();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
-
   return (
-    <DlgRoot open={open} onOpenChange={setOpen}>
+    <DlgRoot open={open} onOpenChange={handleOpenChange}>
       <DlgTrigger asChild>{trigger}</DlgTrigger>
       <DlgPortal>
         <DlgOverlay mode={mode} />
