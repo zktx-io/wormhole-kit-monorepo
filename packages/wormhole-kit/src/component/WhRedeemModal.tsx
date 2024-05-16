@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactElement } from 'react';
 
 import { useWormhole } from '@zktx.io/wormhole-kit-core';
 
