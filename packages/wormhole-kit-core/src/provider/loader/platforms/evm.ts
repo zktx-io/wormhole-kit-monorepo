@@ -1,3 +1,4 @@
+import { applyChainsConfigConfigOverrides } from '@wormhole-foundation/sdk-connect';
 import * as _evm from '@wormhole-foundation/sdk-evm';
 
 import type { IPlatformDefinition } from '../../types';
@@ -6,13 +7,22 @@ import type { IPlatformDefinition } from '../../types';
 const evm: IPlatformDefinition<'Evm'> = {
   Address: _evm.EvmAddress,
   Platform: _evm.EvmPlatform,
-  protocolLoaders: {
-    core: () => import('@wormhole-foundation/sdk-evm-core'),
-    tokenbridge: () => import('@wormhole-foundation/sdk-evm-tokenbridge'),
-    portico: () => import('@wormhole-foundation/sdk-evm-portico'),
-    cctp: () => import('@wormhole-foundation/sdk-evm-cctp'),
+  protocols: {
+    WormholeCore: () => import('@wormhole-foundation/sdk-evm-core'),
+    TokenBridge: () => import('@wormhole-foundation/sdk-evm-tokenbridge'),
+    PorticoBridge: () => import('@wormhole-foundation/sdk-evm-portico'),
+    CircleBridge: () => import('@wormhole-foundation/sdk-evm-cctp'),
   },
-  getChain: (n, c) => new _evm.EvmChain(c, new _evm.EvmPlatform(n)),
+  getChain: (network, chain, overrides?) =>
+    new _evm.EvmChain(
+      chain,
+      new _evm.EvmPlatform(
+        network,
+        applyChainsConfigConfigOverrides(network, _evm._platform, {
+          [chain]: overrides,
+        }),
+      ),
+    ),
 };
 
 export default evm;

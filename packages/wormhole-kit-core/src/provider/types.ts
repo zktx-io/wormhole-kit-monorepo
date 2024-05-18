@@ -1,5 +1,6 @@
 import type {
   Chain,
+  ChainConfigOverrides,
   Network,
   Platform,
   PlatformToChains,
@@ -52,11 +53,12 @@ export interface IResRedeemTx {
 export interface IPlatformDefinition<P extends Platform> {
   Platform: PlatformUtils<P>;
   Address: NativeAddressCtr;
-  protocolLoaders: {
+  protocols: {
     [key: string]: () => Promise<any>;
   };
   getChain: <N extends Network, C extends PlatformToChains<P>>(
     network: N,
     chain: C,
+    overrides?: ChainConfigOverrides<N, C>,
   ) => ChainContext<N, C, P>;
 }

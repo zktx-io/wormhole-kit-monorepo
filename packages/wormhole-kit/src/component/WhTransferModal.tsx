@@ -63,7 +63,7 @@ export const WhTransferModal = ({
         });
         fValue ? setBalance(fValue) : setBalance(parseInt(value));
       }
-    }
+    };
     if (state) {
       setLoading(false);
       setTarget(undefined);

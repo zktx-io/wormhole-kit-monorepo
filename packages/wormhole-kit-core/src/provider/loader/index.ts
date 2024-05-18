@@ -14,7 +14,7 @@ const load = async (
 ): Promise<IPlatformDefinition<Platform>> => {
   try {
     const platform = await loader();
-    Object.values(platform.protocolLoaders).map((loaderFn) => loaderFn());
+    Object.values(platform.protocols).map((loaderFn) => loaderFn());
     return platform;
   } catch (e) {
     console.error('Failed to load required packages', e);

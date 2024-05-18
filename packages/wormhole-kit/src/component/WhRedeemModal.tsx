@@ -55,7 +55,7 @@ export const WhRedeemModal = ({
       setError('');
     }
     setOpen(state);
-  }
+  };
 
   const handleConfirm = async () => {
     if (address && source) {
