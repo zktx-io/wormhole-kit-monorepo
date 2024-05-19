@@ -1,6 +1,6 @@
 {
   "name": "@zktx.io/wormhole-kit",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
   "main": "lib/cjs/index.js",
   "types": "lib/cjs/index.d.ts",
@@ -77,7 +77,7 @@
     "@radix-ui/react-select": "^2.0.0",
     "@stitches/react": "^1.2.8",
     "@wormhole-foundation/sdk-connect": "^0.6.5",
-    "@zktx.io/wormhole-kit-core": "^0.1.7"
+    "@zktx.io/wormhole-kit-core": "^0.1.8"
   },
   "peerDependencies": {
     "react": "*"
