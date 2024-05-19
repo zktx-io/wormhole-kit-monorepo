@@ -1,4 +1,5 @@
 import * as _aptos from '@wormhole-foundation/sdk-aptos';
+import { applyChainsConfigConfigOverrides } from '@wormhole-foundation/sdk-connect';
 
 import type { IPlatformDefinition } from '../../types';
 
@@ -6,11 +7,20 @@ import type { IPlatformDefinition } from '../../types';
 const aptos: IPlatformDefinition<'Aptos'> = {
   Address: _aptos.AptosAddress,
   Platform: _aptos.AptosPlatform,
-  protocolLoaders: {
-    core: () => import('@wormhole-foundation/sdk-aptos-core'),
-    tokenbridge: () => import('@wormhole-foundation/sdk-aptos-tokenbridge'),
+  protocols: {
+    WormholeCore: () => import('@wormhole-foundation/sdk-aptos-core'),
+    TokenBridge: () => import('@wormhole-foundation/sdk-aptos-tokenbridge'),
   },
-  getChain: (n, c) => new _aptos.AptosChain(c, new _aptos.AptosPlatform(n)),
+  getChain: (network, chain, overrides?) =>
+    new _aptos.AptosChain(
+      chain,
+      new _aptos.AptosPlatform(
+        network,
+        applyChainsConfigConfigOverrides(network, _aptos._platform, {
+          [chain]: overrides,
+        }),
+      ),
+    ),
 };
 
 export default aptos;

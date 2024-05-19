@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import type { ReactElement } from 'react';
 
 import { useWormhole } from '@zktx.io/wormhole-kit-core';
 
@@ -20,6 +21,7 @@ import {
   DlgPortal,
   DlgRoot,
   DlgTitle,
+  DlgTrigger,
 } from './styles/modal';
 import { useMode } from '../provider/WhProvider';
 
@@ -29,20 +31,19 @@ export const WhTransferModal = ({
   chain,
   address,
   token,
-  open,
-  setOpen,
+  trigger,
   handleUnsignedTx,
 }: {
   chain: Chain;
   address?: string;
   token?: string;
-  open: boolean;
-  setOpen: (open: boolean) => void;
+  trigger: ReactElement;
   handleUnsignedTx: (unsignedTx: any) => void;
 }) => {
   const api = useWormhole();
   const { mode } = useMode();
 
+  const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [target, setTarget] = useState<Chain | undefined>(undefined);
   const [targetAddress, setTargetAddress] = useState<string>('');
@@ -50,6 +51,28 @@ export const WhTransferModal = ({
 
   const [symbol, setSymbol] = useState<string>('');
   const [balance, setBalance] = useState<number>(0);
+
+  const handleOpenChange = (state: boolean) => {
+    const init = async () => {
+      if (address) {
+        setSymbol(api.getSymbol({ chain, token }));
+        const { fValue, value } = await api.getBalance({
+          chain,
+          address,
+          token,
+        });
+        fValue ? setBalance(fValue) : setBalance(parseInt(value));
+      }
+    };
+    if (state) {
+      setLoading(false);
+      setTarget(undefined);
+      setTargetAddress('');
+      setAmount('');
+      init();
+    }
+    setOpen(state);
+  };
 
   const handleConfirm = async () => {
     if (address && target) {
@@ -74,30 +97,9 @@ export const WhTransferModal = ({
     }
   };
 
-  useEffect(() => {
-    const init = async () => {
-      if (open && address) {
-        setSymbol(api.getSymbol({ chain, token }));
-        const { fValue, value } = await api.getBalance({
-          chain,
-          address,
-          token,
-        });
-        fValue ? setBalance(fValue) : setBalance(parseInt(value));
-      }
-    };
-    if (open) {
-      setLoading(false);
-      setTarget(undefined);
-      setTargetAddress('');
-      setAmount('');
-    }
-    init();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
-
   return (
-    <DlgRoot open={open} onOpenChange={setOpen}>
+    <DlgRoot open={open} onOpenChange={handleOpenChange}>
+      <DlgTrigger asChild>{trigger}</DlgTrigger>
       <DlgPortal>
         <DlgOverlay mode={mode} />
         <DlgContent mode={mode}>
@@ -147,7 +149,10 @@ export const WhTransferModal = ({
                   onChange={(e) => setAmount(e.target.value)}
                 />
               </FormControl>
-              <FormMessage mode={mode}>{`${balance} ${symbol}`}</FormMessage>
+              <FormMessage
+                error={balance < Number(amount)}
+                mode={mode}
+              >{`${balance} ${symbol}`}</FormMessage>
             </FormField>
           </FormRoot>
           <div

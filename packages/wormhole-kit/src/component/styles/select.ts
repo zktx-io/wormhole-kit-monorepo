@@ -18,6 +18,7 @@ export const SelectTrigger = styled(Select.Trigger, {
   height: '32px',
   gap: '5px',
   cursor: 'pointer',
+  outline: 'none',
   borderStyle: 'solid',
   borderWidth: '1px',
   backgroundColor: '#00000000',
@@ -26,10 +27,22 @@ export const SelectTrigger = styled(Select.Trigger, {
       light: {
         color: '#000000',
         borderColor: '#01013740',
+        '&:focus': {
+          outline: 'none',
+          borderStyle: 'solid',
+          borderWidth: '1px',
+          borderColor: '#3c74ff',
+        },
       },
       dark: {
         color: '#ffffff',
         borderColor: '#ddf3ff40',
+        '&:focus': {
+          outline: 'none',
+          borderStyle: 'solid',
+          borderWidth: '1px',
+          borderColor: '#33a8ff',
+        },
       },
     },
   },
@@ -67,6 +80,8 @@ export const SelectViewport = styled(Select.Viewport, {
 export const SelectItem = styled(Select.Item, {
   fontSize: '13px',
   lineHeight: 1,
+  outline: 'none',
+  border: 'none',
   borderRadius: '3px',
   display: 'flex',
   alignItems: 'center',

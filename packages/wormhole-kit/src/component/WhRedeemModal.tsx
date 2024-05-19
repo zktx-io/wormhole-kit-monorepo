@@ -1,9 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import type { ReactElement } from 'react';
 
 import { useWormhole } from '@zktx.io/wormhole-kit-core';
 
 import { SelectChains } from './SelectChains';
-import { FormControl, FormField, FormInput, FormRoot } from './styles/form';
+import {
+  FormControl,
+  FormField,
+  FormInput,
+  FormMessage,
+  FormRoot,
+} from './styles/form';
 import { Label } from './styles/label';
 import {
   DlgButton,
@@ -14,6 +21,7 @@ import {
   DlgPortal,
   DlgRoot,
   DlgTitle,
+  DlgTrigger,
 } from './styles/modal';
 import { useMode } from '../provider/WhProvider';
 
@@ -22,23 +30,32 @@ import type { Chain } from '@wormhole-foundation/sdk-connect';
 export const WhRedeemModal = ({
   chain,
   address,
-  open,
-  setOpen,
+  trigger,
   handleUnsignedTx,
 }: {
   chain: Chain;
   address?: string;
-  open: boolean;
-  setOpen: (open: boolean) => void;
+  trigger: ReactElement;
   handleUnsignedTx: (unsignedTx: any) => void;
 }) => {
   const api = useWormhole();
   const { mode } = useMode();
 
+  const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [source, setSource] = useState<Chain | undefined>(undefined);
   const [txHash, setTxHash] = useState<string>('');
-  const [usedTx, setUsedTx] = useState<string>('');
+  const [error, setError] = useState<string>('');
+
+  const handleOpenChange = (state: boolean) => {
+    if (state) {
+      setLoading(false);
+      setSource(undefined);
+      setTxHash('');
+      setError('');
+    }
+    setOpen(state);
+  };
 
   const handleConfirm = async () => {
     if (address && source) {
@@ -53,7 +70,7 @@ export const WhRedeemModal = ({
           },
         });
         if (error || !unsignedTx) {
-          setUsedTx(error || 'build redeem transaction error');
+          setError(error || 'build redeem transaction error');
         } else {
           handleUnsignedTx(unsignedTx);
         }
@@ -66,16 +83,9 @@ export const WhRedeemModal = ({
     }
   };
 
-  useEffect(() => {
-    if (open) {
-      setLoading(false);
-      setSource(undefined);
-      setTxHash('');
-    }
-  }, [open]);
-
   return (
-    <DlgRoot open={open} onOpenChange={setOpen}>
+    <DlgRoot open={open} onOpenChange={handleOpenChange}>
+      <DlgTrigger asChild>{trigger}</DlgTrigger>
       <DlgPortal>
         <DlgOverlay mode={mode} />
         <DlgContent mode={mode}>
@@ -111,6 +121,11 @@ export const WhRedeemModal = ({
                   onChange={(e) => setTxHash(e.target.value)}
                 />
               </FormControl>
+              {!!error && (
+                <FormMessage error mode={mode}>
+                  {error}
+                </FormMessage>
+              )}
             </FormField>
           </FormRoot>
           <div
@@ -126,7 +141,7 @@ export const WhRedeemModal = ({
             </DlgClose>
             <DlgButton
               mode={mode}
-              disabled={!source || !txHash || !!usedTx || loading}
+              disabled={!source || !txHash || !!error || loading}
               onClick={handleConfirm}
             >
               Redeem

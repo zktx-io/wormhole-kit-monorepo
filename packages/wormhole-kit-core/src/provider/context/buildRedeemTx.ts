@@ -1,14 +1,14 @@
 import { getUniversalAddress } from './getUniversalAddress';
 import { serializeTx } from './serializeTx';
 
-import type { IReqRedeemTx, IResTransferTx } from '../types';
+import type { IReqRedeemTx, IResRedeemTx } from '../types';
 import type { Network, Wormhole } from '@wormhole-foundation/sdk-connect';
 import type { VAA } from '@wormhole-foundation/sdk-definitions';
 
 export const buildRedeemTx = async (
   wh: Wormhole<Network> | undefined,
   req: IReqRedeemTx,
-): Promise<IResTransferTx> => {
+): Promise<IResRedeemTx> => {
   try {
     if (wh && req.source !== req.receiver.chain) {
       const snd = wh.getChain(req.source);

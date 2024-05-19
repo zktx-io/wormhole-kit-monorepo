@@ -1,8 +1,9 @@
 import algorand from './algorand';
 import aptos from './aptos';
 import evm from './evm';
+import solana from './solana';
 import sui from './sui';
-import { EVMs } from './utils';
+import { EVMs, SOLANAs } from './utils';
 
 import type { IPlatformDefinition } from '../types';
 import type { Chain, Platform } from '@wormhole-foundation/sdk-connect';
@@ -14,7 +15,7 @@ const load = async (
 ): Promise<IPlatformDefinition<Platform>> => {
   try {
     const platform = await loader();
-    Object.values(platform.protocolLoaders).map((loaderFn) => loaderFn());
+    Object.values(platform.protocols).map((loaderFn) => loaderFn());
     return platform;
   } catch (e) {
     console.error('Failed to load required packages', e);
@@ -40,6 +41,7 @@ export const loadPlotforms = async (
           break;
         default:
           EVMs.includes(chain) && platforms.push(await load(evm));
+          SOLANAs.includes(chain) && platforms.push(await load(solana));
       }
     }
     return platforms;

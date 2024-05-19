@@ -2,7 +2,7 @@
 import React, { createContext, useContext } from 'react';
 import type { ReactNode } from 'react';
 
-import { WhCoreProvider } from '@zktx.io/wormhole-kit-core';
+import { WhCoreProvider, WormholeContext } from '@zktx.io/wormhole-kit-core';
 
 import type {
   Chain,
@@ -44,4 +44,8 @@ export const WhProvider = ({
 
 export const useMode = () => {
   return useContext(ModeContext);
+};
+
+export const useWormhole = () => {
+  return useContext(WormholeContext);
 };
