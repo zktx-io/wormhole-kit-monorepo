@@ -11,6 +11,12 @@ import type {
   PlatformUtils,
 } from '@wormhole-foundation/sdk-definitions';
 
+type PROTCOLS =
+  | 'WormholeCore'
+  | 'TokenBridge'
+  | 'PorticoBridge'
+  | 'CircleBridge';
+
 export interface IReqBalance {
   chain: Chain;
   address: string;
@@ -54,7 +60,7 @@ export interface IPlatformDefinition<P extends Platform> {
   Platform: PlatformUtils<P>;
   Address: NativeAddressCtr;
   protocols: {
-    [key: string]: () => Promise<any>;
+    [key in PROTCOLS]?: () => Promise<any>;
   };
   getChain: <N extends Network, C extends PlatformToChains<P>>(
     network: N,
