@@ -1,7 +1,7 @@
 import { decimals } from '@wormhole-foundation/sdk-connect';
 import { getTokenByAddress } from '@wormhole-foundation/sdk-connect/tokens';
 
-import { EVMs } from '../loader/utils';
+import { EVMs, SOLANAs } from '../loader/utils';
 
 import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
 
@@ -29,6 +29,9 @@ export const getDecimals = (
         default:
           if (EVMs.includes(chain)) {
             return decimals.nativeDecimals('Evm');
+          }
+          if (SOLANAs.includes(chain)) {
+            return decimals.nativeDecimals('Solana');
           }
           break;
       }

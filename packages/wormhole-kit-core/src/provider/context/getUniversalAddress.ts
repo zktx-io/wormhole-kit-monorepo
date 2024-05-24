@@ -1,6 +1,6 @@
 import { UniversalAddress } from '@wormhole-foundation/sdk-definitions';
 
-import { EVMs } from '../loader/utils';
+import { EVMs, SOLANAs } from '../loader/utils';
 
 import type { IUniversalAccount } from '../types';
 
@@ -15,6 +15,9 @@ export const getUniversalAddress = (
       default:
         if (EVMs.includes(account.chain)) {
           return new UniversalAddress(account.address, 'hex');
+        }
+        if (SOLANAs.includes(account.chain)) {
+          return new UniversalAddress(account.address, 'base58');
         }
         break;
     }
