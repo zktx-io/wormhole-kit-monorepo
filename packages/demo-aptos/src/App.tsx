@@ -34,7 +34,7 @@ function App() {
         <img src={'/logo.png'} className="App-logo" alt="logo" />
         <h1>Aptos Example</h1>
         {!account ? (
-          <button onClick={() => connect('Petra' as any)}>Connect</button>
+          <button onClick={() => connect('Petra' as any)}>Petra Wallet</button>
         ) : (
           <span>
             <WhTransferModal
