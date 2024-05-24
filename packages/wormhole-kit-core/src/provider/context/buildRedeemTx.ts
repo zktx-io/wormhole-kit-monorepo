@@ -21,11 +21,10 @@ export const buildRedeemTx = async (
       const rcv = wh.getChain(req.receiver.chain);
       const rcvTb = await rcv.getTokenBridge();
 
-      const isTransferCompleted = await rcvTb.isTransferCompleted(vaa); // TODO: not working
+      const isTransferCompleted = await rcvTb.isTransferCompleted(vaa);
       if (isTransferCompleted) {
         return {
           error: 'These tokens have already been redeemed.',
-          unsignedTx: undefined,
         };
       }
 
@@ -35,10 +34,12 @@ export const buildRedeemTx = async (
         unsignedTx,
       };
     }
-    throw new Error(
-      `buildRedeemTx : Source and Target chains must be different.`,
-    );
+    return {
+      error: 'Source and Target chains must be different.',
+    };
   } catch (error) {
-    throw new Error(`buildRedeemTx : ${error}`);
+    return {
+      error: `${error}`,
+    };
   }
 };

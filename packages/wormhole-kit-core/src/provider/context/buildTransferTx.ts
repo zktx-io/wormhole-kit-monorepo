@@ -4,13 +4,13 @@ import { getDecimals } from './getDecimals';
 import { getUniversalAddress } from './getUniversalAddress';
 import { serializeTx } from './serializeTx';
 
-import type { IReqTransferTx } from '../types';
+import type { IReqTransferTx, IResTransferTx } from '../types';
 import type { Network, Wormhole } from '@wormhole-foundation/sdk-connect';
 
 export const buildTransferTx = async (
   wh: Wormhole<Network> | undefined,
   req: IReqTransferTx,
-): Promise<any> => {
+): Promise<IResTransferTx> => {
   try {
     if (wh && req.sender.chain !== req.receiver.chain) {
       const snd = wh.getChain(req.sender.chain);
@@ -29,12 +29,17 @@ export const buildTransferTx = async (
           ),
         ),
       );
-      return serializeTx(req.sender.chain, txs);
+      const unsignedTx = await serializeTx(req.sender.chain, txs);
+      return {
+        unsignedTx,
+      };
     }
-    throw new Error(
-      `buildTransferTx : Source and Target chains must be different.`,
-    );
+    return {
+      error: 'Source and Target chains must be different.',
+    };
   } catch (error) {
-    throw new Error(`buildTransferTx : ${error}`);
+    return {
+      error: `${error}`,
+    };
   }
 };

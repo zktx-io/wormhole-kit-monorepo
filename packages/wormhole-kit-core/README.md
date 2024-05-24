@@ -30,7 +30,7 @@ root.render(
   <StrictMode>
     <WhCoreProvider
       network="Testnet"
-      chains={['Aptos', 'Celo', 'Polygon', 'Sui']}
+      chains={['Sui', 'Solana', 'Aptos', 'Celo', 'Polygon']}
       config={
         {
           chains: {
@@ -73,7 +73,7 @@ export const WhTransferModal = () => {
         },
         amount: '1.2',
       });
-      handleUnsignedTx(tx);
+      handleUnsignedTx(tx.unsignedTx);
     } catch (error) {
       console.error(error);
     }

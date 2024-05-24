@@ -23,6 +23,7 @@ import type {
   IReqTransferTx,
   IResBalance,
   IResRedeemTx,
+  IResTransferTx,
 } from './types';
 import type {
   Chain,
@@ -40,7 +41,7 @@ export const WormholeContext = createContext({
   getBalance: async (req: IReqBalance): Promise<IResBalance> => {
     throw new Error();
   },
-  buildTransferTx: async (req: IReqTransferTx): Promise<any> => {
+  buildTransferTx: async (req: IReqTransferTx): Promise<IResTransferTx> => {
     throw new Error();
   },
   buildRedeemTx: async (req: IReqRedeemTx): Promise<IResRedeemTx> => {
@@ -85,7 +86,9 @@ export const WhCoreProvider = ({
           getBalance: async (req: IReqBalance): Promise<IResBalance> => {
             return getBalance(wh, req);
           },
-          buildTransferTx: async (req: IReqTransferTx): Promise<any> => {
+          buildTransferTx: async (
+            req: IReqTransferTx,
+          ): Promise<IResTransferTx> => {
             return buildTransferTx(wh, req);
           },
           buildRedeemTx: async (req: IReqRedeemTx): Promise<IResRedeemTx> => {
