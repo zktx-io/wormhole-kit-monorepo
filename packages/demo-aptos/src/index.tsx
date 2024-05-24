@@ -15,7 +15,7 @@ root.render(
   <StrictMode>
     <WhProvider
       network="Testnet"
-      chains={['Aptos', 'Celo', 'Polygon', 'Sui']}
+      chains={['Aptos', 'Solana', 'Celo', 'Polygon', 'Sui']}
       config={{
         chains: {
           Ethereum: {
