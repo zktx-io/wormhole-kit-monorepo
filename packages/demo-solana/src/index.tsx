@@ -15,7 +15,7 @@ root.render(
   <StrictMode>
     <WhProvider
       network="Testnet"
-      chains={['Aptos', 'Celo', 'Polygon', 'Solana', 'Sui']}
+      chains={['Solana', 'Sui', 'Aptos', 'Celo', 'Polygon']}
       config={{
         chains: {
           Ethereum: {
@@ -31,7 +31,7 @@ root.render(
       <SnackbarProvider
         anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
       />
-        <App />
+      <App />
     </WhProvider>
   </StrictMode>,
 );
