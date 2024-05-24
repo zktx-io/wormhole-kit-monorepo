@@ -7,6 +7,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Wallet from './Wallet';
 
 import '@mysten/dapp-kit/dist/index.css';
 
@@ -31,7 +32,9 @@ root.render(
       <SnackbarProvider
         anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
       />
-      <App />
+      <Wallet>
+        <App />
+      </Wallet>
     </WhProvider>
   </StrictMode>,
 );
