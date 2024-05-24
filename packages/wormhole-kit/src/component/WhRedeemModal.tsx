@@ -59,25 +59,20 @@ export const WhRedeemModal = ({
 
   const handleConfirm = async () => {
     if (address && source) {
-      try {
-        setLoading(true);
-        const { unsignedTx, error } = await api.buildRedeemTx({
-          source,
-          txHash,
-          receiver: {
-            chain,
-            address,
-          },
-        });
-        if (error || !unsignedTx) {
-          setError(error || 'build redeem transaction error');
-        } else {
-          handleUnsignedTx(unsignedTx);
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
+      setLoading(true);
+      const { unsignedTx, error } = await api.buildRedeemTx({
+        source,
+        txHash,
+        receiver: {
+          chain,
+          address,
+        },
+      });
+      setLoading(false);
+      if (error || !unsignedTx) {
+        setError(error || 'build redeem transaction error');
+      } else {
+        handleUnsignedTx(unsignedTx);
         setOpen(false);
       }
     }
