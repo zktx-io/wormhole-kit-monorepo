@@ -16,7 +16,11 @@ import {
   SelectViewport,
 } from './styles/select';
 
-import type { Chain } from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@zktx.io/wormhole-kit-core';
+
+const addSpaceBeforeUpperCase = (chain: Chain) => {
+  return chain.replace(/([A-Z])/g, ' $1').trim();
+};
 
 // eslint-disable-next-line import/no-named-as-default-member
 const SelectItem = React.forwardRef(
@@ -32,7 +36,7 @@ const SelectItem = React.forwardRef(
           }}
         >
           <ChainIcon chain={chain} />
-          <SelectItemText>{chain}</SelectItemText>
+          <SelectItemText>{addSpaceBeforeUpperCase(chain)}</SelectItemText>
         </div>
       </Item>
     );
@@ -83,7 +87,7 @@ export const SelectChains = React.forwardRef(
               {selectChain && (
                 <>
                   <ChainIcon chain={selectChain} />
-                  {selectChain}
+                  {addSpaceBeforeUpperCase(selectChain)}
                 </>
               )}
             </div>

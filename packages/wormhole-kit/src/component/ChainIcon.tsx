@@ -16,7 +16,7 @@ import { Sei } from './icons/sei';
 import { Solana } from './icons/solana';
 import { Sui } from './icons/sui';
 
-import type { Chain } from '@wormhole-foundation/sdk-connect';
+import type { Chain } from '@zktx.io/wormhole-kit-core';
 
 export const ChainIcon = ({ chain }: { chain: Chain }) => {
   return (
@@ -25,16 +25,20 @@ export const ChainIcon = ({ chain }: { chain: Chain }) => {
       {chain === 'Algorand' && <Algorand />}
       {chain === 'Aptos' && <Aptos />}
       {chain === 'Arbitrum' && <Arbitrum />}
+      {chain === 'ArbitrumSepolia' && <Arbitrum />}
       {chain === 'Avalanche' && <Avax />}
       {chain === 'Base' && <Base />}
+      {chain === 'BaseSepolia' && <Base />}
       {chain === 'Bsc' && <Bsc />}
       {chain === 'Celo' && <Celo />}
       {chain === 'Ethereum' && <Eth />}
+      {chain === 'Sepolia' && <Eth />}
       {chain === 'Injective' && <Injective />}
       {chain === 'Moonbeam' && <Moonbeam />}
       {chain === 'Near' && <Near />}
       {chain === 'Optimism' && <Optimism />}
       {chain === 'Polygon' && <Polygon />}
+      {chain === 'PolygonSepolia' && <Polygon />}
       {chain === 'Sei' && <Sei />}
       {chain === 'Solana' && <Solana />}
       {chain === 'Sui' && <Sui />}

@@ -76,7 +76,6 @@
     "@radix-ui/react-form": "^0.0.3",
     "@radix-ui/react-select": "^2.0.0",
     "@stitches/react": "^1.2.8",
-    "@wormhole-foundation/sdk-connect": "^0.6.5",
     "@zktx.io/wormhole-kit-core": "^0.1.8"
   },
   "peerDependencies": {
