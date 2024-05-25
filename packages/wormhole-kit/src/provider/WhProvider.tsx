@@ -8,7 +8,7 @@ import type {
   Chain,
   Network,
   WormholeConfigOverrides,
-} from '@wormhole-foundation/sdk-connect';
+} from '@zktx.io/wormhole-kit-core';
 
 export const ModeContext = createContext({
   mode: 'light' as 'light' | 'dark',

@@ -25,8 +25,7 @@ import {
 } from './styles/modal';
 import { useMode } from '../provider/WhProvider';
 
-import type { Chain } from '@wormhole-foundation/sdk-connect';
-import type { IUnsignedTx } from '@zktx.io/wormhole-kit-core';
+import type { Chain, IUnsignedTx } from '@zktx.io/wormhole-kit-core';
 
 export const WhRedeemModal = ({
   chain,
