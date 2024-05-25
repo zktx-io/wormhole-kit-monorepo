@@ -10,14 +10,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import '@mysten/dapp-kit/dist/index.css';
-
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
     <WhProvider
       network="Testnet"
-      chains={['Aptos', 'Celo', 'Polygon', 'Sui']}
+      chains={['Sui', 'Sepolia', 'Solana', 'Aptos', 'Celo', 'Polygon']}
       config={{
         chains: {
           Ethereum: {

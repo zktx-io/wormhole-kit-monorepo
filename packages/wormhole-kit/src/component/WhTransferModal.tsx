@@ -26,19 +26,20 @@ import {
 import { useMode } from '../provider/WhProvider';
 
 import type { Chain } from '@wormhole-foundation/sdk-connect';
+import type { IUnsignedTx } from '@zktx.io/wormhole-kit-core';
 
 export const WhTransferModal = ({
   chain,
   address,
   token,
   trigger,
-  handleUnsignedTx,
+  handleUnsignedTxs,
 }: {
   chain: Chain;
   address?: string;
   token?: string;
   trigger: ReactElement;
-  handleUnsignedTx: (unsignedTx: any) => void;
+  handleUnsignedTxs: (unsignedTxs: Array<IUnsignedTx>) => void;
 }) => {
   const api = useWormhole();
   const { mode } = useMode();
@@ -51,6 +52,7 @@ export const WhTransferModal = ({
 
   const [symbol, setSymbol] = useState<string>('');
   const [balance, setBalance] = useState<number>(0);
+  const [error, setError] = useState<string>('');
 
   const handleOpenChange = (state: boolean) => {
     const init = async () => {
@@ -78,7 +80,7 @@ export const WhTransferModal = ({
     if (address && target) {
       try {
         setLoading(true);
-        const tx = await api.buildTransferTx({
+        const { unsignedTxs, error } = await api.buildTransferTx({
           sender: { chain, address },
           receiver: {
             chain: target,
@@ -87,12 +89,14 @@ export const WhTransferModal = ({
           amount,
           token,
         });
-        handleUnsignedTx(tx);
+        if (error || unsignedTxs.length === 0) {
+          setError(error || 'build redeem transaction error');
+        } else {
+          handleUnsignedTxs(unsignedTxs);
+          setOpen(false);
+        }
       } catch (error) {
         console.log(error);
-      } finally {
-        setLoading(false);
-        setOpen(false);
       }
     }
   };
@@ -131,7 +135,10 @@ export const WhTransferModal = ({
                   autoCorrect="off"
                   disabled={loading}
                   placeholder="paste in the target address"
-                  onChange={(e) => setTargetAddress(e.target.value)}
+                  onChange={(e) => {
+                    setTargetAddress(e.target.value);
+                    setError('');
+                  }}
                 />
               </FormControl>
             </FormField>
@@ -146,13 +153,18 @@ export const WhTransferModal = ({
                   disabled={loading}
                   placeholder="amount"
                   type="number"
-                  onChange={(e) => setAmount(e.target.value)}
+                  onChange={(e) => {
+                    setAmount(e.target.value);
+                    setError('');
+                  }}
                 />
               </FormControl>
               <FormMessage
-                error={balance < Number(amount)}
+                error={balance < Number(amount) || !!error}
                 mode={mode}
-              >{`${balance} ${symbol}`}</FormMessage>
+              >
+                {!error ? `${balance} ${symbol}` : error}
+              </FormMessage>
             </FormField>
           </FormRoot>
           <div
@@ -175,7 +187,8 @@ export const WhTransferModal = ({
                 loading ||
                 !amount ||
                 Number(amount) === 0 ||
-                (!!balance && balance < Number(amount))
+                (!!balance && balance < Number(amount)) ||
+                !!error
               }
               onClick={handleConfirm}
             >

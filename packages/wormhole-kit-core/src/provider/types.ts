@@ -51,9 +51,11 @@ export interface IReqRedeemTx {
   receiver: IUniversalAccount;
 }
 
-export interface IResRedeemTx {
+export type IUnsignedTx = any;
+
+export interface IResTransaction {
   error?: string;
-  unsignedTx: any | undefined;
+  unsignedTxs: Array<IUnsignedTx>;
 }
 
 export interface IPlatformDefinition<P extends Platform> {

@@ -8,30 +8,34 @@ import {
 import { WhRedeemModal, WhTransferModal } from '@zktx.io/wormhole-kit';
 import { enqueueSnackbar } from 'notistack';
 
+import type { IUnsignedTx } from '@zktx.io/wormhole-kit';
+
 function App() {
   const { mutate: signAndExecuteTransactionBlock } =
     useSignAndExecuteTransactionBlock();
   const account = useCurrentAccount();
 
-  const handleUnsignedTx = (unsignedTx: any) => {
+  const handleUnsignedTxs = (unsignedTxs: IUnsignedTx[]) => {
     try {
-      signAndExecuteTransactionBlock(
-        {
-          transactionBlock: unsignedTx,
-        },
-        {
-          onError: (err) => {
-            enqueueSnackbar(err.message, {
-              variant: 'error',
-            });
+      const unsignedTx = unsignedTxs[0];
+      unsignedTx &&
+        signAndExecuteTransactionBlock(
+          {
+            transactionBlock: unsignedTxs[0],
           },
-          onSuccess: (data) => {
-            enqueueSnackbar(data.digest, {
-              variant: 'success',
-            });
+          {
+            onError: (err) => {
+              enqueueSnackbar(err.message, {
+                variant: 'error',
+              });
+            },
+            onSuccess: (data) => {
+              enqueueSnackbar(data.digest, {
+                variant: 'success',
+              });
+            },
           },
-        },
-      );
+        );
     } catch (error) {
       enqueueSnackbar(`${error}`, {
         variant: 'error',
@@ -53,14 +57,14 @@ function App() {
               token={'0x2::sui::SUI'}
               address={account.address}
               trigger={<button>Transfer</button>}
-              handleUnsignedTx={handleUnsignedTx}
+              handleUnsignedTxs={handleUnsignedTxs}
             />
             &nbsp;
             <WhRedeemModal
               chain="Sui"
               address={account.address}
               trigger={<button>Redeem</button>}
-              handleUnsignedTx={handleUnsignedTx}
+              handleUnsignedTxs={handleUnsignedTxs}
             />
           </span>
         )}

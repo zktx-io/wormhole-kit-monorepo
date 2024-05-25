@@ -3,8 +3,8 @@
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
   "private": true,
   "scripts": {
-    "format": "npm run format:core && npm run format:kit && npm run format:sui && npm run format:aptos",
-    "lint": "npm run lint:core && npm run lint:kit && npm run lint:sui && npm run lint:aptos",
+    "format": "npm run format:core && npm run format:kit && npm run format:sui && npm run format:aptos && npm run format:solana",
+    "lint": "npm run lint:core && npm run lint:kit && npm run lint:sui && npm run lint:aptos && npm run lint:solana",
     "build": "npm run build:core && npm run build:kit",
     "build:core": "cd ./packages/wormhole-kit-core && npm run build",
     "format:core": "cd ./packages/wormhole-kit-core && npm run format",
@@ -15,6 +15,9 @@
     "start:sui": "cd ./packages/demo-sui && npm run start",
     "format:sui": "cd ./packages/demo-sui && npm run format",
     "lint:sui": "cd ./packages/demo-sui && npm run lint",
+    "start:solana": "cd ./packages/demo-solana && npm run start",
+    "format:solana": "cd ./packages/demo-solana && npm run format",
+    "lint:solana": "cd ./packages/demo-solana && npm run lint",
     "start:aptos": "cd ./packages/demo-aptos && npm run start",
     "format:aptos": "cd ./packages/demo-aptos && npm run format",
     "lint:aptos": "cd ./packages/demo-aptos && npm run lint",
@@ -64,7 +67,8 @@
     "packages/wormhole-kit-core",
     "packages/wormhole-kit",
     "packages/demo-sui",
-    "packages/demo-aptos"
+    "packages/demo-aptos",
+    "packages/demo-solana"
   ],
   "devDependencies": {
     "@types/jest": "^29.5.12",

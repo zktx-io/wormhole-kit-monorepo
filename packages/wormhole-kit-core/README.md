@@ -6,17 +6,17 @@ If you want to utilize only the core features of **Wormhole Kit** for your excel
 
 Get started with @zktx.io/wormhole-kit and learn by [developer docs](https://docs.zktx.io/wormhole-kit-core.html)
 
-### Installation
+## Installation
 
-```
+```bash
 npm install @zktx.io/wormhole-kit-core
 ```
 
-```
+```bash
 yarn add @zktx.io/wormhole-kit-core
 ```
 
-### Usage
+## Usage
 
 First, instantiate the **`WhCoreProvider`** component.
 
@@ -30,7 +30,7 @@ root.render(
   <StrictMode>
     <WhCoreProvider
       network="Testnet"
-      chains={['Aptos', 'Celo', 'Polygon', 'Sui']}
+      chains={['Sui', 'Sepolia', 'Solana', 'Aptos', 'Celo', 'Polygon']}
       config={
         {
           chains: {
@@ -55,17 +55,19 @@ Next, use the **`WhCoreProvider`** context in the Modal to create unsigned trans
 ```typescript
 import { useWormhole } from '@zktx.io/wormhole-kit-core';
 
+import type { IUnsignedTx } from '@zktx.io/wormhole-kit-core';
+
 export const WhTransferModal = () => {
   const api = useWormhole();
 
-  const handleUnsignedTx = async (unsignedTx: any): Promise<void> => {
+  const handleUnsignedTxs = async (unsignedTxs: IUnsignedTx[]): Promise<void> => {
     // To execute the transaction,
     // send the unsigned transaction to the wallet.
   };
 
   const handleConfirm = async () => {
     try {
-      const tx = await api.buildTransferTx({
+      const txs = await api.buildTransferTx({
         sender: { chain: 'Sui', address: '0x....' },
         receiver: {
           chain: 'Aptos,
@@ -73,7 +75,7 @@ export const WhTransferModal = () => {
         },
         amount: '1.2',
       });
-      handleUnsignedTx(tx);
+      handleUnsignedTxs(txs);
     } catch (error) {
       console.error(error);
     }
@@ -83,7 +85,7 @@ export const WhTransferModal = () => {
 }
 ```
 
-### WhCoreProvider Props
+## WhCoreProvider Props
 
 - **`network`**: _Mainnet_, _Testnet_, and _Devnet_.
 - **`chains`**: _Algorand_, _Aptos_, _EVMs_, _Solana_, and _Sui_.

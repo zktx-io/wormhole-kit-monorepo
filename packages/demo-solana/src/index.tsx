@@ -1,8 +1,5 @@
 import { StrictMode } from 'react';
 
-import { SuiClientProvider, WalletProvider } from '@mysten/dapp-kit';
-import { getFullnodeUrl } from '@mysten/sui.js/client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WhProvider } from '@zktx.io/wormhole-kit';
 import { SnackbarProvider } from 'notistack';
 import { createRoot } from 'react-dom/client';
@@ -10,10 +7,9 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Wallet from './Wallet';
 
 import '@mysten/dapp-kit/dist/index.css';
-
-const queryClient = new QueryClient();
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -36,16 +32,9 @@ root.render(
       <SnackbarProvider
         anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
       />
-      <QueryClientProvider client={queryClient}>
-        <SuiClientProvider
-          defaultNetwork="testnet"
-          networks={{ testnet: { url: getFullnodeUrl('testnet') } }}
-        >
-          <WalletProvider autoConnect>
-            <App />
-          </WalletProvider>
-        </SuiClientProvider>
-      </QueryClientProvider>
+      <Wallet>
+        <App />
+      </Wallet>
     </WhProvider>
   </StrictMode>,
 );
