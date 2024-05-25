@@ -4,27 +4,60 @@ import { useEffect, useState } from 'react';
 
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { PublicKey } from '@solana/web3.js';
 import { WhRedeemModal, WhTransferModal } from '@zktx.io/wormhole-kit';
 import { enqueueSnackbar } from 'notistack';
 
+import type { Signer } from '@solana/web3.js';
+import type { IUnsignedTx } from '@zktx.io/wormhole-kit';
+
 function App() {
   const { connection } = useConnection();
-  const { publicKey, sendTransaction } = useWallet();
+  const { publicKey, signAllTransactions } = useWallet();
 
   const [address, setAddress] = useState<string | undefined>(undefined);
 
-  const handleUnsignedTx = async (unsignedTx: any): Promise<void> => {
+  const handleUnsignedTxs = async (
+    unsignedTxs: IUnsignedTx[],
+  ): Promise<void> => {
     try {
       const {
         context: { slot: minContextSlot },
+        value: { blockhash },
       } = await connection.getLatestBlockhashAndContext();
 
-      const signature = await sendTransaction(unsignedTx, connection, {
-        minContextSlot,
+      const txs = unsignedTxs.map(({ signers, transaction }) => {
+        transaction.recentBlockhash = blockhash;
+        return { signers, transaction };
       });
-      enqueueSnackbar(signature, {
-        variant: 'success',
-      });
+
+      if (signAllTransactions) {
+        const signedTxs = await signAllTransactions(
+          txs.map((tx) => tx.transaction),
+        );
+        for (let i = 0; i < signedTxs.length; i++) {
+          const signedTx = signedTxs[i];
+          const signers: Signer[] | undefined =
+            txs[i].signers &&
+            (txs[i].signers as any[]).map((item) => {
+              return {
+                publicKey: new PublicKey(item._keypair.publicKey),
+                secretKey: item._keypair.secretKey,
+              };
+            });
+          signers && signedTx.partialSign(...signers);
+          const signature = await connection.sendRawTransaction(
+            signedTx.serialize(),
+            {
+              minContextSlot,
+              // skipPreflight: true,
+            },
+          );
+          enqueueSnackbar(signature, {
+            variant: 'success',
+          });
+        }
+      }
     } catch (error) {
       enqueueSnackbar(`${error}`, {
         variant: 'error',
@@ -53,14 +86,14 @@ function App() {
               chain="Solana"
               address={address}
               trigger={<button>Transfer</button>}
-              handleUnsignedTx={handleUnsignedTx}
+              handleUnsignedTxs={handleUnsignedTxs}
             />
             &nbsp;
             <WhRedeemModal
               chain="Solana"
               address={address}
               trigger={<button>Redeem</button>}
-              handleUnsignedTx={handleUnsignedTx}
+              handleUnsignedTxs={handleUnsignedTxs}
             />
           </span>
         )}
