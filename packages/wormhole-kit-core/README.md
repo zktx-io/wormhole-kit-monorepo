@@ -30,7 +30,7 @@ root.render(
   <StrictMode>
     <WhCoreProvider
       network="Testnet"
-      chains={['Sui', 'Solana', 'Aptos', 'Celo', 'Polygon']}
+      chains={['Sui', 'Sepolia', 'Solana', 'Aptos', 'Celo', 'Polygon']}
       config={
         {
           chains: {
