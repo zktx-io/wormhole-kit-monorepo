@@ -1,10 +1,10 @@
-import './App.css';
-
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import { WhRedeemModal, WhTransferModal } from '@zktx.io/wormhole-kit';
 import { enqueueSnackbar } from 'notistack';
 
 import type { IUnsignedTx } from '@zktx.io/wormhole-kit';
+
+import './App.css';
 
 function App() {
   const { connect, account, signAndSubmitTransaction } = useWallet();
