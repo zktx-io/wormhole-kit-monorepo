@@ -1,5 +1,3 @@
-import './App.css';
-
 import { useEffect, useState } from 'react';
 
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
@@ -10,6 +8,8 @@ import { enqueueSnackbar } from 'notistack';
 
 import type { Signer } from '@solana/web3.js';
 import type { IUnsignedTx } from '@zktx.io/wormhole-kit';
+
+import './App.css';
 
 function App() {
   const { connection } = useConnection();

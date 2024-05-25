@@ -1,5 +1,3 @@
-import './App.css';
-
 import {
   ConnectButton,
   useCurrentAccount,
@@ -9,6 +7,8 @@ import { WhRedeemModal, WhTransferModal } from '@zktx.io/wormhole-kit';
 import { enqueueSnackbar } from 'notistack';
 
 import type { IUnsignedTx } from '@zktx.io/wormhole-kit';
+
+import './App.css';
 
 function App() {
   const { mutate: signAndExecuteTransactionBlock } =
