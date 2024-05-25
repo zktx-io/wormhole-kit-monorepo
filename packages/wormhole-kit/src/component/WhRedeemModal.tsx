@@ -26,17 +26,18 @@ import {
 import { useMode } from '../provider/WhProvider';
 
 import type { Chain } from '@wormhole-foundation/sdk-connect';
+import type { IUnsignedTx } from '@zktx.io/wormhole-kit-core';
 
 export const WhRedeemModal = ({
   chain,
   address,
   trigger,
-  handleUnsignedTx,
+  handleUnsignedTxs,
 }: {
   chain: Chain;
   address?: string;
   trigger: ReactElement;
-  handleUnsignedTx: (unsignedTx: any) => void;
+  handleUnsignedTxs: (unsignedTxs: Array<IUnsignedTx>) => void;
 }) => {
   const api = useWormhole();
   const { mode } = useMode();
@@ -60,7 +61,7 @@ export const WhRedeemModal = ({
   const handleConfirm = async () => {
     if (address && source) {
       setLoading(true);
-      const { unsignedTx, error } = await api.buildRedeemTx({
+      const { unsignedTxs, error } = await api.buildRedeemTx({
         source,
         txHash,
         receiver: {
@@ -69,10 +70,10 @@ export const WhRedeemModal = ({
         },
       });
       setLoading(false);
-      if (error || !unsignedTx) {
+      if (error || unsignedTxs.length === 0) {
         setError(error || 'build redeem transaction error');
       } else {
-        handleUnsignedTx(unsignedTx);
+        handleUnsignedTxs(unsignedTxs);
         setOpen(false);
       }
     }
