@@ -13,20 +13,24 @@ function App() {
   const handleUnsignedTxs = async (unsignedTxs: IUnsignedTx[]) => {
     try {
       const provider = (window as any).ethereum;
-      let lastHash = '';
-      for (const tx of unsignedTxs) {
-        delete tx.chainId;
-        const hash = await provider.request({
-          method: 'eth_sendTransaction',
-          params: [tx],
+      const chainId = await provider.request({ method: 'eth_chainId' });
+
+      if (chainId === '0xaef3') {
+        let lastHash = '';
+        for (const tx of unsignedTxs) {
+          delete tx.chainId;
+          const hash = await provider.request({
+            method: 'eth_sendTransaction',
+            params: [tx],
+          });
+          lastHash = `${hash}`;
+        }
+        enqueueSnackbar(lastHash, {
+          variant: 'success',
         });
-        lastHash = `${hash}`;
       }
-      enqueueSnackbar(lastHash, {
-        variant: 'success',
-      });
     } catch (error) {
-      enqueueSnackbar(`${error}`, {
+      enqueueSnackbar(`${JSON.stringify(error)}`, {
         variant: 'error',
       });
     }
@@ -41,7 +45,9 @@ function App() {
         });
         accounts.length > 0 && setAddress(accounts[0]);
       } catch (error) {
-        console.log(`${error}`);
+        enqueueSnackbar(`${JSON.stringify(error)}`, {
+          variant: 'error',
+        });  
       }
     }
   };
