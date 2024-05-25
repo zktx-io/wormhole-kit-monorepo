@@ -17,9 +17,6 @@ export const serializeTx = async (
       if (chain === 'Aptos') {
         return aptos(unsignedTx[0]).transaction;
       }
-      if (SOLANAs.includes(chain)) {
-        return unsignedTx[0].transaction.transaction;
-      }
       return unsignedTx[0].transaction;
     }
     throw new Error('multi transactions are not support');
