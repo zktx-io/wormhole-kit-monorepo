@@ -1,25 +1,22 @@
 import { serializeTx as aptos } from './aptos/serializeTx';
-import { SOLANAs } from '../loader/utils';
 
+import type { IUnsignedTx } from '../types';
 import type { Chain, Network } from '@wormhole-foundation/sdk-connect';
 import type { UnsignedTransaction } from '@wormhole-foundation/sdk-definitions';
 
 export const serializeTx = async (
   chain: Chain,
   txs: AsyncGenerator<UnsignedTransaction<Network, Chain>>,
-): Promise<any> => {
+): Promise<Array<IUnsignedTx>> => {
   try {
-    const unsignedTx: UnsignedTransaction<Network, Chain>[] = [];
+    const unsignedTxs: UnsignedTransaction<Network, Chain>[] = [];
     for await (const tx of txs) {
-      unsignedTx.push(tx);
+      unsignedTxs.push(tx);
     }
-    if (unsignedTx.length === 1) {
-      if (chain === 'Aptos') {
-        return aptos(unsignedTx[0]).transaction;
-      }
-      return unsignedTx[0].transaction;
+    if (chain === 'Aptos') {
+      return unsignedTxs.map((tx) => aptos(tx).transaction);
     }
-    throw new Error('multi transactions are not support');
+    return unsignedTxs.map(({ transaction }) => transaction);
   } catch (error) {
     throw new Error(`serializeTx : ${error}`);
   }

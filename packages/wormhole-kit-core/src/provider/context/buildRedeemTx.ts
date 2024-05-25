@@ -1,14 +1,14 @@
 import { getUniversalAddress } from './getUniversalAddress';
 import { serializeTx } from './serializeTx';
 
-import type { IReqRedeemTx, IResRedeemTx } from '../types';
+import type { IReqRedeemTx, IResTransaction } from '../types';
 import type { Network, Wormhole } from '@wormhole-foundation/sdk-connect';
 import type { VAA } from '@wormhole-foundation/sdk-definitions';
 
 export const buildRedeemTx = async (
   wh: Wormhole<Network> | undefined,
   req: IReqRedeemTx,
-): Promise<IResRedeemTx> => {
+): Promise<IResTransaction> => {
   try {
     if (wh && req.source !== req.receiver.chain) {
       const snd = wh.getChain(req.source);
@@ -25,21 +25,24 @@ export const buildRedeemTx = async (
       if (isTransferCompleted) {
         return {
           error: 'These tokens have already been redeemed.',
+          unsignedTxs: [],
         };
       }
 
       const redeem = rcvTb.redeem(getUniversalAddress(req.receiver), vaa!);
-      const unsignedTx = await serializeTx(req.source, redeem);
+      const unsignedTxs = await serializeTx(req.source, redeem);
       return {
-        unsignedTx,
+        unsignedTxs,
       };
     }
     return {
       error: 'Source and Target chains must be different.',
+      unsignedTxs: [],
     };
   } catch (error) {
     return {
       error: `${error}`,
+      unsignedTxs: [],
     };
   }
 };

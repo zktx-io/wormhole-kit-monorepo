@@ -45,20 +45,17 @@ export interface IReqTransferTx {
   amount: string;
 }
 
-export interface IResTransferTx {
-  error?: string;
-  unsignedTx?: any;
-}
-
 export interface IReqRedeemTx {
   source: Chain;
   txHash: string;
   receiver: IUniversalAccount;
 }
 
-export interface IResRedeemTx {
+export type IUnsignedTx = any;
+
+export interface IResTransaction {
   error?: string;
-  unsignedTx?: any;
+  unsignedTxs: Array<IUnsignedTx>;
 }
 
 export interface IPlatformDefinition<P extends Platform> {
