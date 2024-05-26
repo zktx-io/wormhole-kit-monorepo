@@ -120,7 +120,10 @@ export const WhTransferModal = ({
                   chains={api.supportChains().filter((item) => item !== chain)}
                   type="redeem"
                   disabled={loading}
-                  onSelect={setTarget}
+                  onSelect={(chain) => {
+                    setTarget(chain);
+                    setError('');
+                  }}
                 />
               </FormControl>
             </FormField>
