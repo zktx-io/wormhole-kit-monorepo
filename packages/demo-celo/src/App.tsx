@@ -47,7 +47,7 @@ function App() {
       } catch (error) {
         enqueueSnackbar(`${JSON.stringify(error)}`, {
           variant: 'error',
-        });  
+        });
       }
     }
   };
