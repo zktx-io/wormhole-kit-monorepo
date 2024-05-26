@@ -99,7 +99,10 @@ export const WhRedeemModal = ({
                   chains={api.supportChains().filter((item) => item !== chain)}
                   type="redeem"
                   disabled={loading}
-                  onSelect={setSource}
+                  onSelect={(chain) => {
+                    setSource(chain);
+                    setError('');
+                  }}
                 />
               </FormControl>
             </FormField>
@@ -113,7 +116,10 @@ export const WhRedeemModal = ({
                   mode={mode}
                   disabled={loading}
                   placeholder="paste in the transaction ID"
-                  onChange={(e) => setTxHash(e.target.value)}
+                  onChange={(e) => {
+                    setTxHash(e.target.value);
+                    setError('');
+                  }}
                 />
               </FormControl>
               {!!error && (
