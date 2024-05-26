@@ -1,6 +1,6 @@
 {
   "name": "demo-aptos",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "aptos demo",
   "private": true,
   "dependencies": {
@@ -8,7 +8,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@zktx.io/wormhole-kit": "^0.1.9",
+    "@zktx.io/wormhole-kit": "^0.1.10",
     "notistack": "^3.0.1",
     "petra-plugin-wallet-adapter": "^0.4.5",
     "react": "^18.3.1",
