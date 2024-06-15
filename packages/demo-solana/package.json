@@ -1,6 +1,6 @@
 {
   "name": "demo-solana",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "solana demo",
   "private": true,
   "dependencies": {
@@ -12,7 +12,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@zktx.io/wormhole-kit": "^0.1.10",
+    "@zktx.io/wormhole-kit": "^0.1.11",
     "browserify-zlib": "^0.2.0",
     "https-browserify": "^1.0.0",
     "notistack": "^3.0.1",

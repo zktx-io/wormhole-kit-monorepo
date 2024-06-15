@@ -2,7 +2,7 @@
 
 **Wormhole Kit** is a React library that enables instant integration of [Wormhole](https://docs.wormhole.com/wormhole/reference/sdk-docs) into your dapp.
 
-[demonstration](https://github.com/zktx-io/wormhole-kit-monorepo/assets/57783762/9aca9012-41ea-4c06-be8e-7f120232b45f)
+<img width="850" alt="wormhole-kit" src="https://github.com/zktx-io/wormhole-kit-monorepo/assets/57783762/65810d72-86e9-4a74-9966-46c0127591d2">
 
 ## Getting started
 

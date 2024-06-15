@@ -1,6 +1,6 @@
 {
   "name": "@zktx.io/wormhole-kit",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "A suite of utilities used to implement bridges based on the Wormhole protocol.",
   "main": "lib/cjs/index.js",
   "types": "lib/cjs/index.d.ts",
@@ -17,7 +17,7 @@
   },
   "keywords": [
     "wormhole",
-    "birdge",
+    "bridge",
     "acala",
     "algorand",
     "aptos",
@@ -76,7 +76,7 @@
     "@radix-ui/react-form": "^0.0.3",
     "@radix-ui/react-select": "^2.0.0",
     "@stitches/react": "^1.2.8",
-    "@zktx.io/wormhole-kit-core": "^0.1.10"
+    "@zktx.io/wormhole-kit-core": "^0.1.11"
   },
   "peerDependencies": {
     "react": "*"
