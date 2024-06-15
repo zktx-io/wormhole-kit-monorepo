@@ -1,13 +1,13 @@
 {
   "name": "demo-celo",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "celo demo",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@zktx.io/wormhole-kit": "^0.1.11",
+    "@zktx.io/wormhole-kit": "^0.1.12",
     "notistack": "^3.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
