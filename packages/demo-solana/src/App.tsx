@@ -23,11 +23,12 @@ function App() {
     try {
       const {
         context: { slot: minContextSlot },
-        value: { blockhash },
+        value: { blockhash, lastValidBlockHeight },
       } = await connection.getLatestBlockhashAndContext();
 
       const txs = unsignedTxs.map(({ signers, transaction }) => {
         transaction.recentBlockhash = blockhash;
+        transaction.lastValidBlockHeight = lastValidBlockHeight;
         return { signers, transaction };
       });
 
